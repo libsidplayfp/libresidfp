@@ -205,12 +205,12 @@ public:
 
 } // namespace reSIDfp
 
-#if RESID_INLINING || defined(FILTER_CPP)
+#if RESIDFP_INLINING || defined(FILTER_CPP)
 
 namespace reSIDfp
 {
 
-RESID_INLINE
+RESIDFP_INLINE
 unsigned short Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
 {
     const int V1 = getNormalizedVoice(voice1);

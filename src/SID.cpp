@@ -26,8 +26,6 @@
 
 #include <limits>
 
-#include "sidcxx11.h"
-
 #include "array.h"
 #include "Dac.h"
 #include "Filter6581.h"
@@ -149,7 +147,7 @@ SID::SID() :
     voice[1].setOtherVoices(voice[0], voice[2]);
     voice[2].setOtherVoices(voice[1], voice[0]);
 
-    setChipModel(MOS8580);
+    setChipModel(CSG8580);
     reset();
 }
 
@@ -224,7 +222,7 @@ void SID::setChipModel(ChipModel model)
         modelTTL = BUS_TTL_6581;
         break;
 
-    case MOS8580:
+    case CSG8580:
         filter = filter8580;
         scaleFactor = 5;
         modelTTL = BUS_TTL_8580;

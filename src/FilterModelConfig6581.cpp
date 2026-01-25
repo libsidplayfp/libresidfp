@@ -25,8 +25,6 @@
 #include "Integrator6581.h"
 #include "OpAmp.h"
 
-#include "sidcxx11.h"
-
 #include <algorithm>
 #include <mutex>
 #include <thread>

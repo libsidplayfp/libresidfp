@@ -27,7 +27,7 @@
 #include "FilterModelConfig8580.h"
 #include "Integrator8580.h"
 
-#include "sidcxx11.h"
+#include "siddefs-fp.h"
 
 namespace reSIDfp
 {

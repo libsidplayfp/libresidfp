@@ -23,7 +23,7 @@
 #ifndef DAC_H
 #define DAC_H
 
-#include "siddefs-fp.h"
+#include "residfp/residfp_defs.h"
 
 namespace reSIDfp
 {

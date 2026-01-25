@@ -104,12 +104,12 @@ public:
 
 } // namespace reSIDfp
 
-#if RESID_INLINING || defined(EXTERNALFILTER_CPP)
+#if RESIDFP_INLINING || defined(EXTERNALFILTER_CPP)
 
 namespace reSIDfp
 {
 
-RESID_INLINE
+RESIDFP_INLINE
 int ExternalFilter::clock(int input)
 {
     const int Vi = input << 11;

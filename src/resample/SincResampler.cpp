@@ -37,8 +37,6 @@
 
 #include "siddefs-fp.h"
 
-#include "sidcxx11.h"
-
 #ifdef __cpp_lib_math_constants
 #  include <numbers>
 #endif

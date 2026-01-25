@@ -1,5 +1,5 @@
 /*
- * This file is part of libsidplayfp, a SID player engine.
+ * This file is part of residfp, a SID player engine.
  *
  * Copyright 2011-2026 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
@@ -20,141 +20,49 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SIDFP_H
-#define SIDFP_H
-
-#include <memory>
-#include <cstdint>
+#ifndef RESIDFP_H
+#define RESIDFP_H
 
 #include "residfp/residfp_defs.h"
-#include "siddefs-fp.h"
-#include "ExternalFilter.h"
-#include "Voice.h"
+#include "residfp/sidversion.h"
 
 namespace reSIDfp
 {
 
-class Filter;
-class Filter6581;
-class Filter8580;
-class Resampler;
+class SID;
 
 /**
- * SID error exception.
+ * Cycle exact SID emulation
  */
-class SIDError
+class RESIDFP_EXTERN residfp
 {
 private:
-    const char* message;
+    SID &sid;
 
 public:
-    SIDError(const char* msg) :
-        message(msg) {}
-    const char* getMessage() const { return message; }
-};
-
-/**
- * MOS6581/MOS8580 emulation.
- */
-class SID
-{
-private:
-    /// Currently active filter
-    Filter* filter;
-
-    /// Filter used, if model is set to 6581
-    Filter6581* const filter6581;
-
-    /// Filter used, if model is set to 8580
-    Filter8580* const filter8580;
-
-    /// Resampler used by audio generation code.
-    std::unique_ptr<Resampler> resampler;
-
-    /**
-     * External filter that provides high-pass and low-pass filtering
-     * to adjust sound tone slightly.
-     */
-    ExternalFilter externalFilter;
-
-    /// SID voices
-    Voice voice[3];
-
-    /// Used to amplify the output by x/2 to get an adequate playback volume
-    int scaleFactor;
-
-    /// Time to live for the last written value
-    int busValueTtl;
-
-    /// Current chip model's bus value TTL
-    int modelTTL;
-
-    /// Time until #voiceSync must be run.
-    unsigned int nextVoiceSync;
-
-    /// Currently active chip model.
-    ChipModel model;
-
-    /// Currently selected combined waveforms strength.
-    CombinedWaveforms cws;
-
-    /// Last written value
-    unsigned char busValue;
-
-    /**
-     * Emulated nonlinearity of the envelope DAC.
-     *
-     * @See Dac
-     */
-    float envDAC[256];
-
-    /**
-     * Emulated nonlinearity of the oscillator DAC.
-     *
-     * @See Dac
-     */
-    float oscDAC[4096];
-
-private:
-    /**
-     * Age the bus value and zero it if it's TTL has expired.
-     *
-     * @param n the number of cycles
-     */
-    void ageBusValue(unsigned int n);
-
-    /**
-     * Calculate the numebr of cycles according to current parameters
-     * that it takes to reach sync.
-     *
-     * @param sync whether to do the actual voice synchronization
-     */
-    void voiceSync(bool sync);
-
-public:
-    SID();
-    ~SID();
+    residfp();
+    ~residfp();
 
     /**
      * Set chip model.
      *
      * @param model chip model to use
-     * @throw SIDError
+     * @return false on unrecognized model
      */
-    void setChipModel(ChipModel model);
+    bool setChipModel(ChipModel model);
 
     /**
      * Get currently emulated chip model.
      */
-    ChipModel getChipModel() const { return model; }
+    ChipModel getChipModel() const;
 
     /**
      * Set combined waveforms strength.
      *
      * @param cws strength of combined waveforms
-     * @throw SIDError
+     * @return false on unrecognized strength value
      */
-    void setCombinedWaveforms(CombinedWaveforms cws);
+    bool setCombinedWaveforms(CombinedWaveforms cws);
 
     /**
      * SID reset.
@@ -164,8 +72,7 @@ public:
     /**
      * 16-bit input (EXT IN). Write 16-bit sample to audio input. NB! The caller
      * is responsible for keeping the value within 16 bits. Note that to mix in
-     * an external audio signal, the signal should be resampled to 1MHz first to
-     * avoid sampling noise.
+     * an external audio signal, the signal should be resampled to 1MHz first.
      *
      * @param value input level to set
      */
@@ -176,7 +83,8 @@ public:
      *
      * Reading a write only register returns the last char written to any SID register.
      * The individual bits in this value start to fade down towards zero after a few cycles.
-     * All bits reach zero within approximately $2000 - $4000 cycles.
+     * All bits reach zero within approximately $2000 - $4000 cycles on the 6581
+     * and dar longer on the 8580.
      * It has been claimed that this fading happens in an orderly fashion,
      * however sampling of write only registers reveals that this is not the case.
      * NOTE: This is not correctly modeled.
@@ -186,7 +94,7 @@ public:
      * after a write to the same register (remember that an intermediate write
      * to another register would yield that value instead).
      * With this in mind we return the last value written to any SID register
-     * for $2000 cycles without modeling the bit fading.
+     * for a number of cycles dependent on the chip model without modeling the bit fading.
      *
      * @param offset SID register to read
      * @return value read from chip
@@ -223,16 +131,17 @@ public:
      * @param clockFrequency System clock frequency at Hz
      * @param method sampling method to use
      * @param samplingFrequency Desired output sampling rate
-     * @throw SIDError
+     * @return false on unrecognized sampling method
      */
-    void setSamplingParameters(
+    bool setSamplingParameters(
         double clockFrequency,
         SamplingMethod method,
         double samplingFrequency
     );
 
     /**
-     * Clock SID forward using chosen output sampling algorithm.
+     * Clock SID forward producing audio
+     * using chosen output sampling algorithm.
      *
      * @param cycles c64 clocks to clock
      * @param buf audio output buffer
@@ -243,7 +152,7 @@ public:
     /**
      * Clock SID forward with no audio production.
      *
-     * _Warning_:
+     * @note
      * You can't mix this method of clocking with the audio-producing
      * clock() because components that don't affect OSC3/ENV3 are not
      * emulated.
@@ -264,7 +173,7 @@ public:
     *
     * @see Filter6581::setFilterRange(double)
     */
-    void setFilter6581Range ( double adjustment );
+    void setFilter6581Range(double adjustment);
 
     /**
      * Set filter curve parameter for 8580 model.
@@ -281,80 +190,6 @@ public:
     void enableFilter(bool enable);
 };
 
-} // namespace reSIDfp
-
-#if RESIDFP_INLINING || defined(SID_CPP)
-
-#include <algorithm>
-
-#include "Filter.h"
-#include "resample/Resampler.h"
-
-namespace reSIDfp
-{
-
-RESIDFP_INLINE
-void SID::ageBusValue(unsigned int n)
-{
-    if (likely(busValueTtl != 0))
-    {
-        busValueTtl -= n;
-
-        if (unlikely(busValueTtl <= 0))
-        {
-            busValue = 0;
-            busValueTtl = 0;
-        }
-    }
 }
-
-RESIDFP_INLINE
-int SID::clock(unsigned int cycles, short* buf)
-{
-    ageBusValue(cycles);
-    int s = 0;
-
-    while (cycles != 0)
-    {
-        unsigned int delta_t = std::min(nextVoiceSync, cycles);
-
-        if (likely(delta_t > 0))
-        {
-            for (unsigned int i = 0; i < delta_t; i++)
-            {
-                // clock waveform generators
-                voice[0].wave()->clock();
-                voice[1].wave()->clock();
-                voice[2].wave()->clock();
-
-                // clock envelope generators
-                voice[0].envelope()->clock();
-                voice[1].envelope()->clock();
-                voice[2].envelope()->clock();
-
-                const int sidOutput = static_cast<int>(filter->clock(voice[0], voice[1], voice[2]));
-                const int c64Output = externalFilter.clock(sidOutput + INT16_MIN);
-                if (unlikely(resampler->input(c64Output)))
-                {
-                    buf[s++] = resampler->getOutput(scaleFactor);
-                }
-            }
-
-            cycles -= delta_t;
-            nextVoiceSync -= delta_t;
-        }
-
-        if (unlikely(nextVoiceSync == 0))
-        {
-            voiceSync(true);
-        }
-    }
-
-    return s;
-}
-
-} // namespace reSIDfp
-
-#endif
 
 #endif

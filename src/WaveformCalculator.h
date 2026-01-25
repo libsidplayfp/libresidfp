@@ -24,7 +24,7 @@
 
 #include "array.h"
 
-#include "siddefs-fp.h"
+#include "residfp/residfp_defs.h"
 
 
 namespace reSIDfp
