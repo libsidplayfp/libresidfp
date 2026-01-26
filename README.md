@@ -2,6 +2,7 @@ libresidfp
 ==========
 
 Cycle exact SID emulation.
+
 This project is meant to replicate the SID as faithfully as possible
 while keeping good performance for realtime use.
 It is not intended to expose the chip internal state or adding fancy effects.
@@ -9,8 +10,8 @@ Both the 6581 and the 8580 models are emulated.
 
 https://github.com/libsidplayfp/libresidfp
 
-Copyright (c) 2000-2011 Dag Lem
-Copyright (c) 2007-2010 Antti Lankila
+Copyright (c) 2000-2011 Dag Lem  
+Copyright (c) 2007-2010 Antti Lankila  
 Copyright (c) 2010-2026 Leandro Nini (drfiemost@users.sourceforge.net)
 
 _Warning!_ still experimental and subject to change, use at your own risk
@@ -41,30 +42,30 @@ in advance with the `autoreconf -vfi` command.
 
 In addition to the standard build options the following are available:
 
-`--enable-debug[=no/yes]`:
-compile with debugging messages,
-disabled by default
+* `--enable-debug[=no/yes]`:
+compile with debugging messages
+(disabled by default)
 
-`--enable-inline`:
-enable inlinig in the reSID engine, increases performances at the expense of bigger code size.
-Enabled by default
+* `--enable-inline`:
+enable inlinig in the reSID engine, increases performances at the expense of bigger code size
+(enabled by default)
 
-`--enable-branch-hints`:
-enable branch hints in the reSID engine so the compiler can produce more optimized code,
-enabled by default
+* `--enable-branch-hints`:
+enable branch hints in the reSID engine so the compiler can produce more optimized code
+(enabled by default)
 
-`--with-simd=<runtime/mmx/sse2/sse4/avx2/avx512f/none>`:
+* `--with-simd=<runtime/mmx/sse2/sse4/avx2/avx512f/none>`:
 enable x86 SIMD code for resampling.
 Not required if `-march` or `-mcpu` is already included in the compiler flags
 (i.e. `CXXFLAGS=-march=x86-64-v3`).
 _runtime_ enables runtime dispatch of the resampling function depending on the CPU
 supported instruction set. Works only when compiling with gcc.
-None by default
+(none by default)
 
-`--enable-lto`
-enable Link Time Optimization if supported by compiler.
-disabled by default
+* `--enable-lto`:
+enable Link Time Optimization if supported by compiler
+(disabled by default)
 
-`--disable-tests`
-disable unit tests
-disabled by default
+* `--disable-tests`:
+disable unit tests and test programs
+(enabled by default)
