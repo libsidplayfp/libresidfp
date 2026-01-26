@@ -139,7 +139,7 @@ AX_APPEND_COMPILE_FLAGS([-ftree-loop-vectorize])
 dnl Enable branch prediction hints.
 AC_ARG_ENABLE([branch-hints],
   [AS_HELP_STRING([--enable-branch-hints],
-    [enable static branch prediction hints [default=yes]])],
+    [enable static branch prediction hints @<:@default=yes@:>@])],
   [],
   [enable_branch_hints=yes]
 )
@@ -161,7 +161,7 @@ AS_IF([test "$resid_cv_builtin_expect" = no],
 
 AC_ARG_ENABLE([lto],
   [AS_HELP_STRING([--enable-lto],
-    [enable link time optimization [default=no]])]
+    [enable link time optimization @<:@default=no@:>@])]
 )
 
 AS_IF([test "x$enable_lto" = "xyes"],
@@ -181,13 +181,13 @@ AM_COND_IF([HAVE_DOXYGEN], [AC_CONFIG_FILES([Doxyfile])])
 
 AC_ARG_ENABLE([tests],
   [AS_HELP_STRING([--disable-tests],
-    [disable unit tests [default=no]]
+    [disable unit tests @<:@default=no@:>@]
   )],
-  [enable_tests=no],
+  [],
   [enable_tests=yes]
 )
 
-AM_CONDITIONAL([ENABLE_TEST], [test x$enable_tests = xyes])
+AM_CONDITIONAL([ENABLE_TEST], [test x$enable_tests != xno])
 
 AC_SUBST(HAVE_BUILTIN_EXPECT)
 AC_SUBST(RESIDFP_INLINING)
