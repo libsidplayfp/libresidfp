@@ -23,7 +23,11 @@
 #ifndef RESIDFP_DEFS_H
 #define RESIDFP_DEFS_H
 
-/*! \file */ 
+/**
+ * \file residfp_defs.h
+ *
+ * Public macros and definitions.
+ */
 
 #ifndef RESIDFP_EXTERN
 /* DLL building support on win32 hosts */
