@@ -26,6 +26,12 @@
 #include "residfp/residfp_defs.h"
 #include "residfp/sidversion.h"
 
+/**
+ * \file residfp.h
+ *
+ * Public residfp API.
+ */
+
 namespace reSIDfp
 {
 
@@ -72,7 +78,7 @@ public:
     /**
      * 16-bit input (EXT IN). Write 16-bit sample to audio input. NB! The caller
      * is responsible for keeping the value within 16 bits. Note that to mix in
-     * an external audio signal, the signal should be resampled to 1MHz first.
+     * an external audio signal the signal should be resampled to 1MHz first.
      *
      * @param value input level to set
      */
