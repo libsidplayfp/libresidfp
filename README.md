@@ -43,12 +43,8 @@ in advance with the `autoreconf -vfi` command.
 In addition to the standard build options the following are available:
 
 * `--enable-debug[=no/yes]`:
-compile with debugging messages
+compile for debugging with inlining disabled and warnings
 (disabled by default)
-
-* `--enable-inline`:
-enable inlinig in the reSID engine, increases performances at the expense of bigger code size
-(enabled by default)
 
 * `--enable-branch-hints`:
 enable branch hints in the reSID engine so the compiler can produce more optimized code

@@ -96,20 +96,19 @@ AC_ARG_ENABLE(debug, [AS_HELP_STRING([--enable-debug], [compile for debugging @<
  [], [enable_debug=no])
 
 AS_IF([test "x$enable_debug" = "xno"],
-  [AC_MSG_RESULT([Build without debugging messages]); debug_flags=-DNDEBUG],
-  [AC_MSG_RESULT([Build with debugging messages]); debug_flags=""]
+  [AC_MSG_RESULT([Build for release])
+  debug_flags=-DNDEBUG
+  RESIDFP_INLINE=inline
+  RESIDFP_INLINING=1],
+  [AC_MSG_RESULT([Build for debugging])
+  debug_flags=""
+  RESIDFP_INLINE=""
+  RESIDFP_INLINING=0
+  AX_APPEND_COMPILE_FLAGS([-Wall -Werror -pedantic])
+  ]
 )
 
 AC_SUBST([debug_flags])
-
-AC_ARG_ENABLE([inline],
-  AS_HELP_STRING([--enable-inline],[enable inlining of functions [default=yes]])
-)
-
-AS_IF([test x"$enable_inline" != "xno"],
-  [RESIDFP_INLINE=inline; RESIDFP_INLINING=1],
-  [RESIDFP_INLINE=""; RESIDFP_INLINING=0]
-)
 
 dnl define compiler flag to enable SIMD instructions, not required if -march or -mcpu is defined
 AC_MSG_CHECKING([for SIMD instructions])
