@@ -25,16 +25,23 @@
 
 // Check c++ standard
 #if __cplusplus >= 202302L
-#  define HAVE_CXX23
+#  ifndef HAVE_CXX23
+#    define HAVE_CXX23
+#  endif
 #endif
 
 #if __cplusplus >= 202002L
-#  define HAVE_CXX20
+#  ifndef HAVE_CXX20
+#    define HAVE_CXX20
+#  endif
 #endif
 
 #if __cplusplus >= 201703L
 #  define LIKELY    [[ likely ]]
 #  define UNLIKELY  [[ unlikely ]]
+#  ifndef HAVE_CXX17
+#    define HAVE_CXX17
+#  endif
 #else
 #  define LIKELY
 #  define UNLIKELY
@@ -42,12 +49,18 @@
 
 #if __cplusplus >= 201402L
 #  define MAYBE_UNUSED [[ maybe_unused ]]
+#  ifndef HAVE_CXX14
+#    define HAVE_CXX14
+#  endif
 #else
 #  define MAYBE_UNUSED
 #endif
 
 #if __cplusplus >= 201103L
 #  define MAKE_UNIQUE(type, ...) std::make_unique<type>(__VA_ARGS__)
+#  ifndef HAVE_CXX11
+#    define HAVE_CXX11
+#  endif
 #else
 #  define MAKE_UNIQUE(type, ...) std::unique_ptr<type>(new type(__VA_ARGS__))
 #endif

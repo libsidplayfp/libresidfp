@@ -28,6 +28,10 @@
 #include <mutex>
 #include <thread>
 
+#if defined(HAVE_CXX20) && defined(__cpp_lib_jthread)
+#  define HAVE_JTHREADS
+#endif
+
 namespace reSIDfp
 {
 
@@ -194,7 +198,7 @@ FilterModelConfig8580::FilterModelConfig8580() :
         buildResonanceTable(opampModel, resGain);
     };
 
-#if defined(HAVE_CXX20) && defined(__cpp_lib_jthread)
+#ifdef HAVE_JTHREADS
     using sidThread = std::jthread;
 #else
     using sidThread = std::thread;
@@ -205,7 +209,7 @@ FilterModelConfig8580::FilterModelConfig8580() :
     sidThread thdGain(filterGain);
     sidThread thdResonance(filterResonance);
 
-#if !defined(HAVE_CXX20) || !defined(__cpp_lib_jthread)
+#ifndef HAVE_JTHREADS
     thdSummer.join();
     thdMixer.join();
     thdGain.join();

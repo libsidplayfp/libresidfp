@@ -31,6 +31,10 @@
 #include <cmath>
 #include <cstdint>
 
+#if defined(HAVE_CXX20) && defined(__cpp_lib_jthread)
+#  define HAVE_JTHREADS
+#endif
+
 namespace reSIDfp
 {
 
@@ -247,7 +251,7 @@ FilterModelConfig6581::FilterModelConfig6581() :
         }
     };
 
-#if defined(HAVE_CXX20) && defined(__cpp_lib_jthread)
+#ifdef HAVE_JTHREADS
     using sidThread = std::jthread;
 #else
     using sidThread = std::thread;
@@ -260,7 +264,7 @@ FilterModelConfig6581::FilterModelConfig6581() :
     sidThread thdVcrVg(filterVcrVg);
     sidThread thdVcrIds(filterVcrIds);
 
-#if !defined(HAVE_CXX20) || !defined(__cpp_lib_jthread)
+#ifndef HAVE_JTHREADS
     thdSummer.join();
     thdMixer.join();
     thdGain.join();

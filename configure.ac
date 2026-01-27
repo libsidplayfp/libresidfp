@@ -1,6 +1,6 @@
 m4_define([lib_major], [0])
-m4_define([lib_minor], [1])
-m4_define([lib_level], [0a])
+m4_define([lib_minor], [9])
+m4_define([lib_level], [0])
 m4_define([lib_version], [lib_major.lib_minor.lib_level])
 
 AC_PREREQ([2.62])
@@ -37,19 +37,19 @@ dnl Use C++ for tests.
 AC_LANG([C++])
 
 
-#AX_CXX_COMPILE_STDCXX([23], [noext], [optional])
-#AS_IF([test $ax_cv_cxx_compile_cxx23__std_cpp23 != "yes"], [
-#    AX_CXX_COMPILE_STDCXX([20], [noext], [optional])
-#    AS_IF([test $ax_cv_cxx_compile_cxx20__std_cpp20 != "yes"], [
-#        AX_CXX_COMPILE_STDCXX([17], [noext], [optional])
-#        AS_IF([test $ax_cv_cxx_compile_cxx17__std_cpp17 != "yes"], [
-#            AX_CXX_COMPILE_STDCXX([14], [noext], [optional])
-#            AS_IF([test $ax_cv_cxx_compile_cxx14__std_cpp14 != "yes"],
-#                [AX_CXX_COMPILE_STDCXX([11], [noext], [mandatory])]
-#            )
-#        ])
-#    ])
-#])
+AX_CXX_COMPILE_STDCXX([23], [noext], [optional])
+AS_IF([test $ax_cv_cxx_compile_cxx23__std_cpp23 != "yes"], [
+    AX_CXX_COMPILE_STDCXX([20], [noext], [optional])
+    AS_IF([test $ax_cv_cxx_compile_cxx20__std_cpp20 != "yes"], [
+        AX_CXX_COMPILE_STDCXX([17], [noext], [optional])
+        AS_IF([test $ax_cv_cxx_compile_cxx17__std_cpp17 != "yes"], [
+            AX_CXX_COMPILE_STDCXX([14], [noext], [optional])
+            AS_IF([test $ax_cv_cxx_compile_cxx14__std_cpp14 != "yes"],
+                [AX_CXX_COMPILE_STDCXX([11], [noext], [mandatory])]
+            )
+        ])
+    ])
+])
 
 dnl check for hidden visibility support
 AX_APPEND_COMPILE_FLAGS([-fvisibility=hidden -fvisibility-inlines-hidden])
