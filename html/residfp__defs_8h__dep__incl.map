@@ -1,0 +1,18 @@
+<map id="residfp_defs.h" name="residfp_defs.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="187,5,302,31"/>
+<area shape="rect" id="Node000002" href="$Dac_8h_source.html" title=" " alt="" coords="66,79,125,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,39,121,81,119,76,207,34"/>
+<area shape="rect" id="Node000006" href="$SID_8h_source.html" title=" " alt="" coords="149,79,205,104"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="226,42,190,80,186,77,222,39"/>
+<area shape="rect" id="Node000007" href="$WaveformCalculator_8h_source.html" title=" " alt="" coords="229,79,396,104"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="267,39,304,77,300,80,263,42"/>
+<area shape="rect" id="Node000008" href="$residfp_8h.html" title=" " alt="" coords="420,79,499,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="293,32,425,76,424,81,291,37"/>
+<area shape="rect" id="Node000003" href="$FilterModelConfig6581_8h_source.html" title=" " alt="" coords="5,152,185,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="98,118,98,152,93,152,93,118"/>
+<area shape="rect" id="Node000004" href="$Filter6581_8h_source.html" title=" " alt="" coords="46,299,145,324"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="85,190,73,226,72,246,76,265,91,298,86,300,71,267,67,246,67,225,80,189"/>
+<area shape="rect" id="Node000005" href="$Integrator6581_8h_source.html" title=" " alt="" coords="82,225,213,251"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="114,187,141,224,137,227,110,190"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="133,263,106,300,102,297,129,260"/>
+</map>
