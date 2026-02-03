@@ -34,6 +34,11 @@ _You should have received a copy of the GNU General Public License
 
 -----------------------------------------------------------------------------
 
+## API docs
+
+https://libsidplayfp.github.io/libresidfp/
+
+
 ## Build
 
 This package uses autotools, so the usual `./configure && make` is enough to build
