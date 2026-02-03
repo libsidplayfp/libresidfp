@@ -3,8 +3,8 @@ exec_prefix=${prefix}
 libdir=@libdir@
 includedir=@includedir@
 
-Name: libresisfp
+Name: libresidfp
 Description: cycle exact SID emulation library.
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -lresisfp
+Libs: -L${libdir} -lresidfp
 Cflags: -I${includedir}
