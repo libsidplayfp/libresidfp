@@ -85,16 +85,11 @@ constexpr Spline::Point opamp_voltage[OPAMP_SIZE] =
 
 std::unique_ptr<FilterModelConfig6581> FilterModelConfig6581::instance(nullptr);
 
-std::mutex Instance6581_Lock;
+std::once_flag flag6581;
 
 FilterModelConfig6581* FilterModelConfig6581::getInstance()
 {
-    std::lock_guard<std::mutex> lock(Instance6581_Lock);
-
-    if (!instance.get())
-    {
-        instance.reset(new FilterModelConfig6581());
-    }
+    std::call_once(flag6581, [](){ instance.reset(new FilterModelConfig6581()); });
 
     return instance.get();
 }
