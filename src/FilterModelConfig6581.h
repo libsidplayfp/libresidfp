@@ -79,7 +79,7 @@ private:
     double voiceDC[256];
 
 private:
-    double getDacZero(double adjustment) const { return dac_zero + (1. - adjustment); }
+    double getDacZero(double adjustment) const { return dac_zero + 3. * adjustment - 1.; }
 
     FilterModelConfig6581();
     ~FilterModelConfig6581() = default;

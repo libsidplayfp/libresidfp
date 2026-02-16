@@ -349,7 +349,7 @@ public:
     /**
      * Set filter curve type based on single parameter.
      *
-     * @param curvePosition 0 .. 1, where 0 sets center frequency high ("bright") and 1 sets it low ("dark").
+     * @param curvePosition 0 .. 1, where 0 sets center frequency low ("dark") and 1 sets it high ("bright").
      *                      Default is 0.5
      */
     void setFilterCurve(double curvePosition);
