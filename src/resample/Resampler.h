@@ -24,8 +24,12 @@
 
 #include <cmath>
 #include <cassert>
+#include <cstdint>
 
 #include "siddefs-fp.h"
+
+#include "fpm/fixed.hpp"
+#include "fpm/math.hpp"
 
 namespace reSIDfp
 {
@@ -36,54 +40,42 @@ namespace reSIDfp
  */
 class Resampler
 {
+using FP_17_15 = fpm::fixed<std::int32_t, std::int64_t, 15>;   // Q17.15 format
+
 private:
-#if defined(PADE_TANH)
     // Padé approximation of tanh
-    static constexpr inline double sid_tanh(double x) noexcept
+    static constexpr inline FP_17_15 sid_tanh(FP_17_15 x) noexcept
     {
-        if (likely(x < 3.))
-        {
-            const double x2 = x * x;
-            const double num = x*(945. + x2*(105. + x2));
-            const double den = 945. + x2*(420. + x2*15.);
-            return num/den;
-        }
-        return 1.;
+        if (unlikely(x > FP_17_15(3)))
+            return FP_17_15(1);
+
+        const FP_17_15 x2 = x * x;
+        const FP_17_15 num = x*(FP_17_15(945) + x2*(FP_17_15(105) + x2));
+        const FP_17_15 den = FP_17_15(945) + x2*(FP_17_15(420) + x2*FP_17_15(15));
+        return num/den;
     }
-#elif defined(LAMBERT_TANH)
-    // 7th-degree Lambert approximation of tanh
-    static constexpr inline double sid_tanh(double x) noexcept
-    {
-        if (likely(x < 4.))
-        {
-            const double x2 = x * x;
-            const double num = x*(135135. + x2*(17325. + x2*(378 + x2)));
-            const double den = 135135. + x2*(62370. + x2*(3150. + x2*28.));
-            return num/den;
-        }
-        return 1.;
-    }
-#else
-    static inline double sid_tanh(double x)
-    {
-        return std::tanh(x);
-    }
-#endif
 
     template<int m>
-    static inline int clipper(int x)
+    static inline int clipper(int x) noexcept
     {
         assert(x >= 0);
+
+        // leave values below threshold untouched
         constexpr int threshold = 28000;
         if (likely(x < threshold))
             return x;
 
-        constexpr double max_val = static_cast<double>(m);
-        constexpr double t = threshold / max_val;
-        constexpr double a = 1. - t;
-        constexpr double b = 1. / a;
+        // avoid overflows
+        using L = std::numeric_limits<FP_17_15>;
+        if (unlikely(x > static_cast<int>(L::max())))
+            x = static_cast<int>(L::max());
 
-        double value = static_cast<double>(x - threshold) / max_val;
+        constexpr FP_17_15 max_val = FP_17_15(m);
+        constexpr FP_17_15 t = FP_17_15(threshold) / max_val;
+        constexpr FP_17_15 a = 1 - t;
+        constexpr FP_17_15 b = 1 / a;
+
+        FP_17_15 value = FP_17_15(x - threshold) / max_val;
         value = t + a * sid_tanh(b * value);
         return static_cast<int>(value * max_val);
     }
@@ -91,7 +83,7 @@ private:
     /*
      * Soft Clipping implementation, splitted for test.
      */
-    static inline int softClipImpl(int x)
+    static inline int softClipImpl(int x) noexcept
     {
         return x < 0 ? -clipper<32768>(-x) : clipper<32767>(x);
     }
@@ -100,7 +92,7 @@ protected:
     /*
      * Soft Clipping into 16 bit range [-32768,32767]
      */
-    static inline short softClip(int x) { return static_cast<short>(softClipImpl(x)); }
+    static inline short softClip(int x) noexcept { return static_cast<short>(softClipImpl(x)); }
 
     virtual int output() const = 0;
 

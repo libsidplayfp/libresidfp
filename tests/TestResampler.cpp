@@ -58,8 +58,10 @@ TEST(TestSoftClip)
     }
 
     // Check the extremes too
-    CHECK(Resampler::softClipImpl(std::numeric_limits<int>::max()) <= INT16_MAX);
-    CHECK(Resampler::softClipImpl(std::numeric_limits<int>::min()+1) >= INT16_MIN);
+    int v = Resampler::softClipImpl(std::numeric_limits<int>::max());
+    CHECK((v > threshold) && (v <= INT16_MAX));
+    v = Resampler::softClipImpl(std::numeric_limits<int>::min()+1);
+    CHECK((v >= INT16_MIN) && (v < -threshold));
 }
 
 }
