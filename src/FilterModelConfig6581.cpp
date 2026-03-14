@@ -116,7 +116,7 @@ void FilterModelConfig6581::setFilterRange(double adjustment)
 FilterModelConfig6581::FilterModelConfig6581() :
     FilterModelConfig(
         1.5,                    // voice voltage range FIXME should theoretically be ~3,571V
-        470e-12,                // capacitor value
+        470e-12,                // capacitor value - FIXME ASSY 326298 uses 2200pF caps
         12. * VOLTAGE_SKEW,     // Vdd
         1.31,                   // Vth
         20e-6,                  // uCox
