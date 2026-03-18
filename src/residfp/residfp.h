@@ -175,7 +175,7 @@ public:
     void setFilter6581Curve(double filterCurve);
 
     /**
-    * Set filter range parameter for 6581 model
+    * Set filter range parameter for 6581 model.
     *
     * @see Filter6581::setFilterRange(double)
     */
@@ -194,6 +194,14 @@ public:
      * @param enable false to turn off filter emulation
      */
     void enableFilter(bool enable);
+
+    /**
+     * Enable/disable old caps for 6581 model.
+     *
+     * @param enable true to enable old 2200pF caps used on ASSY 326298
+     *               false to use the standard 470pF caps.
+     */
+    void enableOld6581caps(bool enable);
 };
 
 }

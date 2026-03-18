@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2025 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2026 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  * Copyright 2004,2010 Dag Lem
  *
@@ -75,6 +75,8 @@ private:
     double vcr_n_Ids_term[1 << 16];
     //@}
 
+    double vcr_mult;
+
     // Voice DC offset LUT
     double voiceDC[256];
 
@@ -99,6 +101,8 @@ public:
 
     void setFilterRange(double adjustment);
 
+    void enableOldCaps(bool enable);
+
     /**
      * Construct an 11 bit cutoff frequency DAC output voltage table.
      * Ownership is transferred to the requester which becomes responsible
@@ -114,7 +118,7 @@ public:
     inline unsigned short getVcr_nVg(int i) const { return vcr_nVg[i]; }
     inline unsigned short getVcr_n_Ids_term(int i) const
     {
-        return to_ushort(vcr_n_Ids_term[i] * uCox);
+        return to_ushort(vcr_n_Ids_term[i] * uCox * vcr_mult);
     }
     // only used if SLOPE_FACTOR is defined
     static inline constexpr double getUt() { return Ut; }

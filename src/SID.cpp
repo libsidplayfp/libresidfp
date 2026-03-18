@@ -178,6 +178,11 @@ void SID::enableFilter(bool enable)
     filter8580->enable(enable);
 }
 
+void SID::enableOld6581caps(bool enable)
+{
+    filter6581->enableOldCaps(enable);
+}
+
 void SID::voiceSync(bool sync)
 {
     if (sync)

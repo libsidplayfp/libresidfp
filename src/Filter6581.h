@@ -361,6 +361,13 @@ public:
      *                   This also affects the range. Default is 0.5
      */
     void setFilterRange(double adjustment);
+
+    /**
+     * Set filter offset and range based on single parameter.
+     *
+     * @param enable true to enable old 2200pF caps, false to use new 470pF caps.
+     */
+    void enableOldCaps(bool enable);
 };
 
 } // namespace reSIDfp
