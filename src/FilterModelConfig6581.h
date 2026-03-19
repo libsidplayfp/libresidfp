@@ -76,12 +76,15 @@ private:
     //@}
 
     double vcr_mult;
+    bool m_oldCaps;
 
     // Voice DC offset LUT
     double voiceDC[256];
 
 private:
     double getDacZero(double adjustment) const { return dac_zero + 3. * adjustment - 1.; }
+
+    void updateParams();
 
     FilterModelConfig6581();
     ~FilterModelConfig6581() = default;
@@ -118,7 +121,7 @@ public:
     inline unsigned short getVcr_nVg(int i) const { return vcr_nVg[i]; }
     inline unsigned short getVcr_n_Ids_term(int i) const
     {
-        return to_ushort(vcr_n_Ids_term[i] * uCox * vcr_mult);
+        return to_ushort(vcr_n_Ids_term[i] * vcr_mult);
     }
     // only used if SLOPE_FACTOR is defined
     static inline constexpr double getUt() { return Ut; }

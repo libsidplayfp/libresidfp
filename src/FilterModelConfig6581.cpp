@@ -113,13 +113,26 @@ void FilterModelConfig6581::setFilterRange(double adjustment)
     if (std::abs(uCox - new_uCox) < 1e-12)
         return;
 
-    setUCox(new_uCox);
-    currFactorCoeff *= vcr_mult;
+    uCox = new_uCox;
+    updateParams();
 }
 
 void FilterModelConfig6581::enableOldCaps(bool enable)
 {
-    vcr_mult = enable ? CAPS_NEW/CAPS_OLD : 1.0;
+    if (m_oldCaps == enable)
+        return;
+
+    m_oldCaps = enable;
+    updateParams();
+}
+
+void FilterModelConfig6581::updateParams()
+{
+    calcCurrFactorCoeff();
+
+    double caps_mult = m_oldCaps ? CAPS_NEW/CAPS_OLD : 1.0;
+    currFactorCoeff *= caps_mult;
+    vcr_mult = uCox * caps_mult;
 }
 
 FilterModelConfig6581::FilterModelConfig6581() :
@@ -137,8 +150,10 @@ FilterModelConfig6581::FilterModelConfig6581() :
     dac_zero(6.65),
     dac_scale(2.63),
     dac(DAC_BITS),
-    vcr_mult(1.0)
+    m_oldCaps(false)
 {
+    updateParams();
+
     dac.kinkedDac(MOS6581);
 
     {
