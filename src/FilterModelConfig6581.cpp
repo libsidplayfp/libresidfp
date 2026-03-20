@@ -84,7 +84,7 @@ constexpr Spline::Point opamp_voltage[OPAMP_SIZE] =
 };
 
 constexpr double CAPS_OLD = 2200e-12; // ASSY 326298 uses 2200pF caps
-constexpr double CAPS_NEW =  470e-12; // Standard caps used on other ASSY
+constexpr double CAPS_NEW =  470e-12; // Standard 470pF caps used on other ASSY
 
 std::unique_ptr<FilterModelConfig6581> FilterModelConfig6581::instance(nullptr);
 

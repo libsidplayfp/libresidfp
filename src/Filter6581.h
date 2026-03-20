@@ -363,7 +363,7 @@ public:
     void setFilterRange(double adjustment);
 
     /**
-     * Set filter offset and range based on single parameter.
+     * Enable/disable old caps for 6581 model.
      *
      * @param enable true to enable old 2200pF caps, false to use new 470pF caps.
      */
