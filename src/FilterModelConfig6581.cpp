@@ -129,10 +129,14 @@ void FilterModelConfig6581::enableOldCaps(bool enable)
 void FilterModelConfig6581::updateParams()
 {
     calcCurrFactorCoeff();
+    vcr_mult = uCox;
 
-    double caps_mult = m_oldCaps ? CAPS_NEW/CAPS_OLD : 1.0;
-    currFactorCoeff *= caps_mult;
-    vcr_mult = uCox * caps_mult;
+    if (m_oldCaps)
+    {
+        constexpr double caps_mult = CAPS_NEW/CAPS_OLD;
+        currFactorCoeff *= caps_mult;
+        vcr_mult *= caps_mult;
+    }
 }
 
 FilterModelConfig6581::FilterModelConfig6581() :
