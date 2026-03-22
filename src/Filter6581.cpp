@@ -67,14 +67,4 @@ void Filter6581::setFilterCurve(double curvePosition)
     updateCenterFrequency();
 }
 
-void Filter6581::setFilterRange(double adjustment)
-{
-    FilterModelConfig6581::getInstance()->setFilterRange(adjustment);
-}
-
-void Filter6581::enableOldCaps(bool enable)
-{
-    FilterModelConfig6581::getInstance()->enableOldCaps(enable);
-}
-
 } // namespace reSIDfp
