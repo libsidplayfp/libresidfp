@@ -264,7 +264,7 @@ public:
     *
     * @see Filter6581::setFilterRange(double)
     */
-    void setFilter6581Range ( double adjustment );
+    void setFilter6581Range(double adjustment);
 
     /**
      * Set filter curve parameter for 8580 model.
@@ -279,6 +279,11 @@ public:
      * @param enable false to turn off filter emulation
      */
     void enableFilter(bool enable);
+
+    /**
+     * Enable/disable old caps (2200pF) for 6581 model.
+     */
+    void enableOld6581caps(bool enable);
 };
 
 } // namespace reSIDfp

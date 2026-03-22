@@ -131,3 +131,8 @@ void residfp::enableFilter(bool enable)
 {
     sid.enableFilter(enable);
 }
+
+void residfp::enableOld6581caps(bool enable)
+{
+    sid.enableOld6581caps(enable);
+}
