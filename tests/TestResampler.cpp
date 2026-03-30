@@ -22,13 +22,12 @@
 
 #define private public
 
-#include "../src/resample/Resampler.h"
+#include "../src/resample/limiter.h"
 
 #include <limits>
 #include <cstdint>
 
 using namespace UnitTest;
-using namespace reSIDfp;
 
 SUITE(Resampler)
 {
@@ -42,24 +41,24 @@ TEST(TestSoftClip)
 
     // Values within threshold should pass unchanged
     for (int i=-threshold; i<=threshold; i++)
-        CHECK(Resampler::softClipImpl(i) == i);
+        CHECK(limiter::softClipImpl(i) == i);
 
     // Values above threshold should be compressed
     for (int i=threshold; i<=peak; i++)
     {
-        auto x = Resampler::softClipImpl(i);
+        auto x = limiter::softClipImpl(i);
         CHECK((x <= i) && (x <= INT16_MAX));
     }
 
     for (int i=-threshold; i<=-peak; i--)
     {
-        auto x = Resampler::softClipImpl(i);
+        auto x = limiter::softClipImpl(i);
         CHECK((x >= i) && (x >= INT16_MIN));
     }
 
     // Check the extremes too
-    CHECK(Resampler::softClipImpl(std::numeric_limits<int>::max()) <= INT16_MAX);
-    CHECK(Resampler::softClipImpl(std::numeric_limits<int>::min()+1) >= INT16_MIN);
+    CHECK(limiter::softClipImpl(std::numeric_limits<int>::max()) <= INT16_MAX);
+    CHECK(limiter::softClipImpl(std::numeric_limits<int>::min()+1) >= INT16_MIN);
 }
 
 }
