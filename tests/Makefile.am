@@ -14,7 +14,7 @@ TestEnvelopeGenerator \
 TestWaveformGenerator \
 TestSpline \
 TestDac \
-TestResampler
+TestLimiter
 
 check_PROGRAMS = $(TESTS)
 
@@ -34,8 +34,8 @@ TestDac_SOURCES = \
 Main.cpp \
 TestDac.cpp
 
-TestResampler_SOURCES = \
+TestLimiter_SOURCES = \
 Main.cpp \
-TestResampler.cpp
+TestLimiter.cpp
 
 endif
