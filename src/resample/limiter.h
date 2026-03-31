@@ -42,6 +42,7 @@ private:
     // Padé approximation of tanh
     static constexpr inline std::int32_t fp_tanh(std::int32_t x) noexcept
     {
+#if __cplusplus >= 201402L
         if (unlikely(x > TO_FP_15(3)))
             return TO_FP_15(1);
 
@@ -49,6 +50,12 @@ private:
         const std::int32_t num = x*(TO_FP_15(945) + x2*(TO_FP_15(105) + x2));
         const std::int32_t den = TO_FP_15(945) + x2*(TO_FP_15(420) + x2*TO_FP_15(15));
         return num/den;
+#else
+        return (unlikely(x > TO_FP_15(3)))
+            ? TO_FP_15(1)
+            : (x*(TO_FP_15(945) + (x * x)*(TO_FP_15(105) + (x * x))))
+                / (TO_FP_15(945) + (x * x)*(TO_FP_15(420) + (x * x)*TO_FP_15(15)));
+#endif
     }
 
     template<int m>
