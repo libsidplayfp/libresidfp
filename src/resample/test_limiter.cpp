@@ -83,6 +83,7 @@ int main(int, const char*[])
     }
 
     std::vector<short> results;
+    results.reserve(38000000*2);
 
     {
         clock_t start = clock();
@@ -97,6 +98,7 @@ int main(int, const char*[])
     }
 
     std::vector<short> results_float;
+    results_float.reserve(38000000*2);
     {
         clock_t start = clock();
 
