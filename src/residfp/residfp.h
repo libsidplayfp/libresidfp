@@ -78,7 +78,7 @@ public:
     /**
      * 16-bit input (EXT IN). Write 16-bit sample to audio input. NB! The caller
      * is responsible for keeping the value within 16 bits. Note that to mix in
-     * an external audio signal the signal should be resampled to 1MHz first.
+     * an external audio signal the signal should be resampled to ~1MHz first.
      *
      * @param value input level to set
      */
@@ -148,6 +148,10 @@ public:
     /**
      * Clock SID forward producing audio
      * using chosen output sampling algorithm.
+     *
+     * @note
+     * User must make sure to have enough space
+     * for the buffer.
      *
      * @param cycles c64 clocks to clock
      * @param buf audio output buffer
