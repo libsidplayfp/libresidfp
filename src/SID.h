@@ -24,6 +24,8 @@
 #define SIDFP_H
 
 #include <memory>
+
+#include <cassert>
 #include <cstdint>
 
 #include "residfp/residfp_defs.h"
@@ -238,7 +240,7 @@ public:
      * @param buf audio output buffer
      * @return number of samples produced
      */
-    int clock(unsigned int cycles, short* buf);
+    int clock(unsigned int cycles, short* buf, int bufSize);
 
     /**
      * Clock SID forward with no audio production.
@@ -314,8 +316,11 @@ void SID::ageBusValue(unsigned int n)
 }
 
 RESIDFP_INLINE
-int SID::clock(unsigned int cycles, short* buf)
+int SID::clock(unsigned int cycles, short* buf, int bufSize)
 {
+    assert(bufSize >= 0);
+    assert(buf);
+
     ageBusValue(cycles);
     int s = 0;
 
@@ -342,6 +347,8 @@ int SID::clock(unsigned int cycles, short* buf)
                 if (unlikely(resampler->input(c64Output)))
                 {
                     buf[s++] = resampler->getOutput(scaleFactor);
+                    if (unlikely(bufSize && s > bufSize))
+                        return s;
                 }
             }
 

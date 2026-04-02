@@ -155,9 +155,10 @@ public:
      *
      * @param cycles c64 clocks to clock
      * @param buf audio output buffer
+     * @param bufSize the buffer size, if 0 no boundary check will be performed
      * @return number of samples produced
      */
-    int clock(unsigned int cycles, short* buf);
+    int clock(unsigned int cycles, short* buf, int bufSize=0);
 
     /**
      * Clock SID forward with no audio production.

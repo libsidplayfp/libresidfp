@@ -102,9 +102,9 @@ bool residfp::setSamplingParameters(
     }
 }
 
-int residfp::clock(unsigned int cycles, short* buf)
+int residfp::clock(unsigned int cycles, short* buf, int bufSize)
 {
-    return sid.clock(cycles, buf);
+    return sid.clock(cycles, buf, bufSize);
 }
 
 void residfp::clockSilent(unsigned int cycles)
