@@ -234,18 +234,28 @@ public:
     );
 
     /**
-     * Clock SID forward using chosen output sampling algorithm.
+     * Clock SID forward using chosen output resampling algorithm.
      *
      * @param cycles c64 clocks to clock
      * @param buf audio output buffer
      * @return number of samples produced
      */
-    int clock(unsigned int cycles, short* buf, int bufSize);
+    int clock(unsigned int cycles, short* buf);
+
+    /**
+     * Clock SID forward using chosen output sampling algorithm.
+     *
+     * @param cycles c64 clocks to clock
+     * @param buf audio output buffer
+     * @param bufSize the buffer size
+     * @return number of samples produced
+     */
+    int clock(unsigned int &cycles, short* buf, int bufSize);
 
     /**
      * Clock SID forward with no audio production.
      *
-     * _Warning_:
+     * @note:
      * You can't mix this method of clocking with the audio-producing
      * clock() because components that don't affect OSC3/ENV3 are not
      * emulated.
@@ -316,9 +326,8 @@ void SID::ageBusValue(unsigned int n)
 }
 
 RESIDFP_INLINE
-int SID::clock(unsigned int cycles, short* buf, int bufSize)
+int SID::clock(unsigned int cycles, short* buf)
 {
-    assert(bufSize >= 0);
     assert(buf);
 
     ageBusValue(cycles);
@@ -347,14 +356,68 @@ int SID::clock(unsigned int cycles, short* buf, int bufSize)
                 if (unlikely(resampler->input(c64Output)))
                 {
                     buf[s++] = resampler->getOutput(scaleFactor);
-                    if (unlikely(bufSize && s > bufSize))
-                        return s;
                 }
             }
 
             cycles -= delta_t;
             nextVoiceSync -= delta_t;
         }
+
+        if (unlikely(nextVoiceSync == 0))
+        {
+            voiceSync(true);
+        }
+    }
+
+    return s;
+}
+
+RESIDFP_INLINE
+int SID::clock(unsigned int &cycles, short* buf, int bufSize)
+{
+    assert(bufSize > 0);
+    assert(buf);
+
+    unsigned int c = cycles;
+    int s = 0;
+
+    while (cycles != 0)
+    {
+        unsigned int delta_t = std::min(nextVoiceSync, cycles);
+
+        if (likely(delta_t > 0))
+        {
+            for (unsigned int i = 0; i < delta_t; i++)
+            {
+                // clock waveform generators
+                voice[0].wave()->clock();
+                voice[1].wave()->clock();
+                voice[2].wave()->clock();
+
+                // clock envelope generators
+                voice[0].envelope()->clock();
+                voice[1].envelope()->clock();
+                voice[2].envelope()->clock();
+
+                const int sidOutput = static_cast<int>(filter->clock(voice[0], voice[1], voice[2]));
+                const int c64Output = externalFilter.clock(sidOutput + INT16_MIN);
+                if (unlikely(resampler->input(c64Output)))
+                {
+                    buf[s++] = resampler->getOutput(scaleFactor);
+                    if (unlikely(s > bufSize))
+                    {
+                        cycles -= i+1;
+                        c -= cycles;
+                        goto done;
+                    }
+                }
+            }
+
+            cycles -= delta_t;
+            nextVoiceSync -= delta_t;
+        }
+done:
+        ageBusValue(c);
 
         if (unlikely(nextVoiceSync == 0))
         {
