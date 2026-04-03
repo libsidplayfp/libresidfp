@@ -153,8 +153,9 @@ private:
     /// clock internal and external filters
     inline int clockFilt()
     {
-        int filtOutput = static_cast<int>(filter->clock(voice[0], voice[1], voice[2]));
-        return externalFilter.clock(filtOutput + INT16_MIN);
+        unsigned short filtOutput = filter->clock(voice[0], voice[1], voice[2]);
+        int exFiltInput = static_cast<int>(filtOutput) + INT16_MIN;
+        return externalFilter.clock(exFiltInput);
     }
 
 public:
