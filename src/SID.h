@@ -143,7 +143,7 @@ private:
     }
 
     /// clock envelope generators
-    inline void clockEnveGen()
+    inline void clockEnvGen()
     {
         voice[0].envelope()->clock();
         voice[1].envelope()->clock();
@@ -267,14 +267,13 @@ public:
     int clock(unsigned int cycles, short* buf);
 
     /**
-     * Clock SID forward using chosen output sampling algorithm.
+     * Clock SID forward using chosen output resampling algorithm.
      *
-     * @param cycles c64 clocks to clock
      * @param buf audio output buffer
      * @param bufSize the buffer size
-     * @return number of samples produced
+     * @return number of c64 clocks run
      */
-    int clock(unsigned int &cycles, short* buf, int bufSize);
+    int clock(short* buf, int bufSize);
 
     /**
      * Clock SID forward with no audio production.
@@ -365,7 +364,7 @@ int SID::clock(unsigned int cycles, short* buf)
             for (unsigned int i = 0; i < delta_t; i++)
             {
                 clockWaveGen();
-                clockEnveGen();
+                clockEnvGen();
 
                 int output = clockFilt();
                 if (unlikely(resampler->input(output)))
@@ -388,24 +387,24 @@ int SID::clock(unsigned int cycles, short* buf)
 }
 
 RESIDFP_INLINE
-int SID::clock(unsigned int &cycles, short* buf, int bufSize)
+int SID::clock(short* buf, int bufSize)
 {
     assert(buf);
     assert(bufSize > 0);
 
-    unsigned int c = cycles;
-    int s = 0;
+    int cycles = 0;
 
-    while (cycles != 0)
+    for (int s = 0; s < bufSize;)
     {
-        unsigned int delta_t = std::min(nextVoiceSync, cycles);
+        unsigned int delta_t = nextVoiceSync;
 
         if (likely(delta_t > 0))
         {
-            for (unsigned int i = 0; i < delta_t; i++)
+            unsigned int i = 0;
+            for (; i < delta_t; i++)
             {
                 clockWaveGen();
-                clockEnveGen();
+                clockEnvGen();
 
                 int output = clockFilt();
                 if (unlikely(resampler->input(output)))
@@ -413,18 +412,14 @@ int SID::clock(unsigned int &cycles, short* buf, int bufSize)
                     buf[s++] = resampler->getOutput(scaleFactor);
                     if (unlikely(s > bufSize))
                     {
-                        cycles -= i+1;
-                        c -= cycles;
-                        goto done;
+                        break;
                     }
                 }
             }
 
-            cycles -= delta_t;
-            nextVoiceSync -= delta_t;
+            cycles += i;
+            nextVoiceSync -= i;
         }
-done:
-        ageBusValue(c);
 
         if (unlikely(nextVoiceSync == 0))
         {
@@ -432,7 +427,9 @@ done:
         }
     }
 
-    return s;
+    ageBusValue(cycles);
+
+    return cycles;
 }
 
 } // namespace reSIDfp

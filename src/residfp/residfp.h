@@ -166,12 +166,11 @@ public:
      * Clock SID forward producing audio
      * using chosen output resampling algorithm.
      *
-     * @param cycles c64 clocks to run, on output will report cycles not consumed, if any
      * @param buf audio output buffer
      * @param bufSize the buffer size
-     * @return number of samples produced
+     * @return number of c64 clocks run
      */
-    int clock(unsigned int &cycles, short* buf, int bufSize);
+    int clock(short* buf, int bufSize);
 
     /**
      * Clock SID forward with no audio production.
