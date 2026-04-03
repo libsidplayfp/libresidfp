@@ -33,6 +33,7 @@
 #include "WaveformCalculator.h"
 #include "resample/TwoPassSincResampler.h"
 #include "resample/ZeroOrderResampler.h"
+#include "resample/PassThrough.h"
 
 namespace reSIDfp
 {
@@ -499,6 +500,10 @@ void SID::setSamplingParameters(double clockFrequency, SamplingMethod method, do
 
     case RESAMPLE:
         resampler.reset(TwoPassSincResampler::create(clockFrequency, samplingFrequency));
+        break;
+
+    case NONE:
+        resampler.reset(new PassThrough());
         break;
 
     default:
