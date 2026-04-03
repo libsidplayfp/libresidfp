@@ -31,6 +31,7 @@
 #include "residfp/residfp_defs.h"
 #include "siddefs-fp.h"
 #include "ExternalFilter.h"
+#include "Filter.h"
 #include "Voice.h"
 
 namespace reSIDfp
@@ -132,6 +133,29 @@ private:
      * @param sync whether to do the actual voice synchronization
      */
     void voiceSync(bool sync);
+
+    /// clock waveform generators
+    inline void clockWaveGen()
+    {
+        voice[0].wave()->clock();
+        voice[1].wave()->clock();
+        voice[2].wave()->clock();
+    }
+
+    /// clock envelope generators
+    inline void clockEnveGen()
+    {
+        voice[0].envelope()->clock();
+        voice[1].envelope()->clock();
+        voice[2].envelope()->clock();
+    }
+
+    /// clock internal and external filters
+    inline int clockFilt()
+    {
+        int filtOutput = static_cast<int>(filter->clock(voice[0], voice[1], voice[2]));
+        return externalFilter.clock(filtOutput + INT16_MIN);
+    }
 
 public:
     SID();
@@ -304,7 +328,6 @@ public:
 
 #include <algorithm>
 
-#include "Filter.h"
 #include "resample/Resampler.h"
 
 namespace reSIDfp
@@ -341,19 +364,11 @@ int SID::clock(unsigned int cycles, short* buf)
         {
             for (unsigned int i = 0; i < delta_t; i++)
             {
-                // clock waveform generators
-                voice[0].wave()->clock();
-                voice[1].wave()->clock();
-                voice[2].wave()->clock();
+                clockWaveGen();
+                clockEnveGen();
 
-                // clock envelope generators
-                voice[0].envelope()->clock();
-                voice[1].envelope()->clock();
-                voice[2].envelope()->clock();
-
-                const int sidOutput = static_cast<int>(filter->clock(voice[0], voice[1], voice[2]));
-                const int c64Output = externalFilter.clock(sidOutput + INT16_MIN);
-                if (unlikely(resampler->input(c64Output)))
+                int output = clockFilt();
+                if (unlikely(resampler->input(output)))
                 {
                     buf[s++] = resampler->getOutput(scaleFactor);
                 }
@@ -375,8 +390,8 @@ int SID::clock(unsigned int cycles, short* buf)
 RESIDFP_INLINE
 int SID::clock(unsigned int &cycles, short* buf, int bufSize)
 {
-    assert(bufSize > 0);
     assert(buf);
+    assert(bufSize > 0);
 
     unsigned int c = cycles;
     int s = 0;
@@ -389,19 +404,11 @@ int SID::clock(unsigned int &cycles, short* buf, int bufSize)
         {
             for (unsigned int i = 0; i < delta_t; i++)
             {
-                // clock waveform generators
-                voice[0].wave()->clock();
-                voice[1].wave()->clock();
-                voice[2].wave()->clock();
+                clockWaveGen();
+                clockEnveGen();
 
-                // clock envelope generators
-                voice[0].envelope()->clock();
-                voice[1].envelope()->clock();
-                voice[2].envelope()->clock();
-
-                const int sidOutput = static_cast<int>(filter->clock(voice[0], voice[1], voice[2]));
-                const int c64Output = externalFilter.clock(sidOutput + INT16_MIN);
-                if (unlikely(resampler->input(c64Output)))
+                int output = clockFilt();
+                if (unlikely(resampler->input(output)))
                 {
                     buf[s++] = resampler->getOutput(scaleFactor);
                     if (unlikely(s > bufSize))

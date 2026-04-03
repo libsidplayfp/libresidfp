@@ -524,9 +524,7 @@ void SID::clockSilent(unsigned int cycles)
             for (int i = 0; i < delta_t; i++)
             {
                 // clock waveform generators (can affect OSC3)
-                voice[0].wave()->clock();
-                voice[1].wave()->clock();
-                voice[2].wave()->clock();
+                clockWaveGen();
 
                 voice[0].wave()->output();
                 voice[1].wave()->output();
