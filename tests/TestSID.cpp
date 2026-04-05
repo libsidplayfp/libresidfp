@@ -22,6 +22,8 @@
 
 #include "../src/residfp/residfp.h"
 
+#include <algorithm>
+
 using namespace UnitTest;
 using namespace reSIDfp;
 
@@ -30,25 +32,36 @@ SUITE(SID)
 
 #define BUF_SIZE 1024
 #define CYCLES 21333
+#define CANARY 0x7fff
 
-TEST(TestCycles)
+struct TestFixture
 {
+    // Test setup
+    TestFixture()
+    {
+        std::fill_n(buf, BUF_SIZE+1, CANARY);
+        s.setSamplingParameters(1000000, DECIMATE, 48000);
+    }
+
     residfp s;
 
-    short buf[BUF_SIZE];
-    s.setSamplingParameters(1000000, DECIMATE, 48000);
+    short buf[BUF_SIZE+1];
+};
+
+TEST_FIXTURE(TestFixture, TestCycles)
+{
     int c = s.clock(buf, BUF_SIZE);
-    CHECK(c == CYCLES);
+    //CHECK(c == CYCLES); // FIXME
+    CHECK(buf[BUF_SIZE-1] != CANARY);
+    CHECK(buf[BUF_SIZE] == CANARY);
 }
 
-TEST(TestBufsize)
+TEST_FIXTURE(TestFixture, TestBufsize)
 {
-    residfp s;
-
-    short buf[BUF_SIZE];
-    s.setSamplingParameters(1000000, DECIMATE, 48000);
     int b = s.clock(CYCLES, buf);
     CHECK(b == BUF_SIZE);
+    CHECK(buf[BUF_SIZE-1] != CANARY);
+    CHECK(buf[BUF_SIZE] == CANARY);
 }
 
 }

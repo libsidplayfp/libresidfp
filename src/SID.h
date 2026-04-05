@@ -402,8 +402,9 @@ int SID::clock(short* buf, int bufSize)
         if (likely(delta_t > 0))
         {
             unsigned int i = 0;
-            for (; i < delta_t; i++)
+            do
             {
+                i++;
                 clockWaveGen();
                 clockEnvGen();
 
@@ -411,18 +412,19 @@ int SID::clock(short* buf, int bufSize)
                 if (unlikely(resampler->input(output)))
                 {
                     buf[s++] = resampler->getOutput(scaleFactor);
-                    if (unlikely(s > bufSize))
+                    if (unlikely(s == bufSize))
                     {
                         break;
                     }
                 }
             }
+            while (i < delta_t);
 
             cycles += i;
             nextVoiceSync -= i;
         }
 
-        if (unlikely(nextVoiceSync == 0))
+        if (likely(nextVoiceSync == 0))
         {
             voiceSync(true);
         }
