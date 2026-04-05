@@ -30,8 +30,8 @@ using namespace reSIDfp;
 SUITE(SID)
 {
 
-#define BUF_SIZE 1024
-#define CYCLES 21333
+#define BUF_SIZE 481
+#define CYCLES 10000
 #define CANARY 0x7fff
 
 struct TestFixture
@@ -40,7 +40,7 @@ struct TestFixture
     TestFixture()
     {
         std::fill_n(buf, BUF_SIZE+1, CANARY);
-        s.setSamplingParameters(1000000, DECIMATE, 48000);
+        s.setSamplingParameters(1000000., DECIMATE, 48000.);
     }
 
     residfp s;
@@ -51,7 +51,7 @@ struct TestFixture
 TEST_FIXTURE(TestFixture, TestCycles)
 {
     int c = s.clock(buf, BUF_SIZE);
-    //CHECK(c == CYCLES); // FIXME
+    CHECK(c == CYCLES);
     CHECK(buf[BUF_SIZE-1] != CANARY);
     CHECK(buf[BUF_SIZE] == CANARY);
 }
