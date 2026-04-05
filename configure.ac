@@ -58,9 +58,6 @@ dnl enable fast math
 AX_APPEND_COMPILE_FLAGS([-ffast-math -fno-unsafe-math-optimizations], [RESIDFP_CXXFLAGS])
 AC_SUBST([RESIDFP_CXXFLAGS])
 
-dnl Checks for typedefs, structures, and compiler characteristics.
-AC_C_BIGENDIAN
-
 AC_CHECK_SIZEOF([short])
 AC_CHECK_SIZEOF([int])
 
