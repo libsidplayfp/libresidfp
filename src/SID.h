@@ -24,11 +24,14 @@
 #define SIDFP_H
 
 #include <memory>
+
+#include <cassert>
 #include <cstdint>
 
 #include "residfp/residfp_defs.h"
 #include "siddefs-fp.h"
 #include "ExternalFilter.h"
+#include "Filter.h"
 #include "Voice.h"
 
 namespace reSIDfp
@@ -131,6 +134,30 @@ private:
      */
     void voiceSync(bool sync);
 
+    /// clock waveform generators
+    inline void clockWaveGen()
+    {
+        voice[0].wave()->clock();
+        voice[1].wave()->clock();
+        voice[2].wave()->clock();
+    }
+
+    /// clock envelope generators
+    inline void clockEnvGen()
+    {
+        voice[0].envelope()->clock();
+        voice[1].envelope()->clock();
+        voice[2].envelope()->clock();
+    }
+
+    /// clock internal and external filters
+    inline int clockFilt()
+    {
+        unsigned short filtOutput = filter->clock(voice[0], voice[1], voice[2]);
+        int exFiltInput = static_cast<int>(filtOutput) + INT16_MIN;
+        return externalFilter.clock(exFiltInput);
+    }
+
 public:
     SID();
     ~SID();
@@ -232,7 +259,7 @@ public:
     );
 
     /**
-     * Clock SID forward using chosen output sampling algorithm.
+     * Clock SID forward using chosen output resampling algorithm.
      *
      * @param cycles c64 clocks to clock
      * @param buf audio output buffer
@@ -241,9 +268,18 @@ public:
     int clock(unsigned int cycles, short* buf);
 
     /**
+     * Clock SID forward using chosen output resampling algorithm.
+     *
+     * @param buf audio output buffer
+     * @param bufSize the buffer size
+     * @return number of c64 clocks run
+     */
+    int clock(short* buf, int bufSize);
+
+    /**
      * Clock SID forward with no audio production.
      *
-     * _Warning_:
+     * @note:
      * You can't mix this method of clocking with the audio-producing
      * clock() because components that don't affect OSC3/ENV3 are not
      * emulated.
@@ -292,7 +328,6 @@ public:
 
 #include <algorithm>
 
-#include "Filter.h"
 #include "resample/Resampler.h"
 
 namespace reSIDfp
@@ -316,6 +351,8 @@ void SID::ageBusValue(unsigned int n)
 RESIDFP_INLINE
 int SID::clock(unsigned int cycles, short* buf)
 {
+    assert(buf);
+
     ageBusValue(cycles);
     int s = 0;
 
@@ -327,19 +364,11 @@ int SID::clock(unsigned int cycles, short* buf)
         {
             for (unsigned int i = 0; i < delta_t; i++)
             {
-                // clock waveform generators
-                voice[0].wave()->clock();
-                voice[1].wave()->clock();
-                voice[2].wave()->clock();
+                clockWaveGen();
+                clockEnvGen();
 
-                // clock envelope generators
-                voice[0].envelope()->clock();
-                voice[1].envelope()->clock();
-                voice[2].envelope()->clock();
-
-                const int sidOutput = static_cast<int>(filter->clock(voice[0], voice[1], voice[2]));
-                const int c64Output = externalFilter.clock(sidOutput + INT16_MIN);
-                if (unlikely(resampler->input(c64Output)))
+                int output = clockFilt();
+                if (unlikely(resampler->input(output)))
                 {
                     buf[s++] = resampler->getOutput(scaleFactor);
                 }
@@ -356,6 +385,54 @@ int SID::clock(unsigned int cycles, short* buf)
     }
 
     return s;
+}
+
+RESIDFP_INLINE
+int SID::clock(short* buf, int bufSize)
+{
+    assert(buf);
+    assert(bufSize > 0);
+
+    int cycles = 0;
+
+    for (int s = 0; s < bufSize;)
+    {
+        unsigned int delta_t = nextVoiceSync;
+
+        if (likely(delta_t > 0))
+        {
+            unsigned int i = 0;
+            do
+            {
+                i++;
+                clockWaveGen();
+                clockEnvGen();
+
+                int output = clockFilt();
+                if (unlikely(resampler->input(output)))
+                {
+                    buf[s++] = resampler->getOutput(scaleFactor);
+                    if (unlikely(s == bufSize))
+                    {
+                        break;
+                    }
+                }
+            }
+            while (i < delta_t);
+
+            cycles += i;
+            nextVoiceSync -= i;
+        }
+
+        if (likely(nextVoiceSync == 0))
+        {
+            voiceSync(true);
+        }
+    }
+
+    ageBusValue(cycles);
+
+    return cycles;
 }
 
 } // namespace reSIDfp

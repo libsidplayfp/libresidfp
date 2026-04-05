@@ -147,17 +147,30 @@ public:
 
     /**
      * Clock SID forward producing audio
-     * using chosen output sampling algorithm.
+     * using chosen output resampling algorithm.
      *
      * @note
      * User must make sure to have enough space
      * for the buffer.
+     * The number of samples produced can be approximated
+     * with this formula:
+     * std::ceil(cycles/clockFrequency*samplingFrequency)
      *
-     * @param cycles c64 clocks to clock
+     * @param cycles c64 clocks to run
      * @param buf audio output buffer
      * @return number of samples produced
      */
     int clock(unsigned int cycles, short* buf);
+
+    /**
+     * Clock SID forward producing audio
+     * using chosen output resampling algorithm.
+     *
+     * @param buf audio output buffer
+     * @param bufSize the buffer size
+     * @return number of c64 clocks run
+     */
+    int clock(short* buf, int bufSize);
 
     /**
      * Clock SID forward with no audio production.
