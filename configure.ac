@@ -104,7 +104,7 @@ AS_IF([test "x$enable_debug" = "xno"],
   debug_flags=""
   RESIDFP_INLINE=""
   RESIDFP_INLINING=0
-  AX_APPEND_COMPILE_FLAGS([-Wall -Werror -pedantic])
+  AX_APPEND_COMPILE_FLAGS([-Wall -Wextra -pedantic])
   ]
 )
 
