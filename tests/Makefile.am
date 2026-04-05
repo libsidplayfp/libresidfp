@@ -13,6 +13,7 @@ TESTS = \
 TestEnvelopeGenerator \
 TestWaveformGenerator \
 TestSpline \
+TestSID \
 TestDac \
 TestLimiter
 
@@ -29,6 +30,11 @@ TestWaveformGenerator.cpp
 TestSpline_SOURCES = \
 Main.cpp \
 TestSpline.cpp
+
+TestSID_SOURCES = \
+Main.cpp \
+TestSID.cpp
+TestSID_LDADD = $(top_builddir)/src/libresidfp.la
 
 TestDac_SOURCES = \
 Main.cpp \
