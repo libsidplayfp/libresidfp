@@ -1,6 +1,6 @@
-m4_define([lib_major], [0])
-m4_define([lib_minor], [9])
-m4_define([lib_level], [3])
+m4_define([lib_major], [1])
+m4_define([lib_minor], [0])
+m4_define([lib_level], [0])
 m4_define([lib_version], [lib_major.lib_minor.lib_level])
 
 AC_PREREQ([2.62])
@@ -84,7 +84,7 @@ dnl libtool-style version-info number
 # Increase the age value only if the changes made to the ABI are backward compatible.
 
 LIBRESIDFPCUR=0
-LIBRESIDFPREV=0
+LIBRESIDFPREV=1
 LIBRESIDFPAGE=0
 LIBRESIDFPVERSION=$LIBRESIDFPCUR:$LIBRESIDFPREV:$LIBRESIDFPAGE
 
