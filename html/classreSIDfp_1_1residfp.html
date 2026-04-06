@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;0.9.3</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.0</span>
    </div>
   </td>
  </tr>
@@ -76,6 +76,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5d02a08de3f40f1957e36f3a09c4c474"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec6c8ae8f9aee45cad2a308077dcb0b9" id="r_aec6c8ae8f9aee45cad2a308077dcb0b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1residfp.html#aec6c8ae8f9aee45cad2a308077dcb0b9">clock</a> (unsigned int cycles, short *buf)</td></tr>
 <tr class="separator:aec6c8ae8f9aee45cad2a308077dcb0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a699bf03106523c08cbe688b1853cb48a" id="r_a699bf03106523c08cbe688b1853cb48a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1residfp.html#a699bf03106523c08cbe688b1853cb48a">clock</a> (short *buf, int bufSize)</td></tr>
+<tr class="separator:a699bf03106523c08cbe688b1853cb48a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d18cb052678021531fe11d989eba558" id="r_a9d18cb052678021531fe11d989eba558"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1residfp.html#a9d18cb052678021531fe11d989eba558">clockSilent</a> (unsigned int cycles)</td></tr>
 <tr class="separator:a9d18cb052678021531fe11d989eba558"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77afb8cd4ef966ddfcf4c87c73e0123c" id="r_a77afb8cd4ef966ddfcf4c87c73e0123c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1residfp.html#a77afb8cd4ef966ddfcf4c87c73e0123c">setFilter6581Curve</a> (double filterCurve)</td></tr>
@@ -92,8 +94,45 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cycle exact <a class="el" href="classreSIDfp_1_1SID.html">SID</a> emulation </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a699bf03106523c08cbe688b1853cb48a" name="a699bf03106523c08cbe688b1853cb48a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a699bf03106523c08cbe688b1853cb48a">&#9670;&#160;</a></span>clock() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int residfp::clock </td>
+          <td>(</td>
+          <td class="paramtype">short *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bufSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Clock <a class="el" href="classreSIDfp_1_1SID.html">SID</a> forward producing audio using chosen output resampling algorithm.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buf</td><td>audio output buffer </td></tr>
+    <tr><td class="paramname">bufSize</td><td>the buffer size </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of c64 clocks run </dd></dl>
+
+</div>
+</div>
 <a id="aec6c8ae8f9aee45cad2a308077dcb0b9" name="aec6c8ae8f9aee45cad2a308077dcb0b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec6c8ae8f9aee45cad2a308077dcb0b9">&#9670;&#160;</a></span>clock()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aec6c8ae8f9aee45cad2a308077dcb0b9">&#9670;&#160;</a></span>clock() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -117,10 +156,11 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Clock <a class="el" href="classreSIDfp_1_1SID.html">SID</a> forward producing audio using chosen output sampling algorithm.</p>
+<p>Clock <a class="el" href="classreSIDfp_1_1SID.html">SID</a> forward producing audio using chosen output resampling algorithm.</p>
+<dl class="section note"><dt>Note</dt><dd>User must make sure to have enough space for the buffer. The number of samples produced can be approximated with this formula: std::ceil(cycles/clockFrequency*samplingFrequency)</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cycles</td><td>c64 clocks to clock </td></tr>
+    <tr><td class="paramname">cycles</td><td>c64 clocks to run </td></tr>
     <tr><td class="paramname">buf</td><td>audio output buffer </td></tr>
   </table>
   </dd>
@@ -238,7 +278,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>16-bit input (EXT IN). Write 16-bit sample to audio input. NB! The caller is responsible for keeping the value within 16 bits. Note that to mix in an external audio signal the signal should be resampled to 1MHz first.</p>
+<p>16-bit input (EXT IN). Write 16-bit sample to audio input. NB! The caller is responsible for keeping the value within 16 bits. Note that to mix in an external audio signal the signal should be resampled to ~1MHz first.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>input level to set </td></tr>
@@ -496,7 +536,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 22 2026 15:45:32 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Apr 6 2026 07:56:54 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

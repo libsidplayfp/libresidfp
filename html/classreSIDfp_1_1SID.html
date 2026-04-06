@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;0.9.3</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.0</span>
    </div>
   </td>
  </tr>
@@ -76,6 +76,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5213c8e577045c955b3dce4ad92392e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e27924c4c072ee9b83584425d115ec5" id="r_a0e27924c4c072ee9b83584425d115ec5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1SID.html#a0e27924c4c072ee9b83584425d115ec5">clock</a> (unsigned int cycles, short *buf)</td></tr>
 <tr class="separator:a0e27924c4c072ee9b83584425d115ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceb8f6a437796c9b2ac33a118836e10d" id="r_aceb8f6a437796c9b2ac33a118836e10d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1SID.html#aceb8f6a437796c9b2ac33a118836e10d">clock</a> (short *buf, int bufSize)</td></tr>
+<tr class="separator:aceb8f6a437796c9b2ac33a118836e10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec85a284b5290053c92b18d9f1f190bc" id="r_aec85a284b5290053c92b18d9f1f190bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1SID.html#aec85a284b5290053c92b18d9f1f190bc">clockSilent</a> (unsigned int cycles)</td></tr>
 <tr class="separator:aec85a284b5290053c92b18d9f1f190bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fb0172b1031c193cad856a64705ae5a" id="r_a7fb0172b1031c193cad856a64705ae5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1SID.html#a7fb0172b1031c193cad856a64705ae5a">setFilter6581Curve</a> (double filterCurve)</td></tr>
@@ -92,8 +94,45 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>MOS6581/MOS8580 emulation. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aceb8f6a437796c9b2ac33a118836e10d" name="aceb8f6a437796c9b2ac33a118836e10d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceb8f6a437796c9b2ac33a118836e10d">&#9670;&#160;</a></span>clock() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RESIDFP_INLINE int reSIDfp::SID::clock </td>
+          <td>(</td>
+          <td class="paramtype">short *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bufSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Clock <a class="el" href="classreSIDfp_1_1SID.html">SID</a> forward using chosen output resampling algorithm.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buf</td><td>audio output buffer </td></tr>
+    <tr><td class="paramname">bufSize</td><td>the buffer size </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of c64 clocks run </dd></dl>
+
+</div>
+</div>
 <a id="a0e27924c4c072ee9b83584425d115ec5" name="a0e27924c4c072ee9b83584425d115ec5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e27924c4c072ee9b83584425d115ec5">&#9670;&#160;</a></span>clock()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e27924c4c072ee9b83584425d115ec5">&#9670;&#160;</a></span>clock() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -117,7 +156,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Clock <a class="el" href="classreSIDfp_1_1SID.html">SID</a> forward using chosen output sampling algorithm.</p>
+<p>Clock <a class="el" href="classreSIDfp_1_1SID.html">SID</a> forward using chosen output resampling algorithm.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cycles</td><td>c64 clocks to clock </td></tr>
@@ -145,7 +184,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Clock <a class="el" href="classreSIDfp_1_1SID.html">SID</a> forward with no audio production.</p>
-<p><em>Warning</em>: You can't mix this method of clocking with the audio-producing <a class="el" href="classreSIDfp_1_1SID.html#a0e27924c4c072ee9b83584425d115ec5">clock()</a> because components that don't affect OSC3/ENV3 are not emulated.</p>
+<dl class="section note"><dt>Note</dt><dd>: You can't mix this method of clocking with the audio-producing <a class="el" href="classreSIDfp_1_1SID.html#a0e27924c4c072ee9b83584425d115ec5">clock()</a> because components that don't affect OSC3/ENV3 are not emulated.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cycles</td><td>c64 clocks to clock. </td></tr>
@@ -513,7 +552,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 22 2026 15:45:32 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Apr 6 2026 07:56:54 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

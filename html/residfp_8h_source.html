@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;0.9.3</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.0</span>
    </div>
   </td>
  </tr>
@@ -116,26 +116,28 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="keywordtype">double</span> samplingFrequency</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    );</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">int</span> clock(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cycles, <span class="keywordtype">short</span>* buf);</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">void</span> clockSilent(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cycles);</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">void</span> setFilter6581Curve(<span class="keywordtype">double</span> filterCurve);</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordtype">void</span> setFilter6581Range(<span class="keywordtype">double</span> adjustment);</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordtype">void</span> setFilter8580Curve(<span class="keywordtype">double</span> filterCurve);</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordtype">void</span> enableFilter(<span class="keywordtype">bool</span> enable);</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordtype">void</span> enableOld6581caps(<span class="keywordtype">bool</span> enable);</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>};</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">int</span> clock(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cycles, <span class="keywordtype">short</span>* buf);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">int</span> clock(<span class="keywordtype">short</span>* buf, <span class="keywordtype">int</span> bufSize);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keywordtype">void</span> clockSilent(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cycles);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keywordtype">void</span> setFilter6581Curve(<span class="keywordtype">double</span> filterCurve);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordtype">void</span> setFilter6581Range(<span class="keywordtype">double</span> adjustment);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordtype">void</span> setFilter8580Curve(<span class="keywordtype">double</span> filterCurve);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordtype">void</span> enableFilter(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keywordtype">void</span> enableOld6581caps(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>};</div>
 </div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>}</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassreSIDfp_1_1SID_html"><div class="ttname"><a href="classreSIDfp_1_1SID.html">reSIDfp::SID</a></div><div class="ttdef"><b>Definition</b> SID.h:60</div></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>}</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassreSIDfp_1_1SID_html"><div class="ttname"><a href="classreSIDfp_1_1SID.html">reSIDfp::SID</a></div><div class="ttdef"><b>Definition</b> SID.h:63</div></div>
 <div class="ttc" id="aclassreSIDfp_1_1residfp_html"><div class="ttname"><a href="classreSIDfp_1_1residfp.html">reSIDfp::residfp</a></div><div class="ttdef"><b>Definition</b> residfp.h:44</div></div>
 <div class="ttc" id="aresidfp__defs_8h_html"><div class="ttname"><a href="residfp__defs_8h.html">residfp_defs.h</a></div></div>
 <div class="ttc" id="aresidfp__defs_8h_html_a0deb9e3df077a9319bd4d8d6cbef009c"><div class="ttname"><a href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009c">reSIDfp::SamplingMethod</a></div><div class="ttdeci">SamplingMethod</div><div class="ttdef"><b>Definition</b> residfp_defs.h:67</div></div>
@@ -144,7 +146,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 22 2026 15:45:32 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Apr 6 2026 07:56:54 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
