@@ -69,10 +69,6 @@ AS_IF([test $ac_cv_sizeof_int -lt 4],
   [AC_MSG_ERROR([only 32 bit or better CPUs are supported])]
 )
 
-AS_IF([test "x${ac_cv_header_stdint_h}" != "xyes"],
-  [AC_MSG_ERROR([Required header stdint.h not found])]
-)
-
 dnl libtool-style version-info number
 #
 # https://autotools.io/libtool/version.html

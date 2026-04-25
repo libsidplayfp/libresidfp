@@ -26,7 +26,7 @@
 #include "Integrator.h"
 #include "FilterModelConfig6581.h"
 
-#include <stdint.h>
+#include <cstdint>
 #include <cassert>
 
 // uncomment to enable use of the slope factor

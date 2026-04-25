@@ -26,7 +26,7 @@
 #include "Integrator.h"
 #include "FilterModelConfig8580.h"
 
-#include <stdint.h>
+#include <cstdint>
 #include <cassert>
 
 #include "siddefs-fp.h"
