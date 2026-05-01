@@ -158,6 +158,10 @@ private:
         return externalFilter.clock(exFiltInput);
     }
 
+private:
+    SID(const SID&) = delete;
+    SID& operator=(const SID&) = delete;
+
 public:
     SID();
     ~SID();

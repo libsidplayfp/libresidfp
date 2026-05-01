@@ -90,6 +90,10 @@ private:
     /// the dac array length
     const unsigned int dacLength;
 
+private:
+    Dac(const Dac&) = delete;
+    Dac& operator=(const Dac&) = delete;
+
 public:
     /**
      * Initialize DAC model.
