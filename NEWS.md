@@ -1,3 +1,7 @@
+1.0.1 2026-05-01
+* Minor cleanups
+
+
 1.0.0 2026-04-06
 * Allow bypassing the resampler for raw output (#6)
 * Add an overloaded clock function that fills the buffer (#7)
