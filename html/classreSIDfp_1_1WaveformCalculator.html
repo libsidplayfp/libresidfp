@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.0</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.1</span>
    </div>
   </td>
  </tr>
@@ -61,13 +61,13 @@
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6519c5a27995cea7cac33283012a2baf" id="r_a6519c5a27995cea7cac33283012a2baf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmatrix.html">matrix_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformCalculator.html#a6519c5a27995cea7cac33283012a2baf">getWaveTable</a> ()</td></tr>
 <tr class="separator:a6519c5a27995cea7cac33283012a2baf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e89f0c4e00a2f75dc90080b17ed2ef2" id="r_a6e89f0c4e00a2f75dc90080b17ed2ef2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmatrix.html">matrix_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformCalculator.html#a6e89f0c4e00a2f75dc90080b17ed2ef2">buildPulldownTable</a> (<a class="el" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190">ChipModel</a> model, <a class="el" href="residfp__defs_8h.html#a6c26deb7932c47336d99840baeb97259">CombinedWaveforms</a> cws)</td></tr>
-<tr class="separator:a6e89f0c4e00a2f75dc90080b17ed2ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a70ffec367dd863bd6f03e61ecc4ba2c0" id="r_a70ffec367dd863bd6f03e61ecc4ba2c0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classreSIDfp_1_1WaveformCalculator.html">WaveformCalculator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformCalculator.html#a70ffec367dd863bd6f03e61ecc4ba2c0">getInstance</a> ()</td></tr>
 <tr class="separator:a70ffec367dd863bd6f03e61ecc4ba2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e89f0c4e00a2f75dc90080b17ed2ef2" id="r_a6e89f0c4e00a2f75dc90080b17ed2ef2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmatrix.html">matrix_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformCalculator.html#a6e89f0c4e00a2f75dc90080b17ed2ef2">buildPulldownTable</a> (<a class="el" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190">ChipModel</a> model, <a class="el" href="residfp__defs_8h.html#a6c26deb7932c47336d99840baeb97259">CombinedWaveforms</a> cws)</td></tr>
+<tr class="separator:a6e89f0c4e00a2f75dc90080b17ed2ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Combined waveform calculator for <a class="el" href="classreSIDfp_1_1WaveformGenerator.html">WaveformGenerator</a>. By combining waveforms, the bits of each waveform are effectively short circuited, a zero bit in one waveform will result in a zero output bit, thus the claim that the waveforms are AND'ed. However, a zero bit in one waveform may also affect the neighboring bits in the output.</p>
@@ -101,6 +101,9 @@ Output      0 0 0 0 1 1 1 0 0 0 0 0
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classmatrix.html">matrix_t</a> * reSIDfp::WaveformCalculator::buildPulldownTable </td>
@@ -120,6 +123,11 @@ Output      0 0 0 0 1 1 1 0 0 0 0 0
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Build pulldown table for use by <a class="el" href="classreSIDfp_1_1WaveformGenerator.html">WaveformGenerator</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -193,7 +201,7 @@ Output      0 0 0 0 1 1 1 0 0 0 0 0
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 6 2026 07:56:54 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri May 1 2026 12:42:40 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
