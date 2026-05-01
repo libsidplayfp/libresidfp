@@ -45,7 +45,7 @@ using CombinedWaveformConfig = struct
     float distance2;
 };
 
-using cw_cache_t = std::map<const CombinedWaveformConfig*, matrix_t>;
+using cw_cache_t = std::map<const CombinedWaveformConfig*, rc_matrix_t>;
 
 cw_cache_t PULLDOWN_CACHE;
 
@@ -247,7 +247,7 @@ WaveformCalculator::WaveformCalculator() :
     }
 }
 
-matrix_t* WaveformCalculator::buildPulldownTable(ChipModel model, CombinedWaveforms cws)
+rc_matrix_t* WaveformCalculator::buildPulldownTable(ChipModel model, CombinedWaveforms cws)
 {
     std::lock_guard<std::mutex> lock(PULLDOWN_CACHE_Lock);
 
@@ -275,7 +275,7 @@ matrix_t* WaveformCalculator::buildPulldownTable(ChipModel model, CombinedWavefo
         return &(lb->second);
     }
 
-    matrix_t pdTable(5, 4096);
+    rc_matrix_t pdTable(5, 4096);
 
     for (int wav = 0; wav < 5; wav++)
     {

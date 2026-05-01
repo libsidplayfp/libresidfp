@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- *  Copyright (C) 2011-2014 Leandro Nini
+ *  Copyright (C) 2011-2026 Leandro Nini
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -24,6 +24,36 @@
 
 #include <atomic>
 
+template<typename T>
+class matrix
+{
+private:
+    T* data;
+    const unsigned int x, y;
+
+private:
+    matrix& operator=(const matrix&) = delete;
+
+public:
+    matrix(unsigned int new_x, unsigned int new_y) :
+        data(new T[new_x * new_y]),
+        x(new_x),
+        y(new_y) {}
+
+    matrix(const matrix& p) :
+        data(p.data),
+        x(p.x),
+        y(p.y) {}
+
+    ~matrix() { delete [] data; }
+
+    unsigned int length() const { return x * y; }
+
+    T* operator[](unsigned int a) { return &data[a * y]; }
+
+    T const* operator[](unsigned int a) const { return &data[a * y]; }
+};
+
 /**
  * Counter.
  */
@@ -42,38 +72,34 @@ public:
  * Reference counted pointer to matrix wrapper, for use with standard containers.
  */
 template<typename T>
-class matrix
+class rc_matrix
 {
 private:
-    T* data;
+    matrix<T>* m;
     counter* count;
-    const unsigned int x, y;
 
 private:
-    matrix& operator=(const matrix&) = delete;
+    rc_matrix& operator=(const rc_matrix&) = delete;
 
 public:
-    matrix(unsigned int new_x, unsigned int new_y) :
-        data(new T[new_x * new_y]),
-        count(new counter()),
-        x(new_x),
-        y(new_y) {}
+    rc_matrix(unsigned int x, unsigned int y) :
+        m(new matrix<T>(x, y)),
+        count(new counter()) {}
 
-    matrix(const matrix& p) :
-        data(p.data),
-        count(p.count),
-        x(p.x),
-        y(p.y) { count->increase(); }
+    rc_matrix(const rc_matrix& p) :
+        m(p.m),
+        count(p.count) { count->increase(); }
 
-    ~matrix() { if (count->decrease() == 0) { delete count; delete [] data; } }
+    ~rc_matrix() { if (count->decrease() == 0) { delete count; delete m; } }
 
-    unsigned int length() const { return x * y; }
+    unsigned int length() const { return m->length(); }
 
-    T* operator[](unsigned int a) { return &data[a * y]; }
+    T* operator[](unsigned int a) { return m->operator[](a); }
 
-    T const* operator[](unsigned int a) const { return &data[a * y]; }
+    T const* operator[](unsigned int a) const { return m->operator[](a); }
 };
 
 using matrix_t = matrix<short>;
+using rc_matrix_t = rc_matrix<short>;
 
 #endif
