@@ -51,7 +51,7 @@ private:
     const char* message;
 
 public:
-    SIDError(const char* msg) :
+    explicit SIDError(const char* msg) :
         message(msg) {}
     const char* getMessage() const { return message; }
 };

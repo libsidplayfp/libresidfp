@@ -61,7 +61,7 @@ private:
     FilterModelConfig8580& fmc;
 
 public:
-    Integrator8580(FilterModelConfig8580& fmc) :
+    explicit Integrator8580(FilterModelConfig8580& fmc) :
         fmc(fmc)
     {
         setV(1.5);
