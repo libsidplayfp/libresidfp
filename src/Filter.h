@@ -109,7 +109,7 @@ private:
     }
 
     // If voice 3 is off we still need to clock the waveform generator
-    inline int getSilentVoice(Voice& v) const
+    inline static int getSilentVoice(Voice& v)
     {
         v.wave()->output();
         return 0;
