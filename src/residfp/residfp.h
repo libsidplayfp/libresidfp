@@ -167,7 +167,7 @@ public:
      * using chosen output resampling algorithm.
      *
      * @param buf audio output buffer
-     * @param bufSize the buffer size in 16bit samples
+     * @param bufSize the buffer size as number of 16bit samples
      * @return number of c64 clocks run
      */
     int clock(short* buf, int bufSize);
