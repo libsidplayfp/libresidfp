@@ -58,6 +58,8 @@ dnl enable fast math
 AX_APPEND_COMPILE_FLAGS([-ffast-math -fno-unsafe-math-optimizations], [RESIDFP_CXXFLAGS])
 AC_SUBST([RESIDFP_CXXFLAGS])
 
+AX_PTHREAD([], [AC_MSG_ERROR("pthreads not found")])
+
 AC_CHECK_SIZEOF([short])
 AC_CHECK_SIZEOF([int])
 
