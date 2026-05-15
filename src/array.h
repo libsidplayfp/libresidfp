@@ -23,6 +23,7 @@
 
 
 #include <atomic>
+#include <memory>
 
 template<typename T>
 class matrix
@@ -54,52 +55,7 @@ public:
     T const* operator[](unsigned int a) const { return &data[a * y]; }
 };
 
-/**
- * Counter.
- */
-class counter
-{
-private:
-    std::atomic<unsigned int> c;
-
-public:
-    counter() : c(1) {}
-    void increase() { ++c; }
-    unsigned int decrease() { return --c; }
-};
-
-/**
- * Reference counted pointer to matrix wrapper, for use with standard containers.
- */
-template<typename T>
-class rc_matrix
-{
-private:
-    matrix<T>* m;
-    counter* count;
-
-private:
-    rc_matrix& operator=(const rc_matrix&) = delete;
-
-public:
-    rc_matrix(unsigned int x, unsigned int y) :
-        m(new matrix<T>(x, y)),
-        count(new counter()) {}
-
-    rc_matrix(const rc_matrix& p) :
-        m(p.m),
-        count(p.count) { count->increase(); }
-
-    ~rc_matrix() { if (count->decrease() == 0) { delete count; delete m; } }
-
-    unsigned int length() const { return m->length(); }
-
-    T* operator[](unsigned int a) { return m->operator[](a); }
-
-    T const* operator[](unsigned int a) const { return m->operator[](a); }
-};
-
 using matrix_t = matrix<short>;
-using rc_matrix_t = rc_matrix<short>;
+using rc_matrix_t = std::shared_ptr<matrix_t>;
 
 #endif

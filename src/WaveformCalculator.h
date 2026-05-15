@@ -102,7 +102,7 @@ public:
      *
      * @return Waveform table
      */
-    rc_matrix_t* getWaveTable() { return &wftable; }
+    rc_matrix_t getWaveTable() { return wftable; }
 
     /**
      * Build pulldown table for use by WaveformGenerator.
@@ -111,7 +111,7 @@ public:
      * @param cws strength of combined waveforms
      * @return Pulldown table
      */
-    static rc_matrix_t* buildPulldownTable(ChipModel model, CombinedWaveforms cws);
+    static rc_matrix_t buildPulldownTable(ChipModel model, CombinedWaveforms cws);
 };
 
 } // namespace reSIDfp
