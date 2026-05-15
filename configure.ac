@@ -8,7 +8,9 @@ AC_INIT([libresidfp],[lib_version],[],[],[https://github.com/libsidplayfp/libres
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_CONFIG_SRCDIR([src/SID.cpp])
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([1.11])
+
+AM_SILENT_RULES([yes])
 
 LIB_MAJOR=lib_major
 LIB_MINOR=lib_minor
