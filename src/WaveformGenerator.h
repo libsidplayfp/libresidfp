@@ -94,8 +94,8 @@ private:
     rc_matrix_t model_wave;
     rc_matrix_t model_pulldown;
 
-    short* wave = nullptr;
-    short* pulldown = nullptr;
+    int16_t* wave = nullptr;
+    int16_t* pulldown = nullptr;
 
     // PWout = (PWn/40.95)%
     unsigned int pw = 0;
@@ -206,35 +206,35 @@ public:
      *
      * @param freq_lo low 8 bits of frequency
      */
-    void writeFREQ_LO(unsigned char freq_lo) { freq = (freq & 0xff00) | (freq_lo & 0xff); }
+    void writeFREQ_LO(uint8_t freq_lo) { freq = (freq & 0xff00) | (freq_lo & 0xff); }
 
     /**
      * Write FREQ HI register.
      *
      * @param freq_hi high 8 bits of frequency
      */
-    void writeFREQ_HI(unsigned char freq_hi) { freq = (freq_hi << 8 & 0xff00) | (freq & 0xff); }
+    void writeFREQ_HI(uint8_t freq_hi) { freq = (freq_hi << 8 & 0xff00) | (freq & 0xff); }
 
     /**
      * Write PW LO register.
      *
      * @param pw_lo low 8 bits of pulse width
      */
-    void writePW_LO(unsigned char pw_lo) { pw = (pw & 0xf00) | (pw_lo & 0x0ff); }
+    void writePW_LO(uint8_t pw_lo) { pw = (pw & 0xf00) | (pw_lo & 0x0ff); }
 
     /**
      * Write PW HI register.
      *
      * @param pw_hi high 8 bits of pulse width
      */
-    void writePW_HI(unsigned char pw_hi) { pw = (pw_hi << 8 & 0xf00) | (pw & 0x0ff); }
+    void writePW_HI(uint8_t pw_hi) { pw = (pw_hi << 8 & 0xf00) | (pw & 0x0ff); }
 
     /**
      * Write CONTROL REGISTER register.
      *
      * @param control control register value
      */
-    void writeCONTROL_REG(unsigned char control);
+    void writeCONTROL_REG(uint8_t control);
 
     /**
      * SID reset.
@@ -251,7 +251,7 @@ public:
     /**
      * Read OSC3 value.
      */
-    unsigned char readOSC() const { return static_cast<unsigned char>(osc3 >> 4); }
+    uint8_t readOSC() const { return static_cast<uint8_t>(osc3 >> 4); }
 
     /**
      * Read accumulator value.

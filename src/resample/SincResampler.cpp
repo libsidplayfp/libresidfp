@@ -94,7 +94,7 @@ double I0(double x)
 #  if __has_cpp_attribute( assume )
 #    define CONVOLVE_SIMD(simd, name) \
         __attribute__ ((__target__ (#simd))) \
-        int convolve_ ## name(const int* a, const short* b, int bLength)  \
+        int convolve_ ## name(const int* a, const int16_t* b, int bLength)  \
         { \
             [[assume( bLength > 0 )]]; \
             int out = std::inner_product(a, a+bLength, b, out); \
@@ -106,7 +106,7 @@ double I0(double x)
 #ifndef CONVOLVE_SIMD
 #  define CONVOLVE_SIMD(simd, name) \
         __attribute__ ((__target__ (#simd))) \
-        int convolve_ ## name(const int* a, const short* b, int bLength)  \
+        int convolve_ ## name(const int* a, const int16_t* b, int bLength)  \
         { \
             int out = std::inner_product(a, a+bLength, b, out); \
             return (out + (1 << 14)) >> 15; \
@@ -129,7 +129,7 @@ CONVOLVE_SIMD(avx512f, avx512f)
  * @param bLength length of the sinc buffer
  * @return convolved result
  */
-int convolve(const int* a, const short* b, int bLength)
+int convolve(const int* a, const int16_t* b, int bLength)
 {
 #if defined(__has_cpp_attribute)
 #  if __has_cpp_attribute( assume )
@@ -269,7 +269,7 @@ SincResampler::SincResampler(
                 const double wt = wc * x * inv_cyclesPerSampleD;
                 const double sincWt = std::fabs(wt) >= 1e-8 ? std::sin(wt) / wt : 1.;
 
-                (*firTable)[i][j] = static_cast<short>(scale * sincWt * kaiserXt);
+                (*firTable)[i][j] = static_cast<int16_t>(scale * sincWt * kaiserXt);
             }
         }
     }

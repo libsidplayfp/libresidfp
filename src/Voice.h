@@ -107,7 +107,7 @@ public:
      *
      * @param control Control register value.
      */
-    void writeCONTROL_REG(unsigned char control)
+    void writeCONTROL_REG(uint8_t control)
     {
         waveformGenerator.writeCONTROL_REG(control);
         envelopeGenerator.writeCONTROL_REG(control);

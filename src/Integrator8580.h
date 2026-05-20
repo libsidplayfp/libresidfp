@@ -55,8 +55,8 @@ namespace reSIDfp
 class Integrator8580 : public Integrator
 {
 private:
-    unsigned short nVgt;
-    unsigned short n_dac;
+    uint16_t nVgt;
+    uint16_t n_dac;
 
     FilterModelConfig8580& fmc;
 

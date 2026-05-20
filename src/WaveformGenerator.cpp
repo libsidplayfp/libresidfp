@@ -351,7 +351,7 @@ void WaveformGenerator::set_no_noise_or_noise_output()
     no_noise_or_noise_output = no_noise | noise_output;
 }
 
-void WaveformGenerator::writeCONTROL_REG(unsigned char control)
+void WaveformGenerator::writeCONTROL_REG(uint8_t control)
 {
     const unsigned int waveform_prev = waveform;
     const bool test_prev = test;

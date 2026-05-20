@@ -72,19 +72,19 @@ void Filter::updateMixing()
     currentMixer = mixer + mixerIdx[Nmix];
 }
 
-void Filter::writeFC_LO(unsigned char fc_lo)
+void Filter::writeFC_LO(uint8_t fc_lo)
 {
     fc = (fc & 0x7f8) | (fc_lo & 0x007);
     updateCenterFrequency();
 }
 
-void Filter::writeFC_HI(unsigned char fc_hi)
+void Filter::writeFC_HI(uint8_t fc_hi)
 {
     fc = (fc_hi << 3 & 0x7f8) | (fc & 0x007);
     updateCenterFrequency();
 }
 
-void Filter::writeRES_FILT(unsigned char res_filt)
+void Filter::writeRES_FILT(uint8_t res_filt)
 {
     filt = res_filt;
 
@@ -101,7 +101,7 @@ void Filter::writeRES_FILT(unsigned char res_filt)
     updateMixing();
 }
 
-void Filter::writeMODE_VOL(unsigned char mode_vol)
+void Filter::writeMODE_VOL(uint8_t mode_vol)
 {
     vol = mode_vol & 0x0f;
     lp = (mode_vol & 0x10) != 0;

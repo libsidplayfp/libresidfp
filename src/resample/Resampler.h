@@ -24,6 +24,8 @@
 
 #include "Limiter.h"
 
+#include <cstdint>
+
 namespace reSIDfp
 {
 
@@ -54,7 +56,7 @@ public:
      *
      * @return resampled sample
      */
-    inline short getOutput(int scaleFactor) const
+    inline int16_t getOutput(int scaleFactor) const
     {
         const int out = (scaleFactor * output()) / 2;
         return Limiter::softClip(out);

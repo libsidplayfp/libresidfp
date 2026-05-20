@@ -334,7 +334,7 @@ void SID::input(int value)
     filter8580->input(value);
 }
 
-unsigned char SID::read(int offset)
+uint8_t SID::read(int offset)
 {
     switch (offset)
     {
@@ -369,7 +369,7 @@ unsigned char SID::read(int offset)
     return busValue;
 }
 
-void SID::write(int offset, unsigned char value)
+void SID::write(int offset, uint8_t value)
 {
     busValue = value;
     busValueTtl = modelTTL;

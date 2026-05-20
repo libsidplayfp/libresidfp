@@ -55,7 +55,7 @@ Filter6581::~Filter6581()
 
 void Filter6581::updateCenterFrequency()
 {
-    const unsigned short Vw = f0_dac[getFC()];
+    const uint16_t Vw = f0_dac[getFC()];
     hpIntegrator.setVw(Vw);
     bpIntegrator.setVw(Vw);
 }

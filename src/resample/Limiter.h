@@ -61,7 +61,7 @@ public:
     /*
      * Soft Clipping into 16 bit range [-32768,32767]
      */
-    static inline short softClip(int x) { return static_cast<short>(softClipImpl(x)); }
+    static inline int16_t softClip(int x) { return static_cast<int16_t>(softClipImpl(x)); }
 
 };
 

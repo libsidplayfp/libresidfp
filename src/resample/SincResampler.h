@@ -53,7 +53,7 @@ private:
 
 #ifdef RUNTIME_DISPATCH
 private:
-    using convolve_func_t = auto (*)(const int*, const short*, int) -> int;
+    using convolve_func_t = auto (*)(const int*, const int16_t*, int) -> int;
 
     convolve_func_t simd_convolve;
 #endif
