@@ -23,6 +23,7 @@
 
 #include <cmath>
 #include <cassert>
+#include <cstdint>
 
 #include "siddefs-fp.h"
 
