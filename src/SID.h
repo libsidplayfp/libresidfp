@@ -151,10 +151,10 @@ private:
     }
 
     /// clock internal and external filters
-    inline int clockFilt()
+    inline int32_t clockFilt()
     {
         uint16_t filtOutput = filter->clock(voice[0], voice[1], voice[2]);
-        int exFiltInput = static_cast<int>(filtOutput) + INT16_MIN;
+        int32_t exFiltInput = static_cast<int32_t>(filtOutput) + INT16_MIN;
         return externalFilter.clock(exFiltInput);
     }
 
@@ -371,7 +371,7 @@ int SID::clock(unsigned int cycles, int16_t* buf)
                 clockWaveGen();
                 clockEnvGen();
 
-                int output = clockFilt();
+                int32_t output = clockFilt();
                 if (unlikely(resampler->input(output)))
                 {
                     buf[s++] = resampler->getOutput(scaleFactor);
@@ -412,7 +412,7 @@ int SID::clock(int16_t* buf, int bufSize)
                 clockWaveGen();
                 clockEnvGen();
 
-                int output = clockFilt();
+                int32_t output = clockFilt();
                 if (unlikely(resampler->input(output)))
                 {
                     buf[s++] = resampler->getOutput(scaleFactor);

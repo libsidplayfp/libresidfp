@@ -36,7 +36,7 @@ namespace reSIDfp
 class Resampler
 {
 protected:
-    virtual int output() const = 0;
+    virtual int32_t output() const = 0;
 
     Resampler() {}
 
@@ -49,16 +49,16 @@ public:
      * @param sample input sample
      * @return true when a sample is ready
      */
-    virtual bool input(int sample) = 0;
+    virtual bool input(int32_t sample) = 0;
 
     /**
      * Output a sample from resampler.
      *
      * @return resampled sample
      */
-    inline int16_t getOutput(int scaleFactor) const
+    inline int16_t getOutput(int32_t scaleFactor) const
     {
-        const int out = (scaleFactor * output()) / 2;
+        const int32_t out = (scaleFactor * output()) / 2;
         return Limiter::softClip(out);
     }
 
