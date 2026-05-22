@@ -1,6 +1,6 @@
 m4_define([lib_major], [1])
-m4_define([lib_minor], [0])
-m4_define([lib_level], [2])
+m4_define([lib_minor], [1])
+m4_define([lib_level], [0a])
 m4_define([lib_version], [lib_major.lib_minor.lib_level])
 
 AC_PREREQ([2.62])
@@ -15,7 +15,7 @@ AM_SILENT_RULES([yes])
 LIB_MAJOR=lib_major
 LIB_MINOR=lib_minor
 LIB_LEVEL=lib_level
-AC_SUBST([LIB_MAJOR])
+AC_SUBST([LIB_MAJOR])NEWS.md
 AC_SUBST([LIB_MINOR])
 AC_SUBST([LIB_LEVEL])
 
