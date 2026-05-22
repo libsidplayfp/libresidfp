@@ -39,7 +39,7 @@ namespace reSIDfp
  *
  * see [kevtris.org](http://blog.kevtris.org/?p=13)
  */
-const unsigned int EnvelopeGenerator::adsrtable[16] =
+const uint16_t EnvelopeGenerator::adsrtable[16] =
 {
     0x007f,
     0x3000,

@@ -56,10 +56,10 @@ private:
 
 private:
     /// XOR shift register for ADSR prescaling.
-    unsigned int lfsr = 0x7fff;
+    uint16_t lfsr = 0x7fff;
 
     /// Comparison value (period) of the rate counter before next event.
-    unsigned int rate = 0;
+    uint16_t rate = 0;
 
     /**
      * During release mode, the SID approximates envelope decay via piecewise
@@ -113,7 +113,7 @@ private:
     uint8_t env3 = 0;
 
 private:
-    static const unsigned int adsrtable[16];
+    static const uint16_t adsrtable[16];
 
 private:
     void set_exponential_counter();
@@ -129,7 +129,7 @@ public:
     /**
      * Get the Envelope Generator digital output.
      */
-    unsigned int output() const { return envelope_counter; }
+    uint8_t output() const { return envelope_counter; }
 
     /**
      * SID reset.

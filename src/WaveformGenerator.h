@@ -98,45 +98,45 @@ private:
     int16_t* pulldown = nullptr;
 
     // PWout = (PWn/40.95)%
-    unsigned int pw = 0;
+    uint32_t pw = 0;
 
-    unsigned int shift_register = 0;
+    uint32_t shift_register = 0;
 
     /// Shift register is latched when transitioning to shift phase 1.
-    unsigned int shift_latch = 0;
+    uint32_t shift_latch = 0;
 
     /// Emulation of pipeline causing bit 19 to clock the shift register.
     int shift_pipeline = 0;
 
-    unsigned int ring_msb_mask = 0;
-    unsigned int no_noise = 0;
-    unsigned int noise_output = 0;
-    unsigned int no_noise_or_noise_output = 0;
-    unsigned int no_pulse = 0;
-    unsigned int pulse_output = 0;
+    uint32_t ring_msb_mask = 0;
+    uint32_t no_noise = 0;
+    uint32_t noise_output = 0;
+    uint32_t no_noise_or_noise_output = 0;
+    uint32_t no_pulse = 0;
+    uint32_t pulse_output = 0;
 
-    /// The control register right-shifted 4 bits; used for output function table lookup.
-    unsigned int waveform = 0;
-
-    unsigned int waveform_output = 0;
+    uint32_t waveform_output = 0;
 
     /// Current accumulator value.
-    unsigned int accumulator = 0x555555; // Accumulator's even bits are high on powerup
+    uint32_t accumulator = 0x555555; // Accumulator's even bits are high on powerup
 
     // Fout = (Fn*Fclk/16777216)Hz
-    unsigned int freq = 0;
+    uint32_t freq = 0;
 
     /// 8580 tri/saw pipeline
-    unsigned int tri_saw_pipeline = 0x555;
+    uint32_t tri_saw_pipeline = 0x555;
 
     /// The OSC3 value
-    unsigned int osc3 = 0;
+    uint32_t osc3 = 0;
 
     /// Remaining time to fully reset shift register.
     unsigned int shift_register_reset = 0;
 
     // The wave signal TTL when no waveform is selected.
     unsigned int floating_output_ttl = 0;
+
+    /// The control register right-shifted 4 bits; used for output function table lookup.
+    uint8_t waveform = 0;
 
     /// The control register bits. Gate is handled by EnvelopeGenerator.
     //@{
@@ -159,7 +159,7 @@ private:
     //@}
 
 private:
-    void shift_phase2(unsigned int waveform_old, unsigned int waveform_new);
+    void shift_phase2(uint8_t waveform_old, uint8_t waveform_new);
 
     void write_shift_register();
 
@@ -246,7 +246,7 @@ public:
      *
      * @return the waveform generator digital output
      */
-    unsigned int output();
+    uint32_t output();
 
     /**
      * Read OSC3 value.
@@ -256,12 +256,12 @@ public:
     /**
      * Read accumulator value.
      */
-    unsigned int readAccumulator() const { return accumulator; }
+    uint32_t readAccumulator() const { return accumulator; }
 
     /**
      * Read freq value.
      */
-    unsigned int readFreq() const { return freq; }
+    uint32_t readFreq() const { return freq; }
 
     /**
      * Read test value.
@@ -307,11 +307,11 @@ void WaveformGenerator::clock()
     else
     {
         // Calculate new accumulator value;
-        const unsigned int accumulator_old = accumulator;
+        const uint32_t accumulator_old = accumulator;
         accumulator = (accumulator + freq) & 0xffffff;
 
         // Check which bit have changed from low to high
-        const unsigned int accumulator_bits_set = ~accumulator_old & accumulator;
+        const uint32_t accumulator_bits_set = ~accumulator_old & accumulator;
 
         // Check whether the MSB is set high. This is used for synchronization.
         msb_rising = (accumulator_bits_set & 0x800000) != 0;
@@ -347,12 +347,12 @@ void WaveformGenerator::clock()
 }
 
 RESIDFP_INLINE
-unsigned int WaveformGenerator::output()
+uint32_t WaveformGenerator::output()
 {
     // Set output value.
     if (likely(waveform != 0))
     {
-        const unsigned int ix = (accumulator ^ (~prevVoice->accumulator & ring_msb_mask)) >> 12;
+        const uint32_t ix = (accumulator ^ (~prevVoice->accumulator & ring_msb_mask)) >> 12;
 
         // The bit masks no_pulse and no_noise are used to achieve branch-free
         // calculation of the output value.

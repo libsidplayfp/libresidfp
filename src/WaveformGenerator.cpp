@@ -171,7 +171,7 @@ constexpr unsigned int shift_mask =
  * we're back to normal cycles.
  */
 
-inline bool do_writeback(unsigned int waveform_old, unsigned int waveform_new, bool is6581)
+inline bool do_writeback(uint8_t waveform_old, uint8_t waveform_new, bool is6581)
 {
     // no writeback without combined waveforms
 
@@ -252,7 +252,7 @@ inline unsigned int get_noise_writeback(unsigned int waveform_output)
  * The XORing for bit0 is done in this cycle using the test bit latched during
  * the previous phi2 cycle.
  */
-void WaveformGenerator::shift_phase2(unsigned int waveform_old, unsigned int waveform_new)
+void WaveformGenerator::shift_phase2(uint8_t waveform_old, uint8_t waveform_new)
 {
     if (do_writeback(waveform_old, waveform_new, is6581))
     {
@@ -353,7 +353,7 @@ void WaveformGenerator::set_no_noise_or_noise_output()
 
 void WaveformGenerator::writeCONTROL_REG(uint8_t control)
 {
-    const unsigned int waveform_prev = waveform;
+    const uint8_t waveform_prev = waveform;
     const bool test_prev = test;
 
     waveform = (control >> 4) & 0x0f;
