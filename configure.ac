@@ -73,6 +73,12 @@ AS_IF([test $ac_cv_sizeof_int -lt 4],
   [AC_MSG_ERROR([only 32 bit or better CPUs are supported])]
 )
 
+AC_CHECK_TYPES([int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t],
+    [],
+    [AC_MSG_ERROR([missing fixed width integer types])],
+    [[#include <cstdint>]]
+)
+
 dnl libtool-style version-info number
 #
 # https://autotools.io/libtool/version.html

@@ -326,7 +326,7 @@ private:
     /// VCR + associated capacitor connected to bandpass output.
     Integrator6581 bpIntegrator;
 
-    const unsigned short* f0_dac;
+    const uint16_t* f0_dac;
 
 protected:
     /**

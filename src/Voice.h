@@ -27,6 +27,8 @@
 #include "WaveformGenerator.h"
 #include "EnvelopeGenerator.h"
 
+#include <cstdint>
+
 namespace reSIDfp
 {
 
@@ -64,8 +66,8 @@ public:
     RESIDFP_INLINE
     float output()
     {
-        unsigned int const wav = waveformGenerator.output();
-        unsigned int const env = envelopeGenerator.output();
+        uint32_t wav = waveformGenerator.output();
+        int env = envelopeGenerator.output();
 
         // DAC imperfections are emulated by using the digital output
         // as an index into a DAC lookup table.
@@ -107,7 +109,7 @@ public:
      *
      * @param control Control register value.
      */
-    void writeCONTROL_REG(unsigned char control)
+    void writeCONTROL_REG(uint8_t control)
     {
         waveformGenerator.writeCONTROL_REG(control);
         envelopeGenerator.writeCONTROL_REG(control);

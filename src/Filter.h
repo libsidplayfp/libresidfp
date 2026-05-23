@@ -37,24 +37,24 @@ namespace reSIDfp
 class Filter
 {
 private:
-    unsigned short* mixer;
-    unsigned short* summer;
-    unsigned short* resonance;
-    unsigned short* volume;
+    uint16_t* mixer;
+    uint16_t* summer;
+    uint16_t* resonance;
+    uint16_t* volume;
 
     FilterModelConfig& fmc;
 
     /// Current filter/voice mixer setting.
-    unsigned short* currentMixer = nullptr;
+    uint16_t* currentMixer = nullptr;
 
     /// Filter input summer setting.
-    unsigned short* currentSummer = nullptr;
+    uint16_t* currentSummer = nullptr;
 
     /// Filter resonance value.
-    unsigned short* currentResonance = nullptr;
+    uint16_t* currentResonance = nullptr;
 
     /// Current volume amplifier setting.
-    unsigned short* currentVolume = nullptr;
+    uint16_t* currentVolume = nullptr;
 
 protected:
     /// Filter highpass state.
@@ -94,13 +94,13 @@ protected:
 
 private:
     /// Current volume.
-    unsigned char vol = 0;
+    uint8_t vol = 0;
 
     /// Filter enabled.
     bool enabled = true;
 
     /// Selects which inputs to route through filter.
-    unsigned char filt = 0;
+    uint8_t filt = 0;
 
 private:
     inline int getNormalizedVoice(Voice& v) const
@@ -126,7 +126,7 @@ protected:
      *
      * @param res the new resonance value
      */
-    void updateResonance(unsigned char res) { currentResonance = resonance + (res * (1<<16)); }
+    void updateResonance(uint8_t res) { currentResonance = resonance + (res * (1<<16)); }
 
     /**
      * Mixing configuration modified (offsets change)
@@ -153,7 +153,7 @@ public:
      * @param voice3 voice 3 in
      * @return filtered output, unsigned 16 bit
      */
-    unsigned short clock(Voice& voice1, Voice& voice2, Voice& voice3);
+    uint16_t clock(Voice& voice1, Voice& voice2, Voice& voice3);
 
     /**
      * Enable filter.
@@ -172,35 +172,35 @@ public:
      *
      * @param fc_lo Frequency Cutoff Low-Byte
      */
-    void writeFC_LO(unsigned char fc_lo);
+    void writeFC_LO(uint8_t fc_lo);
 
     /**
      * Write Frequency Cutoff High register.
      *
      * @param fc_hi Frequency Cutoff High-Byte
      */
-    void writeFC_HI(unsigned char fc_hi);
+    void writeFC_HI(uint8_t fc_hi);
 
     /**
      * Write Resonance/Filter register.
      *
      * @param res_filt Resonance/Filter
      */
-    void writeRES_FILT(unsigned char res_filt);
+    void writeRES_FILT(uint8_t res_filt);
 
     /**
      * Write filter Mode/Volume register.
      *
      * @param mode_vol Filter Mode/Volume
      */
-    void writeMODE_VOL(unsigned char mode_vol);
+    void writeMODE_VOL(uint8_t mode_vol);
 
     /**
      * Apply a signal to EXT-IN
      *
      * @param input a signed 16 bit sample
      */
-    void input(short input) { Ve = fmc.getNormalizedVoice(input/32768.f, 0); }
+    void input(int16_t input) { Ve = fmc.getNormalizedVoice(input/32768.f, 0); }
 };
 
 } // namespace reSIDfp
@@ -211,7 +211,7 @@ namespace reSIDfp
 {
 
 RESIDFP_INLINE
-unsigned short Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
+uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
 {
     const int V1 = getNormalizedVoice(voice1);
     const int V2 = getNormalizedVoice(voice2);

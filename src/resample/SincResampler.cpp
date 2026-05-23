@@ -94,10 +94,10 @@ double I0(double x)
 #  if __has_cpp_attribute( assume )
 #    define CONVOLVE_SIMD(simd, name) \
         __attribute__ ((__target__ (#simd))) \
-        int convolve_ ## name(const int* a, const short* b, int bLength)  \
+        int32_t convolve_ ## name(const int32_t* a, const int16_t* b, int bLength)  \
         { \
             [[assume( bLength > 0 )]]; \
-            int out = std::inner_product(a, a+bLength, b, out); \
+            int32_t out = std::inner_product(a, a+bLength, b, out); \
             return (out + (1 << 14)) >> 15; \
         }
 #  endif
@@ -106,9 +106,9 @@ double I0(double x)
 #ifndef CONVOLVE_SIMD
 #  define CONVOLVE_SIMD(simd, name) \
         __attribute__ ((__target__ (#simd))) \
-        int convolve_ ## name(const int* a, const short* b, int bLength)  \
+        int32_t convolve_ ## name(const int32_t* a, const int16_t* b, int bLength)  \
         { \
-            int out = std::inner_product(a, a+bLength, b, out); \
+            int32_t out = std::inner_product(a, a+bLength, b, out); \
             return (out + (1 << 14)) >> 15; \
         }
 #endif
@@ -129,14 +129,14 @@ CONVOLVE_SIMD(avx512f, avx512f)
  * @param bLength length of the sinc buffer
  * @return convolved result
  */
-int convolve(const int* a, const short* b, int bLength)
+int32_t convolve(const int32_t* a, const int16_t* b, int bLength)
 {
 #if defined(__has_cpp_attribute)
 #  if __has_cpp_attribute( assume )
     [[assume( bLength > 0 )]];
 #  endif
 #endif
-    int out = 0;
+    int32_t out = 0;
 #ifndef __clang__
     out = std::inner_product(a, a+bLength, b, out);
 #else
@@ -144,14 +144,14 @@ int convolve(const int* a, const short* b, int bLength)
     // feed it some plain ol' c code
     for (int i=0; i<bLength; i++)
     {
-        out += a[i] * static_cast<int>(b[i]);
+        out += a[i] * static_cast<int32_t>(b[i]);
     }
 #endif
 
     return (out + (1 << 14)) >> 15;
 }
 
-int SincResampler::fir(int subcycle)
+int32_t SincResampler::fir(int subcycle)
 {
     // Find the first of the nearest fir tables close to the phase
     int firTableFirst = (subcycle * firRES >> 10);
@@ -161,9 +161,9 @@ int SincResampler::fir(int subcycle)
     int sampleStart = sampleIndex - firN + RINGSIZE - 1;
 
 #ifdef RUNTIME_DISPATCH
-    const int v1 = simd_convolve(sample + sampleStart, (*firTable)[firTableFirst], firN);
+    const int32_t v1 = simd_convolve(sample + sampleStart, (*firTable)[firTableFirst], firN);
 #else
-    const int v1 = convolve(sample + sampleStart, (*firTable)[firTableFirst], firN);
+    const int32_t v1 = convolve(sample + sampleStart, (*firTable)[firTableFirst], firN);
 #endif
 
     // Use next FIR table, wrap around to first FIR table using
@@ -175,9 +175,9 @@ int SincResampler::fir(int subcycle)
     }
 
 #ifdef RUNTIME_DISPATCH
-    const int v2 = simd_convolve(sample + sampleStart, (*firTable)[firTableFirst], firN);
+    const int32_t v2 = simd_convolve(sample + sampleStart, (*firTable)[firTableFirst], firN);
 #else
-    const int v2 = convolve(sample + sampleStart, (*firTable)[firTableFirst], firN);
+    const int32_t v2 = convolve(sample + sampleStart, (*firTable)[firTableFirst], firN);
 #endif
 
     // Linear interpolation between the sinc tables yields good
@@ -269,7 +269,7 @@ SincResampler::SincResampler(
                 const double wt = wc * x * inv_cyclesPerSampleD;
                 const double sincWt = std::fabs(wt) >= 1e-8 ? std::sin(wt) / wt : 1.;
 
-                (*firTable)[i][j] = static_cast<short>(scale * sincWt * kaiserXt);
+                (*firTable)[i][j] = static_cast<int16_t>(scale * sincWt * kaiserXt);
             }
         }
     }
@@ -299,7 +299,7 @@ SincResampler::~SincResampler()
     delete firTable;
 }
 
-bool SincResampler::input(int input)
+bool SincResampler::input(int32_t input)
 {
     bool ready = false;
 
