@@ -33,6 +33,7 @@
 #include "ExternalFilter.h"
 #include "Filter.h"
 #include "Voice.h"
+#include "State.h"
 
 namespace reSIDfp
 {
@@ -344,6 +345,16 @@ public:
      * Set paddle coordinates.
      */
     void setPaddle(uint8_t x, uint8_t y);
+
+    /**
+     * @since 1.1
+     */
+    State saveState();
+
+    /**
+     * @since 1.1
+     */
+    void loadState(const State& state);
 };
 
 } // namespace reSIDfp
