@@ -85,6 +85,8 @@ namespace reSIDfp
  */
 class ExternalFilter
 {
+    friend class SID;
+
 private:
     /// Lowpass filter voltage
     int32_t Vlp;

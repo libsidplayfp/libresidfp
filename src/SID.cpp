@@ -656,6 +656,32 @@ State SID::saveState()
     state.model = model;
     state.cws = cws;
 
+    for (int i = 0; i < 2; i++)
+    {
+        Filter* f = (i == 0) ? static_cast<Filter*>(filter6581) : static_cast<Filter*>(filter8580);
+        state.Vhp[i] = f->Vhp;
+        state.Vbp[i] = f->Vbp;
+        state.Vlp[i] = f->Vlp;
+        state.Ve[i] = f->Ve;
+        state.fc[i] = f->fc;
+        state.filt1[i] = f->filt1;
+        state.filt2[i] = f->filt2;
+        state.filt3[i] = f->filt3;
+        state.filtE[i] = f->filtE;
+        state.voice3off[i] = f->voice3off;
+        state.hp[i] = f->hp;
+        state.bp[i] = f->bp;
+        state.lp[i] = f->lp;
+        state.vol[i] = f->vol;
+        state.enabled[i] = f->enabled;
+        state.filt[i] = f->filt;
+    }
+
+    state.exVlp = externalFilter.Vlp;
+    state.exVhp = externalFilter.Vhp;
+    state.w0lp_1_s7 = externalFilter.w0lp_1_s7;
+    state.w0hp_1_s17 = externalFilter.w0hp_1_s17;
+
     return state;
 }
 
@@ -675,6 +701,32 @@ void SID::loadState(const State& state)
     setChipModel(model);
     cws = state.cws;
     setCombinedWaveforms(cws);
+
+    for (int i = 0; i < 2; i++)
+    {
+        Filter* f = (i == 0) ? static_cast<Filter*>(filter6581) : static_cast<Filter*>(filter8580);
+        f->Vhp = state.Vhp[i];
+        f->Vbp = state.Vbp[i];
+        f->Vlp = state.Vlp[i];
+        f->Ve = state.Ve[i];
+        f->fc = state.fc[i];
+        f->filt1 = state.filt1[i];
+        f->filt2 = state.filt2[i];
+        f->filt3 = state.filt3[i];
+        f->filtE = state.filtE[i];
+        f->voice3off = state.voice3off[i];
+        f->hp = state.hp[i];
+        f->bp = state.bp[i];
+        f->lp = state.lp[i];
+        f->vol = state.vol[i];
+        f->enabled = state.enabled[i];
+        f->filt = state.filt[i];
+    }
+
+    externalFilter.Vlp = state.exVlp;
+    externalFilter.Vhp = state.exVhp;
+    externalFilter.w0lp_1_s7 = state.w0lp_1_s7;
+    externalFilter.w0hp_1_s17 = state.w0hp_1_s17;
 
     for (int i = 0; i < 3; i++)
     {

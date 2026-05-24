@@ -84,6 +84,31 @@ struct State
     uint8_t sustain[3];
     uint8_t release[3];
     uint8_t env3[3];
+
+    // Filter
+    int32_t Vhp[2];
+    int32_t Vbp[2];
+    int32_t Vlp[2];
+    int32_t Ve[2];
+    uint8_t fc[2];
+    bool filt1[2];
+    bool filt2[2];
+    bool filt3[2];
+    bool filtE[2];
+    bool voice3off[2];
+    bool hp[2];
+    bool bp[2];
+    bool lp[2];
+    uint8_t vol[2];
+    bool enabled[2];
+    uint8_t filt[2];
+
+    /// External filter
+    int32_t exVlp;
+    int32_t exVhp;
+    int32_t w0lp_1_s7;
+    int32_t w0hp_1_s17;
+
 };
 
 } // namespace reSIDfp
