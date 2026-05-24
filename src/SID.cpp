@@ -589,26 +589,54 @@ State SID::saveState()
 {
     State state;
 
-    int i, j;
-    for (i = 0, j = 0; i < 3; i++, j += 7)
+    for (int i = 0; i < 3; i++)
     {
         WaveformGenerator* const wave = voice[i].wave();
+        state.pw[i] = wave->pw;
+        state.shift_register[i] = wave->shift_register;
+        state.shift_latch[i] = wave->shift_latch;
+        state.ring_msb_mask[i] = wave->ring_msb_mask;
+        state.no_noise[i] = wave->no_noise;
+        state.noise_output[i] = wave->noise_output;
+        state.no_noise_or_noise_output[i] = wave->no_noise_or_noise_output;
+        state.no_pulse[i] = wave->no_pulse;
+        state.pulse_output[i] = wave->pulse_output;
+        state.waveform_output[i] = wave->waveform_output;
+        state.accumulator[i] = wave->accumulator;
+        state.freq[i] = wave->freq;
+        state.tri_saw_pipeline[i] = wave->tri_saw_pipeline;
+        state.osc3[i] = wave->osc3;
+        state.shift_pipeline[i] = wave->shift_pipeline;
+        state.shift_register_reset[i] = wave->shift_register_reset;
+        state.floating_output_ttl[i] = wave->floating_output_ttl;
+        state.waveform[i] = wave->waveform;
+        state.test[i] = wave->test;
+        state.sync[i] = wave->sync;
+        state.test_or_reset[i] = wave->test_or_reset;
+        state.msb_rising[i] = wave->msb_rising;
+
         EnvelopeGenerator* const envelope = voice[i].envelope();
-
-        state.registers[j + 0] = wave->freq & 0xff;
-        state.registers[j + 1] = wave->freq >> 8;
-        state.registers[j + 2] = wave->pw & 0xff;
-        state.registers[j + 3] = wave->pw >> 8;
-        state.registers[j + 4] =
-        (wave->waveform << 4)
-        | (wave->test ? 0x08 : 0)
-        //| (wave->ring_mod ? 0x04 : 0)   FIXME
-        | (wave->sync ? 0x02 : 0)
-        | (envelope->gate ? 0x01 : 0);
-        state.registers[j + 5] = (envelope->attack << 4) | envelope->decay;
-        state.registers[j + 6] = (envelope->sustain << 4) | envelope->release;
+        state.lfsr[i] = envelope->lfsr;
+        state.rate[i] = envelope->rate;
+        state.exponential_counter[i] = envelope->exponential_counter;
+        state.exponential_counter_period[i] = envelope->exponential_counter_period;
+        state.new_exponential_counter_period[i] = envelope->new_exponential_counter_period;
+        state.state_pipeline[i] = envelope->state_pipeline;
+        state.envelope_pipeline[i] = envelope->envelope_pipeline;
+        state.exponential_pipeline[i] = envelope->exponential_pipeline;
+        state.state[i] = envelope->state;
+        state.next_state[i] = envelope->next_state;
+        state.counter_enabled[i] = envelope->counter_enabled;
+        state.gate[i] = envelope->gate;
+        state.resetLfsr[i] = envelope->resetLfsr;
+        state.envelope_counter[i] = envelope->envelope_counter;
+        state.attack[i] = envelope->attack;
+        state.decay[i] = envelope->decay;
+        state.sustain[i] = envelope->sustain;
+        state.release[i] = envelope->release;
+        state.env3[i] = envelope->env3;
     }
-
+/*
     state.registers[j++] = filter->fc & 0x007;
     state.registers[j++] = filter->fc >> 3;
     state.registers[j++] = 0;//(filter->res << 4) | filter->filt; FIXME
@@ -621,35 +649,12 @@ State SID::saveState()
     for (; j < 0x20; j++) {
         state.registers[j] = 0;
     }
-
+*/
     state.bus_value = busValue;
     state.bus_value_ttl = busValueTtl;
     state.nextVoiceSync = nextVoiceSync;
     state.model = model;
     state.cws = cws;
-
-    for (i = 0; i < 3; i++)
-    {
-        WaveformGenerator* const wave = voice[i].wave();
-        EnvelopeGenerator* const envelope = voice[i].envelope();
-
-        state.accumulator[i] = wave->accumulator;
-        state.shift_register[i] = wave->shift_register;
-        state.shift_register_reset[i] = wave->shift_register_reset;
-        state.shift_pipeline[i] = wave->shift_pipeline;
-        state.pulse_output[i] = wave->pulse_output;
-        state.floating_output_ttl[i] = wave->floating_output_ttl;
-
-        state.lfsr[i] = envelope->lfsr;
-        state.rate[i] = envelope->rate;
-        state.exponential_counter[i] = envelope->exponential_counter;
-        state.exponential_counter_period[i] = envelope->exponential_counter_period;
-        state.envelope_counter[i] = envelope->envelope_counter;
-        state.envelope_state[i] = envelope->state;
-        state.counter_enabled[i] = envelope->counter_enabled;
-        state.envelope_pipeline[i] = envelope->envelope_pipeline;
-        state.exponential_pipeline[i] = envelope->exponential_pipeline;
-    }
 
     return state;
 }
@@ -657,11 +662,12 @@ State SID::saveState()
 
 void SID::loadState(const State& state)
 {
+/*
     for (int i = 0; i <= 0x18; i++)
     {
         write(i, state.registers[i]);
     }
-
+*/
     busValue = state.bus_value;
     busValueTtl = state.bus_value_ttl;
     nextVoiceSync = state.nextVoiceSync;
@@ -672,22 +678,50 @@ void SID::loadState(const State& state)
 
     for (int i = 0; i < 3; i++)
     {
-        voice[i].wave()->accumulator = state.accumulator[i];
-        voice[i].wave()->shift_register = state.shift_register[i];
-        voice[i].wave()->shift_register_reset = state.shift_register_reset[i];
-        voice[i].wave()->shift_pipeline = state.shift_pipeline[i];
-        voice[i].wave()->pulse_output = state.pulse_output[i];
-        voice[i].wave()->floating_output_ttl = state.floating_output_ttl[i];
+        WaveformGenerator* const wave = voice[i].wave();
+        wave->pw = state.pw[i];
+        wave->shift_register = state.shift_register[i];
+        wave->shift_latch = state.shift_latch[i];
+        wave->ring_msb_mask = state.ring_msb_mask[i];
+        wave->no_noise = state.no_noise[i];
+        wave->noise_output = state.noise_output[i];
+        wave->no_noise_or_noise_output = state.no_noise_or_noise_output[i];
+        wave->no_pulse = state.no_pulse[i];
+        wave->pulse_output = state.pulse_output[i];
+        wave->waveform_output = state.waveform_output[i];
+        wave->accumulator = state.accumulator[i];
+        wave->freq = state.freq[i];
+        wave->tri_saw_pipeline = state.tri_saw_pipeline[i];
+        wave->osc3 = state.osc3[i];
+        wave->shift_pipeline = state.shift_pipeline[i];
+        wave->shift_register_reset = state.shift_register_reset[i];
+        wave->floating_output_ttl = state.floating_output_ttl[i];
+        wave->waveform = state.waveform[i];
+        wave->test = state.test[i];
+        wave->sync = state.sync[i];
+        wave->test_or_reset = state.test_or_reset[i];
+        wave->msb_rising = state.msb_rising[i];
 
-        voice[i].envelope()->lfsr = state.lfsr[i];
-        voice[i].envelope()->rate = state.rate[i];
-        voice[i].envelope()->exponential_counter = state.exponential_counter[i];
-        voice[i].envelope()->exponential_counter_period = state.exponential_counter_period[i];
-        voice[i].envelope()->envelope_counter = state.envelope_counter[i];
-        voice[i].envelope()->state = state.envelope_state[i];
-        voice[i].envelope()->counter_enabled = state.counter_enabled[i];
-        voice[i].envelope()->envelope_pipeline = state.envelope_pipeline[i];
-        voice[i].envelope()->exponential_pipeline = state.exponential_pipeline[i];
+        EnvelopeGenerator* const envelope = voice[i].envelope();
+        envelope->lfsr = state.lfsr[i];
+        envelope->rate = state.rate[i];
+        envelope->exponential_counter = state.exponential_counter[i];
+        envelope->exponential_counter_period = state.exponential_counter_period[i];
+        envelope->new_exponential_counter_period = state.new_exponential_counter_period[i];
+        envelope->state_pipeline = state.state_pipeline[i];
+        envelope->envelope_pipeline = state.envelope_pipeline[i];
+        envelope->exponential_pipeline = state.exponential_pipeline[i];
+        envelope->state = state.state[i];
+        envelope->next_state = state.next_state[i];
+        envelope->counter_enabled = state.counter_enabled[i];
+        envelope->gate = state.gate[i];
+        envelope->resetLfsr = state.resetLfsr[i];
+        envelope->envelope_counter = state.envelope_counter[i];
+        envelope->attack = state.attack[i];
+        envelope->decay = state.decay[i];
+        envelope->sustain = state.sustain[i];
+        envelope->release = state.release[i];
+        envelope->env3 = state.env3[i];
     }
 }
 

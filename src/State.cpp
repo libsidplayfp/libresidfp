@@ -25,35 +25,36 @@ namespace reSIDfp
 
 State::State()
 {
-  for (int i = 0; i < 0x20; i++)
-  {
-    registers[i] = 0;
-  }
+/*
+    for (int i = 0; i < 0x20; i++)
+    {
+        registers[i] = 0;
+    }
+*/
+    bus_value = 0u;
+    bus_value_ttl = 0;
+    nextVoiceSync = 0u;
 
-  bus_value = 0u;
-  bus_value_ttl = 0;
-  nextVoiceSync = 0u;
+    for (int i = 0; i < 3; i++)
+    {
+        accumulator[i] = 0u;
+        shift_register[i] = 0x7fffffu;
+        shift_latch[i] = 0u;
+        shift_register_reset[i] = 0u;
+        shift_pipeline[i] = 0;
+        pulse_output[i] = 0u;
+        floating_output_ttl[i] = 0u;
 
-  for (int i = 0; i < 3; i++)
-  {
-    accumulator[i] = 0u;
-    shift_register[i] = 0x7fffffu;
-    shift_latch[i] = 0u;
-    shift_register_reset[i] = 0u;
-    shift_pipeline[i] = 0;
-    pulse_output[i] = 0u;
-    floating_output_ttl[i] = 0u;
-
-    lfsr[i] = 0x7fffu;
-    rate[i] = 0x007fu;
-    exponential_counter[i] = 0u;
-    exponential_counter_period[i] = 1u;
-    envelope_counter[i] = 0u;
-    envelope_state[i] = EnvelopeGenerator::State::RELEASE;
-    counter_enabled[i] = true;
-    envelope_pipeline[i] = 0u;
-    exponential_pipeline[i] = 0u;
-  }
+        lfsr[i] = 0x7fffu;
+        rate[i] = 0x007fu;
+        exponential_counter[i] = 0u;
+        exponential_counter_period[i] = 1u;
+        envelope_counter[i] = 0u;
+        state[i] = EnvelopeGenerator::State::RELEASE;
+        counter_enabled[i] = true;
+        envelope_pipeline[i] = 0u;
+        exponential_pipeline[i] = 0u;
+    }
 }
 
 } // namespace reSIDfp
