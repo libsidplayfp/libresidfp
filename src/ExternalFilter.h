@@ -25,6 +25,8 @@
 
 #include "siddefs-fp.h"
 
+#include <cstdint>
+
 namespace reSIDfp
 {
 
@@ -85,14 +87,14 @@ class ExternalFilter
 {
 private:
     /// Lowpass filter voltage
-    int Vlp;
+    int32_t Vlp;
 
     /// Highpass filter voltage
-    int Vhp;
+    int32_t Vhp;
 
-    int w0lp_1_s7 = 0;
+    int32_t w0lp_1_s7 = 0;
 
-    int w0hp_1_s17 = 0;
+    int32_t w0hp_1_s17 = 0;
 
 public:
     /**
@@ -101,7 +103,7 @@ public:
      * @param input input sample, signed 16 bit
      * @return filtered sample, signed 16 bit
      */
-    int clock(int input);
+    int32_t clock(int32_t input);
 
     /**
      * Constructor.
@@ -129,11 +131,11 @@ namespace reSIDfp
 {
 
 RESIDFP_INLINE
-int ExternalFilter::clock(int input)
+int32_t ExternalFilter::clock(int32_t input)
 {
-    const int Vi = input << 11;
-    const int dVlp = (w0lp_1_s7 * (Vi - Vlp) >> 7);
-    const int dVhp = (w0hp_1_s17 * (Vlp - Vhp) >> 17);
+    const int32_t Vi = input << 11;
+    const int32_t dVlp = (w0lp_1_s7 * (Vi - Vlp) >> 7);
+    const int32_t dVhp = (w0hp_1_s17 * (Vlp - Vhp) >> 17);
     Vlp += dVlp;
     Vhp += dVhp;
     return (Vlp - Vhp) >> 11;

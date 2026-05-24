@@ -141,7 +141,7 @@ private:
     FilterModelConfig(const FilterModelConfig&) = delete;
     FilterModelConfig& operator= (const FilterModelConfig&) = delete;
 
-    inline double getVoiceVoltage(float value, unsigned int env) const
+    inline double getVoiceVoltage(float value, uint8_t env) const
     {
         return value * voice_voltage_range + getVoiceDC(env);
     }
@@ -170,7 +170,7 @@ protected:
 
     void calcCurrFactorCoeff();
 
-    virtual double getVoiceDC(unsigned int env) const = 0;
+    virtual double getVoiceDC(uint8_t env) const = 0;
 
     /**
      * The filter summer operates at n ~ 1, and has 5 fundamentally different
@@ -310,7 +310,7 @@ public:
         return to_uint16(N16 * vmin);
     }
 
-    inline int getNormalizedVoice(float value, unsigned int env) const
+    inline int32_t getNormalizedVoice(float value, uint8_t env) const
     {
         return static_cast<int>(getNormalizedValue(getVoiceVoltage(value, env)));
     }

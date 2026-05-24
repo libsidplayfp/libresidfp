@@ -94,7 +94,7 @@ protected:
      * On 6581 the DC offset varies between ~5.0V and ~5.214V depending on
      * the envelope value.
      */
-    inline double getVoiceDC(unsigned int env) const override
+    inline double getVoiceDC(uint8_t env) const override
     {
         return voiceDC[env];
     }

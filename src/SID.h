@@ -124,7 +124,7 @@ private:
      *
      * @param n the number of cycles
      */
-    void ageBusValue(unsigned int n);
+    void ageBusValue(int n);
 
     /**
      * Calculate the numebr of cycles according to current parameters
@@ -338,7 +338,7 @@ namespace reSIDfp
 {
 
 RESIDFP_INLINE
-void SID::ageBusValue(unsigned int n)
+void SID::ageBusValue(int n)
 {
     if (likely(busValueTtl != 0))
     {

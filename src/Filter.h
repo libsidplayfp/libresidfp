@@ -58,20 +58,20 @@ private:
 
 protected:
     /// Filter highpass state.
-    int Vhp = 0;
+    int32_t Vhp = 0;
 
     /// Filter bandpass state.
-    int Vbp = 0;
+    int32_t Vbp = 0;
 
     /// Filter lowpass state.
-    int Vlp = 0;
+    int32_t Vlp = 0;
 
 private:
     /// Filter external input.
-    int Ve = 0;
+    int32_t Ve = 0;
 
     /// Filter cutoff frequency.
-    unsigned int fc = 0;
+    uint8_t fc = 0;
 
     /// Routing to filter or outside filter
     //@{
@@ -103,13 +103,13 @@ private:
     uint8_t filt = 0;
 
 private:
-    inline int getNormalizedVoice(Voice& v) const
+    inline int32_t getNormalizedVoice(Voice& v) const
     {
         return fmc.getNormalizedVoice(v.output(), v.envelope()->output());
     }
 
     // If voice 3 is off we still need to clock the waveform generator
-    inline static int getSilentVoice(Voice& v)
+    inline static int32_t getSilentVoice(Voice& v)
     {
         v.wave()->output();
         return 0;
@@ -136,7 +136,7 @@ protected:
     /**
      * Get the filter cutoff register value
      */
-    inline unsigned int getFC() const { return fc; }
+    inline unsigned int getFC() const { return static_cast<unsigned int>(fc); }
 
     virtual int solveIntegrators() = 0;
 
@@ -213,13 +213,13 @@ namespace reSIDfp
 RESIDFP_INLINE
 uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
 {
-    const int V1 = getNormalizedVoice(voice1);
-    const int V2 = getNormalizedVoice(voice2);
+    const int32_t V1 = getNormalizedVoice(voice1);
+    const int32_t V2 = getNormalizedVoice(voice2);
     // Voice 3 is silenced by voice3off if it is not routed through the filter.
-    const int V3 = (filt3 || !voice3off) ? getNormalizedVoice(voice3) : getSilentVoice(voice3);
+    const int32_t V3 = (filt3 || !voice3off) ? getNormalizedVoice(voice3) : getSilentVoice(voice3);
 
-    int Vsum = 0;
-    int Vmix = 0;
+    int32_t Vsum = 0;
+    int32_t Vmix = 0;
 
     (filt1 ? Vsum : Vmix) += V1;
     (filt2 ? Vsum : Vmix) += V2;

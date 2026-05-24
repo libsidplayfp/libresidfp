@@ -52,8 +52,8 @@ void Filter::updateMixing()
 {
     currentVolume = volume + (vol * (1<<16));
 
-    unsigned int Nsum = 0;
-    unsigned int Nmix = 0;
+    int Nsum = 0;
+    int Nmix = 0;
 
     (filt1 ? Nsum : Nmix)++;
     (filt2 ? Nsum : Nmix)++;
