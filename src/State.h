@@ -22,6 +22,7 @@
 #define STATE_H
 
 #include "EnvelopeGenerator.h"
+#include "residfp/residfp_defs.h"
 
 #include <cstdint>
 
@@ -38,6 +39,8 @@ struct State
     uint8_t bus_value;
     int bus_value_ttl;
     unsigned int nextVoiceSync;
+    ChipModel model;
+    CombinedWaveforms cws;
 
     // Waveform
     uint32_t accumulator[3];

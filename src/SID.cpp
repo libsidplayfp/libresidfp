@@ -587,102 +587,108 @@ void SID::setPaddle(uint8_t x, uint8_t y)
 // ----------------------------------------------------------------------------
 State SID::saveState()
 {
-  State state;
+    State state;
 
-  int i, j;
-  for (i = 0, j = 0; i < 3; i++, j += 7)
-  {
-    WaveformGenerator* const wave = voice[i].wave();
-    EnvelopeGenerator* const envelope = voice[i].envelope();
+    int i, j;
+    for (i = 0, j = 0; i < 3; i++, j += 7)
+    {
+        WaveformGenerator* const wave = voice[i].wave();
+        EnvelopeGenerator* const envelope = voice[i].envelope();
 
-    state.registers[j + 0] = wave->freq & 0xff;
-    state.registers[j + 1] = wave->freq >> 8;
-    state.registers[j + 2] = wave->pw & 0xff;
-    state.registers[j + 3] = wave->pw >> 8;
-    state.registers[j + 4] =
-      (wave->waveform << 4)
-      | (wave->test ? 0x08 : 0)
-      //| (wave->ring_mod ? 0x04 : 0)   FIXME
-      | (wave->sync ? 0x02 : 0)
-      | (envelope->gate ? 0x01 : 0);
-    state.registers[j + 5] = (envelope->attack << 4) | envelope->decay;
-    state.registers[j + 6] = (envelope->sustain << 4) | envelope->release;
-  }
+        state.registers[j + 0] = wave->freq & 0xff;
+        state.registers[j + 1] = wave->freq >> 8;
+        state.registers[j + 2] = wave->pw & 0xff;
+        state.registers[j + 3] = wave->pw >> 8;
+        state.registers[j + 4] =
+        (wave->waveform << 4)
+        | (wave->test ? 0x08 : 0)
+        //| (wave->ring_mod ? 0x04 : 0)   FIXME
+        | (wave->sync ? 0x02 : 0)
+        | (envelope->gate ? 0x01 : 0);
+        state.registers[j + 5] = (envelope->attack << 4) | envelope->decay;
+        state.registers[j + 6] = (envelope->sustain << 4) | envelope->release;
+    }
 
-  state.registers[j++] = filter->fc & 0x007;
-  state.registers[j++] = filter->fc >> 3;
-  state.registers[j++] = 0;//(filter->res << 4) | filter->filt; FIXME
-  state.registers[j++] = 0;//filter->mode | filter->vol;        FIXME
+    state.registers[j++] = filter->fc & 0x007;
+    state.registers[j++] = filter->fc >> 3;
+    state.registers[j++] = 0;//(filter->res << 4) | filter->filt; FIXME
+    state.registers[j++] = 0;//filter->mode | filter->vol;        FIXME
 
-  // These registers are superfluous, but are included for completeness.
-  for (; j < 0x1d; j++) {
-    state.registers[j] = read(j);
-  }
-  for (; j < 0x20; j++) {
-    state.registers[j] = 0;
-  }
+    // These registers are superfluous, but are included for completeness.
+    for (; j < 0x1d; j++) {
+        state.registers[j] = read(j);
+    }
+    for (; j < 0x20; j++) {
+        state.registers[j] = 0;
+    }
 
-  state.bus_value = busValue;
-  state.bus_value_ttl = busValueTtl;
-  state.nextVoiceSync = nextVoiceSync;
+    state.bus_value = busValue;
+    state.bus_value_ttl = busValueTtl;
+    state.nextVoiceSync = nextVoiceSync;
+    state.model = model;
+    state.cws = cws;
 
-  for (i = 0; i < 3; i++)
-  {
-    WaveformGenerator* const wave = voice[i].wave();
-    EnvelopeGenerator* const envelope = voice[i].envelope();
+    for (i = 0; i < 3; i++)
+    {
+        WaveformGenerator* const wave = voice[i].wave();
+        EnvelopeGenerator* const envelope = voice[i].envelope();
 
-    state.accumulator[i] = wave->accumulator;
-    state.shift_register[i] = wave->shift_register;
-    state.shift_register_reset[i] = wave->shift_register_reset;
-    state.shift_pipeline[i] = wave->shift_pipeline;
-    state.pulse_output[i] = wave->pulse_output;
-    state.floating_output_ttl[i] = wave->floating_output_ttl;
+        state.accumulator[i] = wave->accumulator;
+        state.shift_register[i] = wave->shift_register;
+        state.shift_register_reset[i] = wave->shift_register_reset;
+        state.shift_pipeline[i] = wave->shift_pipeline;
+        state.pulse_output[i] = wave->pulse_output;
+        state.floating_output_ttl[i] = wave->floating_output_ttl;
 
-    state.lfsr[i] = envelope->lfsr;
-    state.rate[i] = envelope->rate;
-    state.exponential_counter[i] = envelope->exponential_counter;
-    state.exponential_counter_period[i] = envelope->exponential_counter_period;
-    state.envelope_counter[i] = envelope->envelope_counter;
-    state.envelope_state[i] = envelope->state;
-    state.counter_enabled[i] = envelope->counter_enabled;
-    state.envelope_pipeline[i] = envelope->envelope_pipeline;
-    state.exponential_pipeline[i] = envelope->exponential_pipeline;
-  }
+        state.lfsr[i] = envelope->lfsr;
+        state.rate[i] = envelope->rate;
+        state.exponential_counter[i] = envelope->exponential_counter;
+        state.exponential_counter_period[i] = envelope->exponential_counter_period;
+        state.envelope_counter[i] = envelope->envelope_counter;
+        state.envelope_state[i] = envelope->state;
+        state.counter_enabled[i] = envelope->counter_enabled;
+        state.envelope_pipeline[i] = envelope->envelope_pipeline;
+        state.exponential_pipeline[i] = envelope->exponential_pipeline;
+    }
 
-  return state;
+    return state;
 }
 
 
 void SID::loadState(const State& state)
 {
-  for (int i = 0; i <= 0x18; i++)
-  {
-    write(i, state.registers[i]);
-  }
+    for (int i = 0; i <= 0x18; i++)
+    {
+        write(i, state.registers[i]);
+    }
 
-  busValue = state.bus_value;
-  busValueTtl = state.bus_value_ttl;
-  nextVoiceSync = state.nextVoiceSync;
+    busValue = state.bus_value;
+    busValueTtl = state.bus_value_ttl;
+    nextVoiceSync = state.nextVoiceSync;
+    model = state.model;
+    setChipModel(model);
+    cws = state.cws;
+    setCombinedWaveforms(cws);
 
-  for (int i = 0; i < 3; i++)
-  {
-    voice[i].wave()->accumulator = state.accumulator[i];
-    voice[i].wave()->shift_register = state.shift_register[i];
-    voice[i].wave()->shift_register_reset = state.shift_register_reset[i];
-    voice[i].wave()->shift_pipeline = state.shift_pipeline[i];
-    voice[i].wave()->pulse_output = state.pulse_output[i];
-    voice[i].wave()->floating_output_ttl = state.floating_output_ttl[i];
+    for (int i = 0; i < 3; i++)
+    {
+        voice[i].wave()->accumulator = state.accumulator[i];
+        voice[i].wave()->shift_register = state.shift_register[i];
+        voice[i].wave()->shift_register_reset = state.shift_register_reset[i];
+        voice[i].wave()->shift_pipeline = state.shift_pipeline[i];
+        voice[i].wave()->pulse_output = state.pulse_output[i];
+        voice[i].wave()->floating_output_ttl = state.floating_output_ttl[i];
 
-    voice[i].envelope()->lfsr = state.lfsr[i];
-    voice[i].envelope()->rate = state.rate[i];
-    voice[i].envelope()->exponential_counter = state.exponential_counter[i];
-    voice[i].envelope()->exponential_counter_period = state.exponential_counter_period[i];
-    voice[i].envelope()->envelope_counter = state.envelope_counter[i];
-    voice[i].envelope()->state = state.envelope_state[i];
-    voice[i].envelope()->counter_enabled = state.counter_enabled[i];
-    voice[i].envelope()->envelope_pipeline = state.envelope_pipeline[i];
-    voice[i].envelope()->exponential_pipeline = state.exponential_pipeline[i];
-  }
+        voice[i].envelope()->lfsr = state.lfsr[i];
+        voice[i].envelope()->rate = state.rate[i];
+        voice[i].envelope()->exponential_counter = state.exponential_counter[i];
+        voice[i].envelope()->exponential_counter_period = state.exponential_counter_period[i];
+        voice[i].envelope()->envelope_counter = state.envelope_counter[i];
+        voice[i].envelope()->state = state.envelope_state[i];
+        voice[i].envelope()->counter_enabled = state.counter_enabled[i];
+        voice[i].envelope()->envelope_pipeline = state.envelope_pipeline[i];
+        voice[i].envelope()->exponential_pipeline = state.exponential_pipeline[i];
+    }
 }
 
 } // namespace reSIDfp
