@@ -142,7 +142,8 @@ SID::SID() :
     filter6581(new Filter6581()),
     filter8580(new Filter8580()),
     resampler(nullptr),
-    cws(AVERAGE)
+    cws(AVERAGE),
+    p(new Params)
 {
     voice[0].setOtherVoices(voice[2], voice[1]);
     voice[1].setOtherVoices(voice[0], voice[2]);
@@ -156,20 +157,24 @@ SID::~SID()
 {
     delete filter6581;
     delete filter8580;
+    delete p;
 }
 
 void SID::setFilter6581Curve(double filterCurve)
 {
+    p->filterCurve6581 = filterCurve;
     filter6581->setFilterCurve(filterCurve);
 }
 
 void SID::setFilter6581Range(double adjustment)
 {
+    p->filterRange6581 = adjustment;
     filter6581->setFilterRange(adjustment);
 }
 
 void SID::setFilter8580Curve(double filterCurve)
 {
+    p->filterCurve8580 = filterCurve;
     filter8580->setFilterCurve(filterCurve);
 }
 
@@ -181,6 +186,7 @@ void SID::enableFilter(bool enable)
 
 void SID::enableOld6581caps(bool enable)
 {
+    p->old6581caps = enable;
     filter6581->enableOldCaps(enable);
 }
 
@@ -509,6 +515,10 @@ void SID::setSamplingParameters(double clockFrequency, SamplingMethod method, do
     default:
         throw SIDError("Unknown sampling method");
     }
+
+    p->method = method;
+    p->clockFrequency = clockFrequency;
+    p->samplingFrequency = samplingFrequency;
 }
 
 void SID::clockDigital(unsigned int cycles)
@@ -676,18 +686,23 @@ State SID::saveState()
         state.enabled[i] = f->enabled;
         state.filt[i] = f->filt;
     }
-    state.cp = filter8580->cp;
+    state.filterCurve6581 = p->filterCurve6581;
+    state.filterRange6581 = p->filterRange6581;
+    state.filterCurve8580 = p->filterCurve8580;
+    state.old6581caps = p->old6581caps;
 
     state.exVlp = externalFilter.Vlp;
     state.exVhp = externalFilter.Vhp;
-    state.w0lp_1_s7 = externalFilter.w0lp_1_s7;
-    state.w0hp_1_s17 = externalFilter.w0hp_1_s17;
+
+    state.method = p->method;
+    state.clockFrequency = p->clockFrequency;
+    state.samplingFrequency = p->samplingFrequency;
 
     return state;
 }
 
 
-void SID::loadState(const State& state)
+void SID::restoreState(const State& state)
 {
 /*
     for (int i = 0; i <= 0x18; i++)
@@ -723,12 +738,15 @@ void SID::loadState(const State& state)
         f->enabled = state.enabled[i];
         f->filt = state.filt[i];
     }
-    filter8580->cp = state.cp;
+    setFilter6581Curve(state.filterCurve6581);
+    setFilter6581Range(state.filterRange6581);
+    setFilter8580Curve(state.filterCurve8580);
+    enableOld6581caps(state.old6581caps);
 
     externalFilter.Vlp = state.exVlp;
     externalFilter.Vhp = state.exVhp;
-    externalFilter.w0lp_1_s7 = state.w0lp_1_s7;
-    externalFilter.w0hp_1_s17 = state.w0hp_1_s17;
+
+    setSamplingParameters(state.clockFrequency, state.method, state.samplingFrequency);
 
     for (int i = 0; i < 3; i++)
     {

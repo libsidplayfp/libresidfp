@@ -125,6 +125,9 @@ private:
      */
     float oscDAC[4096];
 
+    /// Parameters for save state
+    Params* p;
+
 private:
     /**
      * Age the bus value and zero it if it's TTL has expired.
@@ -354,7 +357,7 @@ public:
     /**
      * @since 1.1
      */
-    void loadState(const State& state);
+    void restoreState(const State& state);
 };
 
 } // namespace reSIDfp

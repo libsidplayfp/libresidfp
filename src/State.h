@@ -29,6 +29,17 @@
 namespace reSIDfp
 {
 
+struct Params
+{
+    SamplingMethod method;
+    double clockFrequency;
+    double samplingFrequency;
+    double filterCurve6581;
+    double filterRange6581;
+    double filterCurve8580;
+    bool   old6581caps;
+};
+
 struct State
 {
     // SID
@@ -100,16 +111,20 @@ struct State
     bool bp[2];
     bool lp[2];
     bool enabled[2];
-    double cp;
-    // TODO 6581 filter curve
+
+    double filterCurve6581;
+    double filterRange6581;
+    double filterCurve8580;
+    bool   old6581caps;
 
     /// External filter
     int32_t exVlp;
     int32_t exVhp;
-    int32_t w0lp_1_s7;
-    int32_t w0hp_1_s17;
 
-    // TODO resampler
+    // resampler
+    double clockFrequency;
+    double samplingFrequency;
+    SamplingMethod method;
 };
 
 } // namespace reSIDfp
