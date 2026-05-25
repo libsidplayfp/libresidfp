@@ -676,6 +676,7 @@ State SID::saveState()
         state.enabled[i] = f->enabled;
         state.filt[i] = f->filt;
     }
+    state.cp = filter8580->cp;
 
     state.exVlp = externalFilter.Vlp;
     state.exVhp = externalFilter.Vhp;
@@ -722,6 +723,7 @@ void SID::loadState(const State& state)
         f->enabled = state.enabled[i];
         f->filt = state.filt[i];
     }
+    filter8580->cp = state.cp;
 
     externalFilter.Vlp = state.exVlp;
     externalFilter.Vhp = state.exVhp;

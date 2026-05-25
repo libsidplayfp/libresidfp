@@ -31,14 +31,12 @@ namespace reSIDfp
 
 struct State
 {
-    State(); // FIXME remove?
-
     // SID
-    uint8_t bus_value;
     int bus_value_ttl;
     unsigned int nextVoiceSync;
     ChipModel model;
     CombinedWaveforms cws;
+    uint8_t bus_value;
 
     // Waveform
     uint32_t pw[3];
@@ -58,11 +56,11 @@ struct State
     int shift_pipeline[3];
     unsigned int shift_register_reset[3];
     unsigned int floating_output_ttl[3];
-    uint8_t waveform[3];
     bool test[3];
     bool sync[3];
     bool test_or_reset[3];
     bool msb_rising[3];
+    uint8_t waveform[3];
 
     // Envelope
     uint16_t lfsr[3];
@@ -91,6 +89,8 @@ struct State
     int32_t Vlp[2];
     int32_t Ve[2];
     uint8_t fc[2];
+    uint8_t vol[2];
+    uint8_t filt[2];
     bool filt1[2];
     bool filt2[2];
     bool filt3[2];
@@ -99,9 +99,9 @@ struct State
     bool hp[2];
     bool bp[2];
     bool lp[2];
-    uint8_t vol[2];
     bool enabled[2];
-    uint8_t filt[2];
+    double cp;
+    // TODO 6581 filter curve
 
     /// External filter
     int32_t exVlp;
@@ -109,6 +109,7 @@ struct State
     int32_t w0lp_1_s7;
     int32_t w0hp_1_s17;
 
+    // TODO resampler
 };
 
 } // namespace reSIDfp
