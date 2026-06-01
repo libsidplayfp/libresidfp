@@ -46,7 +46,7 @@ int Filter8580::solveIntegrators()
  * When no bit are selected a resistance with half
  * W/L ratio is selected.
  */
-const double DAC_WL0 = 0.00615;
+constexpr double DAC_WL0 = 0.00615;
 
 Filter8580::~Filter8580() = default;
 
