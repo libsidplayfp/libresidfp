@@ -312,7 +312,7 @@ public:
 
     inline int32_t getNormalizedVoice(float value, uint8_t env) const
     {
-        return static_cast<int>(getNormalizedValue(getVoiceVoltage(value, env)));
+        return static_cast<int32_t>(getNormalizedValue(getVoiceVoltage(value, env)));
     }
 };
 

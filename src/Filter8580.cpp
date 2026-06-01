@@ -27,12 +27,12 @@
 namespace reSIDfp
 {
 
-int Filter8580::solveIntegrators()
+int32_t Filter8580::solveIntegrators()
 {
     Vbp = hpIntegrator.solve(Vhp);
     Vlp = bpIntegrator.solve(Vbp);
 
-    int Vfilt = 0;
+    int32_t Vfilt = 0;
     if (lp) Vfilt += Vlp;
     if (bp) Vfilt += Vbp;
     if (hp) Vfilt += Vhp;

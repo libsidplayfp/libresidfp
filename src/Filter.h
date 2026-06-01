@@ -138,7 +138,7 @@ protected:
      */
     inline unsigned int getFC() const { return static_cast<unsigned int>(fc); }
 
-    virtual int solveIntegrators() = 0;
+    virtual int32_t solveIntegrators() = 0;
 
 public:
     Filter(FilterModelConfig& fmc);

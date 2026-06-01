@@ -29,21 +29,21 @@
 namespace reSIDfp
 {
 
-int Filter6581::solveIntegrators()
+int32_t Filter6581::solveIntegrators()
 {
     Vbp = hpIntegrator.solve(Vhp);
     Vlp = bpIntegrator.solve(Vbp);
 
-    int Vfilt = 0;
+    int32_t Vfilt = 0;
     if (lp) Vfilt += Vlp;
     if (bp) Vfilt += Vbp;
     if (hp) Vfilt += Vhp;
 
     // The filter input resistors are slightly bigger than the voice ones
     // Scale the values accordingly
-    constexpr int filterGain = static_cast<int>(0.93 * (1 << 12));
+    constexpr int32_t filterGain = static_cast<int32_t>(0.93 * (1 << 12));
     // Scaling unsigned values adds a DC offset
-    constexpr int offset = 32767 * ((1 << 12) - filterGain);
+    constexpr int32_t offset = 32767 * ((1 << 12) - filterGain);
     assert(Vfilt >= 0);
     return (Vfilt * filterGain + offset) >> 12;
 }

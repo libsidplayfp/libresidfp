@@ -334,7 +334,7 @@ protected:
      */
     void updateCenterFrequency() override;
 
-    int solveIntegrators() override;
+    int32_t solveIntegrators() override;
 
 public:
     Filter6581() :
