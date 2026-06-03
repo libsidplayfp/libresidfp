@@ -27,15 +27,22 @@
 namespace reSIDfp
 {
 
+int32_t Filter8580::signalLeak(int32_t input)
+{
+    constexpr int32_t leak = static_cast<int32_t>(0.0035 * (1 << 12));
+    return (input * leak) >> 12;
+}
+
 int32_t Filter8580::solveIntegrators()
 {
     Vbp = hpIntegrator.solve(Vhp);
     Vlp = bpIntegrator.solve(Vbp);
 
     int32_t Vfilt = 0;
-    if (lp) Vfilt += Vlp;
-    if (bp) Vfilt += Vbp;
-    if (hp) Vfilt += Vhp;
+
+    Vfilt += lp ? Vlp : signalLeak(Vlp);
+    Vfilt += bp ? Vbp : signalLeak(Vbp);
+    Vfilt += hp ? Vhp : signalLeak(Vhp);
 
     return Vfilt;
 }

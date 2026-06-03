@@ -109,10 +109,10 @@ private:
     }
 
     // If voice 3 is off we still need to clock the waveform generator
-    inline static int32_t getSilentVoice(Voice& v)
+    inline int32_t getSilentVoice(Voice& v)
     {
-        v.wave()->output();
-        return 0;
+        int32_t osc = v.wave()->output();
+        return signalLeak(osc);
     }
 
 protected:
@@ -137,6 +137,8 @@ protected:
      * Get the filter cutoff register value
      */
     inline unsigned int getFC() const { return static_cast<unsigned int>(fc); }
+
+    virtual int32_t signalLeak(int32_t input) = 0;
 
     virtual int32_t solveIntegrators() = 0;
 
@@ -221,10 +223,21 @@ uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
     int32_t Vsum = 0;
     int32_t Vmix = 0;
 
-    (filt1 ? Vsum : Vmix) += V1;
-    (filt2 ? Vsum : Vmix) += V2;
-    (filt3 ? Vsum : Vmix) += V3;
-    (filtE ? Vsum : Vmix) += Ve;
+    int32_t lV1 = signalLeak(V1);
+    Vsum += filt1 ? V1 : lV1;
+    Vmix += filt1 ? lV1 : V1;
+
+    int32_t lV2 = signalLeak(V2);
+    Vsum += filt2 ? V2 : lV2;
+    Vmix += filt2 ? lV2 : V2;
+
+    int32_t lV3 = signalLeak(V3);
+    Vsum += filt3 ? V3 : lV3;
+    Vmix += filt3 ? lV3 : V3;
+
+    int32_t lVe = signalLeak(Ve);
+    Vsum += filtE ? Ve : lVe;
+    Vmix += filtE ? lVe : Ve;
 
     Vhp = currentSummer[currentResonance[Vbp] + Vlp + Vsum];
 
