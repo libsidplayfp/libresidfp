@@ -62,6 +62,7 @@ src/SID.cpp \
 src/SID.h \
 src/Spline.cpp \
 src/Spline.h \
+src/State.cpp \
 src/State.h \
 src/Voice.h \
 src/WaveformCalculator.cpp \

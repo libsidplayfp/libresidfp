@@ -23,6 +23,7 @@
 #include "residfp.h"
 
 #include "SID.h"
+#include "State.h"
 
 #include <cstring>
 
@@ -158,7 +159,7 @@ int residfp::stateSize() const { return sizeof(reSIDfp::State); }
 
 void residfp::saveState(char* buffer) const
 {
-    State s = sid.saveState();
+    State s = State::saveState(sid);
     std::memcpy(buffer, &s, sizeof(reSIDfp::State));
 }
 
@@ -166,5 +167,5 @@ void residfp::restoreState(char* buffer)
 {
     State s;
     std::memcpy(&s, buffer, sizeof(reSIDfp::State));
-    sid.restoreState(s);
+    State::restoreState(sid, s);
 }

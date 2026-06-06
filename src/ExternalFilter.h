@@ -85,7 +85,7 @@ namespace reSIDfp
  */
 class ExternalFilter
 {
-    friend class SID;
+    friend class State;
 
 private:
     /// Lowpass filter voltage

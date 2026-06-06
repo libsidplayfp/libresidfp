@@ -36,7 +36,7 @@ namespace reSIDfp
  */
 class Filter
 {
-    friend class SID;
+    friend class State;
 
 private:
     uint16_t* mixer;

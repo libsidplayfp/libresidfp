@@ -44,7 +44,7 @@ namespace reSIDfp
  */
 class EnvelopeGenerator
 {
-    friend class SID;
+    friend class State;
 
 public:
     /**

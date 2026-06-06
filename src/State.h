@@ -29,6 +29,8 @@
 namespace reSIDfp
 {
 
+class SID;
+
 struct Params
 {
     SamplingMethod method;
@@ -42,6 +44,16 @@ struct Params
 
 struct State
 {
+    /**
+     * Save current state.
+     */
+    static State saveState(SID &s);
+
+    /**
+     * Restore saved state.
+     */
+    static void restoreState(SID &s, const State& state);
+
     // SID
     int bus_value_ttl;
     unsigned int nextVoiceSync;
@@ -82,7 +94,7 @@ struct State
     unsigned int state_pipeline[3];
     unsigned int envelope_pipeline[3];
     unsigned int exponential_pipeline[3];
-    EnvelopeGenerator::State state[3];
+    EnvelopeGenerator::State env_state[3];
     EnvelopeGenerator::State next_state[3];
     bool counter_enabled[3];
     bool gate[3];
@@ -126,6 +138,7 @@ struct State
     double samplingFrequency;
     SamplingMethod method;
 };
+
 
 } // namespace reSIDfp
 

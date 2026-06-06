@@ -62,6 +62,8 @@ public:
  */
 class SID
 {
+    friend class State;
+
 private:
     /// Currently active filter
     Filter* filter;
@@ -348,16 +350,6 @@ public:
      * Set paddle coordinates.
      */
     void setPaddle(uint8_t x, uint8_t y);
-
-    /**
-     * Save current state.
-     */
-    State saveState();
-
-    /**
-     * Restore saved state.
-     */
-    void restoreState(const State& state);
 };
 
 } // namespace reSIDfp

@@ -90,7 +90,7 @@ namespace reSIDfp
  */
 class WaveformGenerator
 {
-    friend class SID;
+    friend class State;
 
 private:
     rc_matrix_t model_wave;
