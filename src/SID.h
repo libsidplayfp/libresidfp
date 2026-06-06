@@ -350,12 +350,12 @@ public:
     void setPaddle(uint8_t x, uint8_t y);
 
     /**
-     * @since 1.1
+     * Save current state.
      */
     State saveState();
 
     /**
-     * @since 1.1
+     * Restore saved state.
      */
     void restoreState(const State& state);
 };

@@ -24,6 +24,8 @@
 
 #include "SID.h"
 
+#include <cstring>
+
 using namespace reSIDfp;
 
 residfp::residfp() :
@@ -150,4 +152,19 @@ void residfp::enableOld6581caps(bool enable)
 void residfp::setPaddle(unsigned char x, unsigned char y)
 {
     sid.setPaddle(x, y);
+}
+
+int residfp::stateSize() const { return sizeof(reSIDfp::State); }
+
+void residfp::saveState(char* buffer) const
+{
+    State s = sid.saveState();
+    std::memcpy(buffer, &s, sizeof(reSIDfp::State));
+}
+
+void residfp::restoreState(char* buffer)
+{
+    State s;
+    std::memcpy(&s, buffer, sizeof(reSIDfp::State));
+    sid.restoreState(s);
 }

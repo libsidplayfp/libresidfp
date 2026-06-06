@@ -238,6 +238,27 @@ public:
      * @since 1.1
      */
     void setPaddle(unsigned char x, unsigned char y);
+
+    /**
+     * Get the save-state size in bytes.
+     *
+     * @since 1.1
+     */
+    int stateSize() const;
+
+    /**
+     * Save current state.
+     *
+     * @since 1.1
+     */
+    void saveState(char* buffer) const;
+
+    /**
+     * Restore saved state.
+     *
+     * @since 1.1
+     */
+    void restoreState(char* buffer);
 };
 
 }

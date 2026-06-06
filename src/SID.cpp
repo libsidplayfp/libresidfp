@@ -593,8 +593,9 @@ void SID::setPaddle(uint8_t x, uint8_t y)
 }
 
 // ----------------------------------------------------------------------------
-// Read state.
+// Save/restore state.
 // ----------------------------------------------------------------------------
+
 State SID::saveState()
 {
     State state;
@@ -646,20 +647,7 @@ State SID::saveState()
         state.release[i] = envelope->release;
         state.env3[i] = envelope->env3;
     }
-/*
-    state.registers[j++] = filter->fc & 0x007;
-    state.registers[j++] = filter->fc >> 3;
-    state.registers[j++] = 0;//(filter->res << 4) | filter->filt; FIXME
-    state.registers[j++] = 0;//filter->mode | filter->vol;        FIXME
 
-    // These registers are superfluous, but are included for completeness.
-    for (; j < 0x1d; j++) {
-        state.registers[j] = read(j);
-    }
-    for (; j < 0x20; j++) {
-        state.registers[j] = 0;
-    }
-*/
     state.bus_value = busValue;
     state.bus_value_ttl = busValueTtl;
     state.nextVoiceSync = nextVoiceSync;
@@ -704,12 +692,6 @@ State SID::saveState()
 
 void SID::restoreState(const State& state)
 {
-/*
-    for (int i = 0; i <= 0x18; i++)
-    {
-        write(i, state.registers[i]);
-    }
-*/
     busValue = state.bus_value;
     busValueTtl = state.bus_value_ttl;
     nextVoiceSync = state.nextVoiceSync;
