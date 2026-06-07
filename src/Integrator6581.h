@@ -173,7 +173,7 @@ private:
     mutable double n;
 #endif
 
-    unsigned int nVddt_Vw_2;
+    uint32_t nVddt_Vw_2;
 
     const uint16_t nVddt;
     const uint16_t nVt;
@@ -195,7 +195,7 @@ public:
 
     void setVw(uint16_t Vw) { nVddt_Vw_2 = ((nVddt - Vw) * (nVddt - Vw)) >> 1; }
 
-    int solve(int vi) const override;
+    int32_t solve(int32_t vi) const override;
 };
 
 } // namespace reSIDfp

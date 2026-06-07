@@ -92,7 +92,7 @@ public:
         nVgt = fmc.getNormalizedValue(Vgt);
     }
 
-    int solve(int vi) const override;
+    int32_t solve(int32_t vi) const override;
 };
 
 } // namespace reSIDfp
