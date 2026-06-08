@@ -71,7 +71,7 @@ private:
     int32_t Ve = 0;
 
     /// Filter cutoff frequency.
-    uint8_t fc = 0;
+    uint16_t fc = 0;
 
     /// Routing to filter or outside filter
     //@{
