@@ -334,8 +334,6 @@ protected:
      */
     void updateCenterFrequency() override;
 
-    int32_t signalLeak(int32_t input) override;
-
     int32_t solveIntegrators() override;
 
 public:

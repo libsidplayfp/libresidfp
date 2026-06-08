@@ -92,6 +92,11 @@ protected:
     bool lp = false;
     //@}
 
+    // FIXME just some random numbers
+    double leakMixer  = 0.015;
+    double leakFilter = 0.01;
+    double leakV3     = 0.02;
+
 private:
     /// Current volume.
     uint8_t vol = 0;
@@ -101,6 +106,7 @@ private:
 
     /// Selects which inputs to route through filter.
     uint8_t filt = 0;
+
 
 private:
     inline int32_t getNormalizedVoice(Voice& v) const
@@ -112,7 +118,7 @@ private:
     inline int32_t getSilentVoice(Voice& v)
     {
         int32_t osc = v.wave()->output();
-        return signalLeak(osc);
+        return signalLeak(osc, leakV3);
     }
 
 protected:
@@ -138,9 +144,13 @@ protected:
      */
     inline unsigned int getFC() const { return static_cast<unsigned int>(fc); }
 
-    virtual int32_t signalLeak(int32_t input) = 0;
-
     virtual int32_t solveIntegrators() = 0;
+
+    static inline int32_t signalLeak(int32_t input, double leak)
+    {
+        int32_t leaked = static_cast<int32_t>(leak * (1 << 12));
+        return (input * leaked) >> 12;
+    }
 
 public:
     Filter(FilterModelConfig& fmc);
@@ -223,21 +233,17 @@ uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
     int32_t Vsum = 0;
     int32_t Vmix = 0;
 
-    int32_t lV1 = signalLeak(V1);
-    Vsum += filt1 ? V1 : lV1;
-    Vmix += filt1 ? lV1 : V1;
+    Vsum += filt1 ? V1 : signalLeak(V1, leakMixer);
+    Vmix += filt1 ? signalLeak(V1, leakFilter) : V1;
 
-    int32_t lV2 = signalLeak(V2);
-    Vsum += filt2 ? V2 : lV2;
-    Vmix += filt2 ? lV2 : V2;
+    Vsum += filt2 ? V2 : signalLeak(V2, leakMixer);
+    Vmix += filt2 ? signalLeak(V2, leakFilter) : V2;
 
-    int32_t lV3 = signalLeak(V3);
-    Vsum += filt3 ? V3 : lV3;
-    Vmix += filt3 ? lV3 : V3;
+    Vsum += filt3 ? V3 : signalLeak(V3, leakMixer);
+    Vmix += filt3 ? signalLeak(V3, leakFilter) : V3;
 
-    int32_t lVe = signalLeak(Ve);
-    Vsum += filtE ? Ve : lVe;
-    Vmix += filtE ? lVe : Ve;
+    Vsum += filtE ? Ve : signalLeak(Ve, leakMixer);
+    Vmix += filtE ? signalLeak(Ve, leakFilter) : Ve;
 
     Vhp = currentSummer[currentResonance[Vbp] + Vlp + Vsum];
 

@@ -29,12 +29,6 @@
 namespace reSIDfp
 {
 
-int32_t Filter6581::signalLeak(int32_t input)
-{
-    constexpr int32_t leak = static_cast<int32_t>(0.0075 * (1 << 12));
-    return (input * leak) >> 12;
-}
-
 int32_t Filter6581::solveIntegrators()
 {
     Vbp = hpIntegrator.solve(Vhp);
@@ -42,9 +36,9 @@ int32_t Filter6581::solveIntegrators()
 
     int32_t Vfilt = 0;
 
-    Vfilt += lp ? Vlp : signalLeak(Vlp);
-    Vfilt += bp ? Vbp : signalLeak(Vbp);
-    Vfilt += hp ? Vhp : signalLeak(Vhp);
+    Vfilt += lp ? Vlp : signalLeak(Vlp, leakFilter);
+    Vfilt += bp ? Vbp : signalLeak(Vbp, leakFilter);
+    Vfilt += hp ? Vhp : signalLeak(Vhp, leakFilter);
 
     // The filter input resistors are slightly bigger than the voice ones
     // Scale the values accordingly
