@@ -319,6 +319,8 @@ class Integrator6581;
  */
 class Filter6581 final : public Filter
 {
+    friend class State;
+
 private:
     /// VCR + associated capacitor connected to highpass output.
     Integrator6581 hpIntegrator;

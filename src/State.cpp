@@ -110,6 +110,17 @@ State State::saveState(SID &s)
     state.filterCurve8580 = s.p->filterCurve8580;
     state.old6581caps = s.p->old6581caps;
 
+    state.vx[0][0] = s.filter6581->hpIntegrator.vx;
+    state.vx[0][1] = s.filter6581->bpIntegrator.vx;
+    state.vx[1][0] = s.filter8580->hpIntegrator.vx;
+    state.vx[1][1] = s.filter8580->bpIntegrator.vx;
+    state.nVddt_Vw_2[0] = s.filter6581->hpIntegrator.nVddt_Vw_2;
+    state.nVddt_Vw_2[1] = s.filter6581->bpIntegrator.nVddt_Vw_2;
+    state.nVgt[0] = s.filter8580->hpIntegrator.nVgt;
+    state.nVgt[1] = s.filter8580->bpIntegrator.nVgt;
+    state.n_dac[0] = s.filter8580->hpIntegrator.n_dac;
+    state.n_dac[1] = s.filter8580->bpIntegrator.n_dac;
+
     state.exVlp = s.externalFilter.Vlp;
     state.exVhp = s.externalFilter.Vhp;
 
@@ -155,6 +166,17 @@ void State::restoreState(SID &s, const State& state)
     s.setFilter6581Range(state.filterRange6581);
     s.setFilter8580Curve(state.filterCurve8580);
     s.enableOld6581caps(state.old6581caps);
+
+    s.filter6581->hpIntegrator.vx = state.vx[0][0];
+    s.filter6581->bpIntegrator.vx = state.vx[0][1];
+    s.filter8580->hpIntegrator.vx = state.vx[1][0];
+    s.filter8580->bpIntegrator.vx = state.vx[1][1];
+    s.filter6581->hpIntegrator.nVddt_Vw_2 = state.nVddt_Vw_2[0];
+    s.filter6581->bpIntegrator.nVddt_Vw_2 = state.nVddt_Vw_2[1];
+    s.filter8580->hpIntegrator.nVgt = state.nVgt[0];
+    s.filter8580->bpIntegrator.nVgt = state.nVgt[1];
+    s.filter8580->hpIntegrator.n_dac = state.n_dac[0];
+    s.filter8580->bpIntegrator.n_dac = state.n_dac[1];
 
     s.externalFilter.Vlp = state.exVlp;
     s.externalFilter.Vhp = state.exVhp;

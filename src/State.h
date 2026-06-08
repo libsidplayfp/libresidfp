@@ -129,6 +129,13 @@ struct State
     double filterCurve8580;
     bool   old6581caps;
 
+    // Integrators
+    int32_t vx[2][2];
+    int32_t vc[2][2];
+    uint32_t nVddt_Vw_2[2];
+    uint16_t nVgt[2];
+    uint16_t n_dac[2];
+
     /// External filter
     int32_t exVlp;
     int32_t exVhp;

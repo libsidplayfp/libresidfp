@@ -163,6 +163,8 @@ namespace reSIDfp
  */
 class Integrator6581 : public Integrator
 {
+    friend class State;
+
 private:
     const double wlSnake;
 
