@@ -23,6 +23,11 @@
 #include "SID.h"
 #include "Filter6581.h"
 #include "Filter8580.h"
+#include "Filter8580.h"
+#include "resample/ZeroOrderResampler.h"
+#include "resample/PassThrough.h"
+
+#include <cstring>
 
 namespace reSIDfp
 {
@@ -128,6 +133,30 @@ State State::saveState(SID &s)
     state.clockFrequency = s.p->clockFrequency;
     state.samplingFrequency = s.p->samplingFrequency;
 
+    switch (s.p->method)
+    {
+    case DECIMATE: {
+        ZeroOrderResampler *zor = static_cast<ZeroOrderResampler*>(s.resampler.get());
+        state.zor_cachedSample = zor->cachedSample;
+        state.zor_sampleOffset = zor->sampleOffset;
+        state.zor_outputValue = zor->outputValue;
+        } break;
+    case RESAMPLE: {
+        TwoPassSincResampler *tp = static_cast<TwoPassSincResampler*>(s.resampler.get());
+        for (int i=0; i<2; i++)
+        {
+            SincResampler *sr = (i == 0) ? tp->s1.get(): tp->s2.get();
+            state.tp_sampleIndex[i] = sr->sampleIndex;
+            state.tp_sampleOffset[i] = sr->sampleOffset;
+            state.tp_outputValue[i] = sr->outputValue;
+            std::memcpy(state.tp_sample[i], sr->sample, sizeof(sr->sample));
+        }
+        } break;
+    case NONE: {
+        PassThrough *pt = static_cast<PassThrough*>(s.resampler.get());
+        state.pt_outputValue = pt->outputValue;
+        } break;
+    }
     return state;
 }
 
@@ -229,6 +258,31 @@ void State::restoreState(SID &s, const State& state)
         envelope->sustain = state.sustain[i];
         envelope->release = state.release[i];
         envelope->env3 = state.env3[i];
+    }
+
+    switch (s.p->method)
+    {
+    case DECIMATE: {
+        ZeroOrderResampler *zor = static_cast<ZeroOrderResampler*>(s.resampler.get());
+        zor->cachedSample = state.zor_cachedSample;
+        zor->sampleOffset = state.zor_sampleOffset;
+        zor->outputValue = state.zor_outputValue;
+        } break;
+    case RESAMPLE: {
+        TwoPassSincResampler *tp = static_cast<TwoPassSincResampler*>(s.resampler.get());
+        for (int i=0; i<2; i++)
+        {
+            SincResampler *sr = (i == 0) ? tp->s1.get(): tp->s2.get();
+            sr->sampleIndex = state.tp_sampleIndex[i];
+            sr->sampleOffset = state.tp_sampleOffset[i];
+            sr->outputValue = state.tp_outputValue[i];
+            std::memcpy(sr->sample, state.tp_sample[i], sizeof(sr->sample));
+        }
+        } break;
+    case NONE: {
+        PassThrough *pt = static_cast<PassThrough*>(s.resampler.get());
+        pt->outputValue = state.pt_outputValue;
+        } break;
     }
 }
 
