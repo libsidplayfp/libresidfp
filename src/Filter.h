@@ -113,14 +113,14 @@ private:
     {
         return fmc.getNormalizedVoice(v.output(), v.envelope()->output());
     }
-
+/*
     // If voice 3 is off we still need to clock the waveform generator
     inline int32_t getSilentVoice(Voice& v)
     {
         int32_t osc = v.wave()->output();
         return signalLeak(osc, leakV3);
     }
-
+*/
 protected:
     /**
      * Update filter cutoff frequency.
@@ -149,7 +149,8 @@ protected:
     static inline int32_t signalLeak(int32_t input, double leak)
     {
         int32_t leaked = static_cast<int32_t>(leak * (1 << 12));
-        return (input * leaked) >> 12;
+        //int32_t offset = 32767 * ((1 << 12) - leaked);
+        return (((input-32767) * leaked) >> 12) + 32767;
     }
 
 public:
@@ -228,7 +229,7 @@ uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
     const int32_t V1 = getNormalizedVoice(voice1);
     const int32_t V2 = getNormalizedVoice(voice2);
     // Voice 3 is silenced by voice3off if it is not routed through the filter.
-    const int32_t V3 = (filt3 || !voice3off) ? getNormalizedVoice(voice3) : getSilentVoice(voice3);
+    const int32_t V3 = (filt3 || !voice3off) ? getNormalizedVoice(voice3) : signalLeak(getNormalizedVoice(voice3), leakV3);
 
     int32_t Vsum = 0;
     int32_t Vmix = 0;
