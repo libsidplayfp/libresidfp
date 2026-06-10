@@ -238,6 +238,9 @@ void State::restoreState(SID &s, const State& state)
         wave->test_or_reset = state.test_or_reset[i];
         wave->msb_rising = state.msb_rising[i];
 
+        wave->setWave();
+        wave->setPulldown();
+
         EnvelopeGenerator* const envelope = s.voice[i].envelope();
         envelope->lfsr = state.lfsr[i];
         envelope->rate = state.rate[i];
