@@ -119,6 +119,10 @@ State State::saveState(SID &s)
     state.vx[0][1] = s.filter6581->bpIntegrator.vx;
     state.vx[1][0] = s.filter8580->hpIntegrator.vx;
     state.vx[1][1] = s.filter8580->bpIntegrator.vx;
+    state.vc[0][0] = s.filter6581->hpIntegrator.vc;
+    state.vc[0][1] = s.filter6581->bpIntegrator.vc;
+    state.vc[1][0] = s.filter8580->hpIntegrator.vc;
+    state.vc[1][1] = s.filter8580->bpIntegrator.vc;
     state.nVddt_Vw_2[0] = s.filter6581->hpIntegrator.nVddt_Vw_2;
     state.nVddt_Vw_2[1] = s.filter6581->bpIntegrator.nVddt_Vw_2;
     state.nVgt[0] = s.filter8580->hpIntegrator.nVgt;
@@ -200,6 +204,10 @@ void State::restoreState(SID &s, const State& state)
     s.filter6581->bpIntegrator.vx = state.vx[0][1];
     s.filter8580->hpIntegrator.vx = state.vx[1][0];
     s.filter8580->bpIntegrator.vx = state.vx[1][1];
+    s.filter6581->hpIntegrator.vc = state.vc[0][0];
+    s.filter6581->bpIntegrator.vc = state.vc[0][1];
+    s.filter8580->hpIntegrator.vc = state.vc[1][0];
+    s.filter8580->bpIntegrator.vc = state.vc[1][1];
     s.filter6581->hpIntegrator.nVddt_Vw_2 = state.nVddt_Vw_2[0];
     s.filter6581->bpIntegrator.nVddt_Vw_2 = state.nVddt_Vw_2[1];
     s.filter8580->hpIntegrator.nVgt = state.nVgt[0];

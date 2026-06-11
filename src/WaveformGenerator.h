@@ -173,10 +173,7 @@ private:
 
     void shiftregBitfade();
 
-    inline void setWave()
-    {
-        wave = (*model_wave)[waveform & 0x3];
-    }
+    inline void setWave() { wave = (*model_wave)[waveform & 0x3]; }
 
     inline void setPulldown()
     {
