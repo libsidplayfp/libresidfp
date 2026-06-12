@@ -92,10 +92,9 @@ protected:
     bool lp = false;
     //@}
 
-    // FIXME just some random numbers
-    double leakMixer  = 0.015;
-    double leakFilter = 0.01;
-    double leakV3     = 0.02;
+    double leakMixer  = 0.00255;  // 6581: 0.00255  / 8580: 0.00119
+    double leakFilter = 0.001725; // 6581: 0.001725 / 8580: 0.0008
+    double leakV3     = 0.1125;   // 6581: 0.1125   / 8580: 0.0525
 
 private:
     /// Current volume.
