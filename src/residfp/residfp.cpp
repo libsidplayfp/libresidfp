@@ -112,6 +112,11 @@ int residfp::clock( short* buf, int bufSize)
     return sid.clock(buf, bufSize);
 }
 
+void residfp::clockDigital(unsigned int cycles)
+{
+    sid.clockDigital(cycles);
+}
+
 void residfp::clockSilent(unsigned int cycles)
 {
     sid.clockSilent(cycles);
