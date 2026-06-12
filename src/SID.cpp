@@ -511,6 +511,37 @@ void SID::setSamplingParameters(double clockFrequency, SamplingMethod method, do
     }
 }
 
+void SID::clockDigital(unsigned int cycles)
+{
+    ageBusValue(cycles);
+
+    while (cycles != 0)
+    {
+        int delta_t = std::min(nextVoiceSync, cycles);
+
+        if (delta_t > 0)
+        {
+            for (int i = 0; i < delta_t; i++)
+            {
+                clockWaveGen();
+                clockEnvGen();
+
+                voice[0].wave()->output();
+                voice[1].wave()->output();
+                voice[2].wave()->output();
+            }
+
+            cycles -= delta_t;
+            nextVoiceSync -= delta_t;
+        }
+
+        if (nextVoiceSync == 0)
+        {
+            voiceSync(true);
+        }
+    }
+}
+
 void SID::clockSilent(unsigned int cycles)
 {
     ageBusValue(cycles);

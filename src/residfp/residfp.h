@@ -174,6 +174,17 @@ public:
 
     /**
      * Clock SID forward with no audio production.
+     * Only the digital parts are emulated,
+     * the analog stage is ignored.
+     *
+     * @param cycles c64 clocks to clock.
+     *
+     * @since 1.1
+     */
+    void clockDigital(unsigned int cycles);
+
+    /**
+     * Clock SID forward with no audio production.
      *
      * @note
      * You can't mix this method of clocking with the audio-producing
