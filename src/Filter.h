@@ -92,9 +92,9 @@ protected:
     bool lp = false;
     //@}
 
-    double leakMixer  = 0.00255;  // 6581: 0.00255  / 8580: 0.00119
-    double leakFilter = 0.001725; // 6581: 0.001725 / 8580: 0.0008
-    double leakV3     = 0.1125;   // 6581: 0.1125   / 8580: 0.0525
+    double leakMixer  = 0.001628;  // 6581: 0.002531 / 8580: 0.001628
+    double leakFilter = 0.001733;  // 6581: 0.001688 / 8580: 0.001733
+    double leakV3     = 0.0525;    // 6581: 0.1125   / 8580: 0.0525
 
 private:
     /// Current volume.
