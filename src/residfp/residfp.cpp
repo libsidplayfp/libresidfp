@@ -157,15 +157,12 @@ void residfp::setPaddle(unsigned char x, unsigned char y)
 
 int residfp::stateSize() const { return sizeof(reSIDfp::State); }
 
-void residfp::saveState(char* buffer) const
+int residfp::saveState(char* buffer, int size) const
 {
-    State s = State::saveState(sid);
-    std::memcpy(buffer, &s, sizeof(reSIDfp::State));
+    return State::saveState(sid, buffer, size);
 }
 
-void residfp::restoreState(char* buffer)
+void residfp::restoreState(char* buffer, int size)
 {
-    State s;
-    std::memcpy(&s, buffer, sizeof(reSIDfp::State));
-    State::restoreState(sid, s);
+    State::restoreState(sid, buffer, size);
 }

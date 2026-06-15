@@ -249,16 +249,22 @@ public:
     /**
      * Save current state.
      *
+     * @param buffer the buffer where state will be saved to
+     * @param size size of the buffer in bytes
+     *
      * @since 1.1
      */
-    void saveState(char* buffer) const;
+    int saveState(char* buffer, int size) const;
 
     /**
      * Restore saved state.
      *
+     * @param buffer the buffer containig the saved state
+     * @param size size of the buffer in bytes
+     *
      * @since 1.1
      */
-    void restoreState(char* buffer);
+    void restoreState(char* buffer, int size);
 };
 
 }

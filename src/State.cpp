@@ -32,7 +32,7 @@
 namespace reSIDfp
 {
 
-State State::saveState(SID &s)
+int State::saveState(SID &s, char* buffer, int size)
 {
     State state;
 
@@ -153,7 +153,6 @@ State State::saveState(SID &s)
             state.tp_sampleIndex[i] = sr->sampleIndex;
             state.tp_sampleOffset[i] = sr->sampleOffset;
             state.tp_outputValue[i] = sr->outputValue;
-            std::memcpy(state.tp_sample[i], sr->sample, sizeof(sr->sample));
         }
         } break;
     case NONE: {
@@ -161,12 +160,38 @@ State State::saveState(SID &s)
         state.pt_outputValue = pt->outputValue;
         } break;
     }
-    return state;
+
+    int cnt = sizeof(reSIDfp::State);
+    if (size < cnt)
+        return 0;
+    std::memcpy(buffer, &state, cnt);
+
+    if (state.method == RESAMPLE)
+    {
+        TwoPassSincResampler *tp = static_cast<TwoPassSincResampler*>(s.resampler.get());
+        for (int i=0; i<2; i++)
+        {
+            SincResampler *sr = (i == 0) ? tp->s1.get(): tp->s2.get();
+            int spl = sizeof(sr->sample);
+            if (size < cnt+spl)
+                return 0;
+            std::memcpy(buffer+cnt, sr->sample, spl);
+            cnt += spl;
+        }
+    }
+
+    return cnt;
 }
 
 
-void State::restoreState(SID &s, const State& state)
+void State::restoreState(SID &s, char* buffer, int size)
 {
+    int cnt = sizeof(reSIDfp::State);
+    if (size < cnt)
+        return;
+    State state;
+    std::memcpy(&state, buffer, cnt);
+
     s.busValue = state.bus_value;
     s.busValueTtl = state.bus_value_ttl;
     s.nextVoiceSync = state.nextVoiceSync;
@@ -287,13 +312,27 @@ void State::restoreState(SID &s, const State& state)
             sr->sampleIndex = state.tp_sampleIndex[i];
             sr->sampleOffset = state.tp_sampleOffset[i];
             sr->outputValue = state.tp_outputValue[i];
-            std::memcpy(sr->sample, state.tp_sample[i], sizeof(sr->sample));
+            //std::memcpy(sr->sample, state.tp_sample[i], sizeof(sr->sample));
         }
         } break;
     case NONE: {
         PassThrough *pt = static_cast<PassThrough*>(s.resampler.get());
         pt->outputValue = state.pt_outputValue;
         } break;
+    }
+
+    if (state.method == RESAMPLE)
+    {
+        TwoPassSincResampler *tp = static_cast<TwoPassSincResampler*>(s.resampler.get());
+        for (int i=0; i<2; i++)
+        {
+            SincResampler *sr = (i == 0) ? tp->s1.get(): tp->s2.get();
+            int spl = sizeof(sr->sample);
+            if (size < cnt+spl)
+                return;
+            std::memcpy(sr->sample, buffer+cnt, spl);
+            cnt += spl;
+        }
     }
 }
 
