@@ -281,6 +281,8 @@ void SID::setChipModel(ChipModel new_model)
         voice[i].wave()->setWaveformModels(wavetables);
         voice[i].wave()->setPulldownModels(pulldowntables);
     }
+
+    filter->restart();
 }
 
 void SID::setCombinedWaveforms(CombinedWaveforms new_cws)
