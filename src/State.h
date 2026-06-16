@@ -55,6 +55,11 @@ struct State
      */
     static void restoreState(SID &s, char* buffer, int size);
 
+    /**
+     * Return size of save state.
+     */
+    static int size(SID &s);
+
     // SID
     int bus_value_ttl;
     unsigned int nextVoiceSync;
@@ -155,7 +160,6 @@ struct State
     int tp_sampleIndex[2];
     int tp_sampleOffset[2];
     int32_t tp_outputValue[2];
-    //int32_t tp_sample[SincResampler::RINGSIZE * 2][2];
 };
 
 

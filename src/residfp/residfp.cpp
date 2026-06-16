@@ -155,7 +155,10 @@ void residfp::setPaddle(unsigned char x, unsigned char y)
     sid.setPaddle(x, y);
 }
 
-int residfp::stateSize() const { return sizeof(reSIDfp::State); }
+int residfp::stateSize() const
+{
+    return State::size(sid);
+}
 
 int residfp::saveState(char* buffer, int size) const
 {

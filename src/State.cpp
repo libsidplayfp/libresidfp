@@ -312,7 +312,6 @@ void State::restoreState(SID &s, char* buffer, int size)
             sr->sampleIndex = state.tp_sampleIndex[i];
             sr->sampleOffset = state.tp_sampleOffset[i];
             sr->outputValue = state.tp_outputValue[i];
-            //std::memcpy(sr->sample, state.tp_sample[i], sizeof(sr->sample));
         }
         } break;
     case NONE: {
@@ -334,6 +333,16 @@ void State::restoreState(SID &s, char* buffer, int size)
             cnt += spl;
         }
     }
+}
+
+int State::size(SID &s)
+{
+    int cnt = sizeof(reSIDfp::State);
+    if (s.p->method == RESAMPLE)
+    {
+        cnt += sizeof(SincResampler::sample) * 2;
+    }
+    return cnt;
 }
 
 } // namespace reSIDfp
