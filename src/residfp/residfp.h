@@ -231,6 +231,13 @@ public:
      *               false to use the standard 470pF caps.
      */
     void enableOld6581caps(bool enable);
+
+    /**
+     * Set paddle coordinates.
+     *
+     * @since 1.1
+     */
+    void setPaddle(unsigned char x, unsigned char y);
 };
 
 }

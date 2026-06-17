@@ -104,6 +104,12 @@ private:
     /// Last written value
     uint8_t busValue;
 
+    /// Paddle coordinates.
+    //@{
+    uint8_t paddleX = 0xff;
+    uint8_t paddleY = 0xff;
+    //@}
+
     /**
      * Emulated nonlinearity of the envelope DAC.
      *
@@ -333,6 +339,11 @@ public:
      * Enable/disable old caps (2200pF) for 6581 model.
      */
     void enableOld6581caps(bool enable);
+
+    /**
+     * Set paddle coordinates.
+     */
+    void setPaddle(uint8_t x, uint8_t y);
 };
 
 } // namespace reSIDfp
