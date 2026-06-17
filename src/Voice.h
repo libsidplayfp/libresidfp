@@ -104,6 +104,10 @@ public:
 
     EnvelopeGenerator* envelope() { return &envelopeGenerator; }
 
+    const WaveformGenerator* wave() const { return &waveformGenerator; }
+
+    const EnvelopeGenerator* envelope() const { return &envelopeGenerator; }
+
     /**
      * Write control register.
      *

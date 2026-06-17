@@ -334,6 +334,27 @@ void SID::input(int value)
     filter8580->input(value);
 }
 
+uint8_t SID::peek(int offset) const
+{
+    switch (offset)
+    {
+    case 0x19: // X value of paddle
+        return paddleX;
+
+    case 0x1a: // Y value of paddle
+        return paddleY;
+
+    case 0x1b: // Voice #3 waveform output
+        return voice[2].wave()->readOSC();
+
+    case 0x1c: // Voice #3 ADSR output
+        return voice[2].envelope()->readENV();
+
+    default:
+        return busValue;
+    }
+}
+
 uint8_t SID::read(int offset)
 {
     switch (offset)
