@@ -75,6 +75,11 @@ void residfp::input(int value)
     sid.input(value);
 }
 
+unsigned char residfp::peek(int offset) const
+{
+    return sid.peek(offset);
+}
+
 unsigned char residfp::read(int offset)
 {
     return sid.read(offset);
