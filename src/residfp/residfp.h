@@ -242,12 +242,17 @@ public:
     /**
      * Get the save-state size in bytes.
      *
+     * @note: the size may depend on configuration.
+     *
      * @since 1.1
      */
     int stateSize() const;
 
     /**
      * Save current state.
+     *
+     * @note: the save state is not portable across different builds
+     * and may change in future versions.
      *
      * @param buffer the buffer where state will be saved to
      * @param size size of the buffer in bytes
