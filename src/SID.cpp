@@ -339,12 +339,12 @@ uint8_t SID::read(int offset)
     switch (offset)
     {
     case 0x19: // X value of paddle
-        busValue = 0xff;
+        busValue = paddleX;
         busValueTtl = modelTTL;
         break;
 
     case 0x1a: // Y value of paddle
-        busValue = 0xff;
+        busValue = paddleY;
         busValueTtl = modelTTL;
         break;
 
@@ -574,6 +574,12 @@ void SID::clockSilent(unsigned int cycles)
             voiceSync(true);
         }
     }
+}
+
+void SID::setPaddle(uint8_t x, uint8_t y)
+{
+    paddleX = x;
+    paddleY = y;
 }
 
 } // namespace reSIDfp

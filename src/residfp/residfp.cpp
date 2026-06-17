@@ -146,3 +146,8 @@ void residfp::enableOld6581caps(bool enable)
 {
     sid.enableOld6581caps(enable);
 }
+
+void residfp::setPaddle(unsigned char x, unsigned char y)
+{
+    sid.setPaddle(x, y);
+}
