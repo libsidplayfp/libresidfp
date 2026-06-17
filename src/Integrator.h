@@ -43,7 +43,7 @@ public:
 
     virtual ~Integrator() = default;
 
-    void restart() { vx = 0; vc = 0; }
+    void restart() { vx = 16384; vc = 16384; }
 };
 
 } // namespace reSIDfp
