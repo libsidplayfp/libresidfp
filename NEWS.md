@@ -1,6 +1,12 @@
 1.1.0 2026-06-xx
 * Reduced the 6581 filter curve parameter range to avoid overflows (#19)
+* Clear filter state on model change (#27)
 * Enabled silent make rules
+* Added a new clockDigital function that only clocks the digital components (#25)
+* Allow changing paddle coordinates (#28)
+* Added peek function (#28)
+* Allow save/restore state (#20)
+
 
 
 1.0.3 2026-05-15

@@ -54,7 +54,9 @@ and further improved by Leandro Nini.
 ### Features:
 
 * Filter distortion
+* 6581 DAC non-linearity
 * 6581 DAC distortion
+* 6581 DC drift
 * Oscillator leak
 * Configurable strength of combined waveforms
 
