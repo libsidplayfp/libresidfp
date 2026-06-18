@@ -142,7 +142,8 @@ SID::SID() :
     filter6581(new Filter6581()),
     filter8580(new Filter8580()),
     resampler(nullptr),
-    cws(AVERAGE)
+    cws(AVERAGE),
+    p(new Params)
 {
     voice[0].setOtherVoices(voice[2], voice[1]);
     voice[1].setOtherVoices(voice[0], voice[2]);
@@ -156,20 +157,24 @@ SID::~SID()
 {
     delete filter6581;
     delete filter8580;
+    delete p;
 }
 
 void SID::setFilter6581Curve(double filterCurve)
 {
+    p->filterCurve6581 = filterCurve;
     filter6581->setFilterCurve(filterCurve);
 }
 
 void SID::setFilter6581Range(double adjustment)
 {
+    p->filterRange6581 = adjustment;
     filter6581->setFilterRange(adjustment);
 }
 
 void SID::setFilter8580Curve(double filterCurve)
 {
+    p->filterCurve8580 = filterCurve;
     filter8580->setFilterCurve(filterCurve);
 }
 
@@ -181,6 +186,7 @@ void SID::enableFilter(bool enable)
 
 void SID::enableOld6581caps(bool enable)
 {
+    p->old6581caps = enable;
     filter6581->enableOldCaps(enable);
 }
 
@@ -530,6 +536,10 @@ void SID::setSamplingParameters(double clockFrequency, SamplingMethod method, do
     default:
         throw SIDError("Unknown sampling method");
     }
+
+    p->method = method;
+    p->clockFrequency = clockFrequency;
+    p->samplingFrequency = samplingFrequency;
 }
 
 void SID::clockDigital(unsigned int cycles)

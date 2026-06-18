@@ -54,6 +54,8 @@ namespace reSIDfp
  */
 class Integrator8580 : public Integrator
 {
+    friend class State;
+
 private:
     uint16_t nVgt;
     uint16_t n_dac;

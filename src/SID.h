@@ -33,6 +33,7 @@
 #include "ExternalFilter.h"
 #include "Filter.h"
 #include "Voice.h"
+#include "State.h"
 
 namespace reSIDfp
 {
@@ -61,6 +62,8 @@ public:
  */
 class SID
 {
+    friend class State;
+
 private:
     /// Currently active filter
     Filter* filter;
@@ -123,6 +126,9 @@ private:
      * @See Dac
      */
     float oscDAC[4096];
+
+    /// Parameters for save state
+    Params* p;
 
 private:
     /**

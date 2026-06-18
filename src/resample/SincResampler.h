@@ -47,6 +47,8 @@ namespace reSIDfp
  */
 class SincResampler final : public Resampler
 {
+    friend class State;
+
 private:
     /// Size of the ring buffer, must be a power of 2
     static constexpr int RINGSIZE = 2048;

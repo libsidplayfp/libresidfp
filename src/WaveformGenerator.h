@@ -90,6 +90,8 @@ namespace reSIDfp
  */
 class WaveformGenerator
 {
+    friend class State;
+
 private:
     rc_matrix_t model_wave;
     rc_matrix_t model_pulldown;
@@ -170,6 +172,34 @@ private:
     void waveBitfade();
 
     void shiftregBitfade();
+
+    inline void setWave() { wave = (*model_wave)[waveform & 0x3]; }
+
+    inline void setPulldown()
+    {
+        // We assume tha combinations including noise
+        // behave the same as without
+        switch (waveform & 0x7)
+        {
+        case 3:
+            pulldown = (*model_pulldown)[0];
+            break;
+        case 4:
+            pulldown = (waveform & 0x8) ? (*model_pulldown)[4] : nullptr;
+            break;
+        case 5:
+            pulldown = (*model_pulldown)[1];
+            break;
+        case 6:
+            pulldown = (*model_pulldown)[2];
+            break;
+        case 7:
+            pulldown = (*model_pulldown)[3];
+            break;
+        default:
+            pulldown = nullptr;
+        }
+    }
 
 public:
     void setWaveformModels(rc_matrix_t models);

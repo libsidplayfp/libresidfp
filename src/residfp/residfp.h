@@ -248,6 +248,38 @@ public:
      * @since 1.1
      */
     void setPaddle(unsigned char x, unsigned char y);
+
+    /**
+     * Get the save-state size in bytes.
+     *
+     * @note: the size may depend on configuration.
+     *
+     * @since 1.1
+     */
+    int stateSize() const;
+
+    /**
+     * Save current state.
+     *
+     * @note: the save state is not portable across different builds
+     * and may change in future versions.
+     *
+     * @param buffer the buffer where state will be saved to
+     * @param size size of the buffer in bytes
+     *
+     * @since 1.1
+     */
+    int saveState(char* buffer, int size) const;
+
+    /**
+     * Restore saved state.
+     *
+     * @param buffer the buffer containig the saved state
+     * @param size size of the buffer in bytes
+     *
+     * @since 1.1
+     */
+    void restoreState(char* buffer, int size);
 };
 
 }

@@ -366,30 +366,8 @@ void WaveformGenerator::writeCONTROL_REG(uint8_t control)
     if (waveform != waveform_prev)
     {
         // Set up waveform tables
-        wave = (*model_wave)[waveform & 0x3];
-        // We assume tha combinations including noise
-        // behave the same as without
-        switch (waveform & 0x7)
-        {
-        case 3:
-            pulldown = (*model_pulldown)[0];
-            break;
-        case 4:
-            pulldown = (waveform & 0x8) ? (*model_pulldown)[4] : nullptr;
-            break;
-        case 5:
-            pulldown = (*model_pulldown)[1];
-            break;
-        case 6:
-            pulldown = (*model_pulldown)[2];
-            break;
-        case 7:
-            pulldown = (*model_pulldown)[3];
-            break;
-        default:
-            pulldown = nullptr;
-            break;
-        }
+        setWave();
+        setPulldown();
 
         // no_noise and no_pulse are used in set_waveform_output() as bitmasks to
         // only let the noise or pulse influence the output when the noise or pulse

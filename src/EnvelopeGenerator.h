@@ -44,7 +44,9 @@ namespace reSIDfp
  */
 class EnvelopeGenerator
 {
-private:
+    friend class State;
+
+public:
     /**
      * The envelope state machine's distinct states. In addition to this,
      * envelope has a hold mode, which freezes envelope counter to zero.
