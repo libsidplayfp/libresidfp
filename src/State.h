@@ -66,6 +66,8 @@ struct State
     ChipModel model;
     CombinedWaveforms cws;
     uint8_t bus_value;
+    uint8_t paddle_x;
+    uint8_t paddle_y;
 
     // Waveform
     uint32_t pw[3];

@@ -87,6 +87,8 @@ int State::saveState(SID &s, char* buffer, int size)
     state.bus_value = s.busValue;
     state.bus_value_ttl = s.busValueTtl;
     state.nextVoiceSync = s.nextVoiceSync;
+    state.paddle_x = s.paddleX;
+    state.paddle_x = s.paddleY;
     state.model = s.model;
     state.cws = s.cws;
 
@@ -195,6 +197,8 @@ void State::restoreState(SID &s, char* buffer, int size)
     s.busValue = state.bus_value;
     s.busValueTtl = state.bus_value_ttl;
     s.nextVoiceSync = state.nextVoiceSync;
+    s.paddleX = state.paddle_x;
+    s.paddleY = state.paddle_x;
     s.model = state.model;
     s.setChipModel(s.model);
     s.cws = state.cws;
