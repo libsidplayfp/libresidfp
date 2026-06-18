@@ -142,6 +142,8 @@ protected:
 
     virtual int32_t solveIntegrators() = 0;
 
+    virtual void restartIntegrators() = 0;
+
 public:
     Filter(FilterModelConfig& fmc);
 
@@ -203,6 +205,8 @@ public:
      * @param input a signed 16 bit sample
      */
     void input(int16_t input) { Ve = fmc.getNormalizedVoice(input/32768.f, 0); }
+
+    void restart() { restartIntegrators(); Vhp = 0; Vlp = 0; Vbp = 0; }
 };
 
 } // namespace reSIDfp

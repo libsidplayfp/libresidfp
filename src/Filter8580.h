@@ -295,6 +295,8 @@ protected:
 
     int32_t solveIntegrators() override;
 
+    void restartIntegrators() override { hpIntegrator.restart(); bpIntegrator.restart(); }
+
 public:
     Filter8580() :
         Filter(*FilterModelConfig8580::getInstance()),

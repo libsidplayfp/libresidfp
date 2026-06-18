@@ -42,6 +42,8 @@ public:
     virtual int32_t solve(int32_t vi) const = 0;
 
     virtual ~Integrator() = default;
+
+    void restart() { vx = 16384; vc = 16384; }
 };
 
 } // namespace reSIDfp

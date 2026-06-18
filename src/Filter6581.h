@@ -338,6 +338,8 @@ protected:
 
     int32_t solveIntegrators() override;
 
+    void restartIntegrators() override { hpIntegrator.restart(); bpIntegrator.restart(); }
+
 public:
     Filter6581() :
         Filter(*FilterModelConfig6581::getInstance()),
