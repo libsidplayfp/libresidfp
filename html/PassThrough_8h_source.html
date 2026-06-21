@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.0</span>
    </div>
   </td>
  </tr>
@@ -84,41 +84,41 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1PassThrough.html">   32</a></span><span class="keyword">class </span><a class="code hl_class" href="classreSIDfp_1_1PassThrough.html">PassThrough</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classreSIDfp_1_1Resampler.html">Resampler</a></div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">int</span> outputValue;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_class" href="classreSIDfp_1_1PassThrough.html">PassThrough</a>() :</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        outputValue(0) {}</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="foldopen" id="foldopen00042" data-start="{" data-end="}">
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1PassThrough.html#a987c38757ededa6d3a6419c454b7aa0b">   42</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classreSIDfp_1_1PassThrough.html#a987c38757ededa6d3a6419c454b7aa0b">input</a>(<span class="keywordtype">int</span> sample)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        outputValue = sample;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
-</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">int</span> output()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> outputValue; }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_struct" href="structreSIDfp_1_1State.html">State</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">int</span> outputValue;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_class" href="classreSIDfp_1_1PassThrough.html">PassThrough</a>() :</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        outputValue(0) {}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">bool</span> input(<span class="keywordtype">int</span> sample)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        outputValue = sample;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> reset()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        outputValue = 0;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">int</span> output()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> outputValue; }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">void</span> reset()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        outputValue = 0;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
 </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>} <span class="comment">// namespace reSIDfp</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>} <span class="comment">// namespace reSIDfp</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassreSIDfp_1_1PassThrough_html"><div class="ttname"><a href="classreSIDfp_1_1PassThrough.html">reSIDfp::PassThrough</a></div><div class="ttdef"><b>Definition</b> PassThrough.h:33</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1PassThrough_html_a987c38757ededa6d3a6419c454b7aa0b"><div class="ttname"><a href="classreSIDfp_1_1PassThrough.html#a987c38757ededa6d3a6419c454b7aa0b">reSIDfp::PassThrough::input</a></div><div class="ttdeci">bool input(int sample) override</div><div class="ttdef"><b>Definition</b> PassThrough.h:42</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1Resampler_html"><div class="ttname"><a href="classreSIDfp_1_1Resampler.html">reSIDfp::Resampler</a></div><div class="ttdef"><b>Definition</b> Resampler.h:35</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1Resampler_html"><div class="ttname"><a href="classreSIDfp_1_1Resampler.html">reSIDfp::Resampler</a></div><div class="ttdef"><b>Definition</b> Resampler.h:37</div></div>
+<div class="ttc" id="astructreSIDfp_1_1State_html"><div class="ttname"><a href="structreSIDfp_1_1State.html">reSIDfp::State</a></div><div class="ttdef"><b>Definition</b> State.h:47</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 15 2026 12:59:32 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 21 2026 09:22:38 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

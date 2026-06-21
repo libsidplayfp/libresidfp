@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.0</span>
    </div>
   </td>
  </tr>
@@ -75,25 +75,25 @@ Inheritance diagram for reSIDfp::Resampler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6318bf62b958dc36f5cc4d2ca3e6a9c0" id="r_a6318bf62b958dc36f5cc4d2ca3e6a9c0"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Resampler.html#a6318bf62b958dc36f5cc4d2ca3e6a9c0">input</a> (int sample)=0</td></tr>
-<tr class="separator:a6318bf62b958dc36f5cc4d2ca3e6a9c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cdc23bb889f216213cc0598fbe30c37" id="r_a9cdc23bb889f216213cc0598fbe30c37"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Resampler.html#a9cdc23bb889f216213cc0598fbe30c37">getOutput</a> (int scaleFactor) const</td></tr>
-<tr class="separator:a9cdc23bb889f216213cc0598fbe30c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44ebd49d95ba86db35376d99fa213c51" id="r_a44ebd49d95ba86db35376d99fa213c51"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Resampler.html#a44ebd49d95ba86db35376d99fa213c51">input</a> (int32_t sample)=0</td></tr>
+<tr class="separator:a44ebd49d95ba86db35376d99fa213c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af132b9a232c121a02c6004724525685d" id="r_af132b9a232c121a02c6004724525685d"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Resampler.html#af132b9a232c121a02c6004724525685d">getOutput</a> (int32_t scaleFactor) const</td></tr>
+<tr class="separator:af132b9a232c121a02c6004724525685d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32676b613a84b8e5841561b330ef5b08" id="r_a32676b613a84b8e5841561b330ef5b08"><td class="memItemLeft" align="right" valign="top"><a id="a32676b613a84b8e5841561b330ef5b08" name="a32676b613a84b8e5841561b330ef5b08"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> ()=0</td></tr>
 <tr class="separator:a32676b613a84b8e5841561b330ef5b08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a25c3e6f25f81212947a2e7ab683aab06" id="r_a25c3e6f25f81212947a2e7ab683aab06"><td class="memItemLeft" align="right" valign="top"><a id="a25c3e6f25f81212947a2e7ab683aab06" name="a25c3e6f25f81212947a2e7ab683aab06"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>output</b> () const =0</td></tr>
-<tr class="separator:a25c3e6f25f81212947a2e7ab683aab06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e6649cda5f3d082df094f256a56000f" id="r_a8e6649cda5f3d082df094f256a56000f"><td class="memItemLeft" align="right" valign="top"><a id="a8e6649cda5f3d082df094f256a56000f" name="a8e6649cda5f3d082df094f256a56000f"></a>
+virtual int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>output</b> () const =0</td></tr>
+<tr class="separator:a8e6649cda5f3d082df094f256a56000f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstraction of a resampling process. Given enough input, produces output. Constructors take additional arguments that configure these objects. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9cdc23bb889f216213cc0598fbe30c37" name="a9cdc23bb889f216213cc0598fbe30c37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9cdc23bb889f216213cc0598fbe30c37">&#9670;&#160;</a></span>getOutput()</h2>
+<a id="af132b9a232c121a02c6004724525685d" name="af132b9a232c121a02c6004724525685d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af132b9a232c121a02c6004724525685d">&#9670;&#160;</a></span>getOutput()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -102,9 +102,9 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>output</b> () 
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">short reSIDfp::Resampler::getOutput </td>
+          <td class="memname">int16_t reSIDfp::Resampler::getOutput </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>scaleFactor</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -120,8 +120,8 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>output</b> () 
 
 </div>
 </div>
-<a id="a6318bf62b958dc36f5cc4d2ca3e6a9c0" name="a6318bf62b958dc36f5cc4d2ca3e6a9c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6318bf62b958dc36f5cc4d2ca3e6a9c0">&#9670;&#160;</a></span>input()</h2>
+<a id="a44ebd49d95ba86db35376d99fa213c51" name="a44ebd49d95ba86db35376d99fa213c51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44ebd49d95ba86db35376d99fa213c51">&#9670;&#160;</a></span>input()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -132,7 +132,7 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>output</b> () 
         <tr>
           <td class="memname">virtual bool reSIDfp::Resampler::input </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>sample</em></td><td>)</td>
           <td></td>
         </tr>
@@ -152,7 +152,7 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>output</b> () 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true when a sample is ready </dd></dl>
 
-<p>Implemented in <a class="el" href="classreSIDfp_1_1SincResampler.html#a05ea66f27347b49f9d6394666309baad">reSIDfp::SincResampler</a>, <a class="el" href="classreSIDfp_1_1PassThrough.html#a987c38757ededa6d3a6419c454b7aa0b">reSIDfp::PassThrough</a>, <a class="el" href="classreSIDfp_1_1TwoPassSincResampler.html#a586479c2bcbb8f6786af76aa8cf0e9db">reSIDfp::TwoPassSincResampler</a>, and <a class="el" href="classreSIDfp_1_1ZeroOrderResampler.html#a34c794fbc6bdb4f8fb75c8cd6d7e025e">reSIDfp::ZeroOrderResampler</a>.</p>
+<p>Implemented in <a class="el" href="classreSIDfp_1_1SincResampler.html#aa46f758f742515e6ce9ad25da310bcf6">reSIDfp::SincResampler</a>, and <a class="el" href="classreSIDfp_1_1TwoPassSincResampler.html#a8f47f9cd31b320adab9646ac39d6634f">reSIDfp::TwoPassSincResampler</a>.</p>
 
 </div>
 </div>
@@ -162,7 +162,7 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>output</b> () 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 15 2026 12:59:32 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 21 2026 09:22:38 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

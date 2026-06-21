@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.0</span>
    </div>
   </td>
  </tr>
@@ -48,7 +48,9 @@
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classreSIDfp_1_1EnvelopeGenerator-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">reSIDfp::EnvelopeGenerator Class Reference</div></div>
 </div><!--header-->
@@ -56,27 +58,65 @@
 
 <p><code>#include &lt;<a class="el" href="EnvelopeGenerator_8h_source.html">EnvelopeGenerator.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:af165c157f0cc2d466711446fa0a3ea84" id="r_af165c157f0cc2d466711446fa0a3ea84"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#af165c157f0cc2d466711446fa0a3ea84">State</a> { <b>ATTACK</b>
+, <b>DECAY_SUSTAIN</b>
+, <b>RELEASE</b>
+ }</td></tr>
+<tr class="separator:af165c157f0cc2d466711446fa0a3ea84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a32e22bfe13698e42064d81c3acad1bd3" id="r_a32e22bfe13698e42064d81c3acad1bd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#a32e22bfe13698e42064d81c3acad1bd3">clock</a> ()</td></tr>
 <tr class="separator:a32e22bfe13698e42064d81c3acad1bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07c062ea2465158e8e35f1f719fccabc" id="r_a07c062ea2465158e8e35f1f719fccabc"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#a07c062ea2465158e8e35f1f719fccabc">output</a> () const</td></tr>
-<tr class="separator:a07c062ea2465158e8e35f1f719fccabc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb66e9d1fac8f41568d331441cfc882" id="r_aecb66e9d1fac8f41568d331441cfc882"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#aecb66e9d1fac8f41568d331441cfc882">output</a> () const</td></tr>
+<tr class="separator:aecb66e9d1fac8f41568d331441cfc882"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20ebe9bb9287bb325d14b516a8f0b3d8" id="r_a20ebe9bb9287bb325d14b516a8f0b3d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#a20ebe9bb9287bb325d14b516a8f0b3d8">reset</a> ()</td></tr>
 <tr class="separator:a20ebe9bb9287bb325d14b516a8f0b3d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a818b47958703edf6c96b30ee209f0500" id="r_a818b47958703edf6c96b30ee209f0500"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#a818b47958703edf6c96b30ee209f0500">writeCONTROL_REG</a> (unsigned char control)</td></tr>
-<tr class="separator:a818b47958703edf6c96b30ee209f0500"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a120df24755604ad5a9a9078c0fd9f2ef" id="r_a120df24755604ad5a9a9078c0fd9f2ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#a120df24755604ad5a9a9078c0fd9f2ef">writeATTACK_DECAY</a> (unsigned char attack_decay)</td></tr>
-<tr class="separator:a120df24755604ad5a9a9078c0fd9f2ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57ee144932a1a69c379a38f661f4e075" id="r_a57ee144932a1a69c379a38f661f4e075"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#a57ee144932a1a69c379a38f661f4e075">writeSUSTAIN_RELEASE</a> (unsigned char sustain_release)</td></tr>
-<tr class="separator:a57ee144932a1a69c379a38f661f4e075"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9060da40055077fe00859b78dc6021cf" id="r_a9060da40055077fe00859b78dc6021cf"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#a9060da40055077fe00859b78dc6021cf">readENV</a> () const</td></tr>
-<tr class="separator:a9060da40055077fe00859b78dc6021cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fa5e3ab2690da0c6f5cf576ec1bd06b" id="r_a4fa5e3ab2690da0c6f5cf576ec1bd06b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#a4fa5e3ab2690da0c6f5cf576ec1bd06b">writeCONTROL_REG</a> (uint8_t control)</td></tr>
+<tr class="separator:a4fa5e3ab2690da0c6f5cf576ec1bd06b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1399e24decf6d61203072ea06eaa4181" id="r_a1399e24decf6d61203072ea06eaa4181"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#a1399e24decf6d61203072ea06eaa4181">writeATTACK_DECAY</a> (uint8_t attack_decay)</td></tr>
+<tr class="separator:a1399e24decf6d61203072ea06eaa4181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9257f1cf525f2e9e81f451b4f1e3a0f" id="r_af9257f1cf525f2e9e81f451b4f1e3a0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#af9257f1cf525f2e9e81f451b4f1e3a0f">writeSUSTAIN_RELEASE</a> (uint8_t sustain_release)</td></tr>
+<tr class="separator:af9257f1cf525f2e9e81f451b4f1e3a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab57ab5526076cd6c724f4346ee207c08" id="r_ab57ab5526076cd6c724f4346ee207c08"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#ab57ab5526076cd6c724f4346ee207c08">readENV</a> () const</td></tr>
+<tr class="separator:ab57ab5526076cd6c724f4346ee207c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a7edbf9e31116a21e4e18cd2dd004ae63" id="r_a7edbf9e31116a21e4e18cd2dd004ae63"><td class="memItemLeft" align="right" valign="top"><a id="a7edbf9e31116a21e4e18cd2dd004ae63" name="a7edbf9e31116a21e4e18cd2dd004ae63"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>State</b></td></tr>
+<tr class="separator:a7edbf9e31116a21e4e18cd2dd004ae63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A 15 bit <a href="https://en.wikipedia.org/wiki/Linear_feedback_shift_register">LFSR</a> is used to implement the envelope rates, in effect dividing the clock to the envelope counter by the currently selected rate period.</p>
 <p>In addition, another 5 bit counter is used to implement the exponential envelope decay, in effect further dividing the clock to the envelope counter. The period of this counter is set to 1, 2, 4, 8, 16, 30 at the envelope counter values 255, 93, 54, 26, 14, 6, respectively. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="af165c157f0cc2d466711446fa0a3ea84" name="af165c157f0cc2d466711446fa0a3ea84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af165c157f0cc2d466711446fa0a3ea84">&#9670;&#160;</a></span>State</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="classreSIDfp_1_1EnvelopeGenerator.html#af165c157f0cc2d466711446fa0a3ea84">reSIDfp::EnvelopeGenerator::State</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The envelope state machine's distinct states. In addition to this, envelope has a hold mode, which freezes envelope counter to zero. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a32e22bfe13698e42064d81c3acad1bd3" name="a32e22bfe13698e42064d81c3acad1bd3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a32e22bfe13698e42064d81c3acad1bd3">&#9670;&#160;</a></span>clock()</h2>
 
@@ -95,8 +135,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a07c062ea2465158e8e35f1f719fccabc" name="a07c062ea2465158e8e35f1f719fccabc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07c062ea2465158e8e35f1f719fccabc">&#9670;&#160;</a></span>output()</h2>
+<a id="aecb66e9d1fac8f41568d331441cfc882" name="aecb66e9d1fac8f41568d331441cfc882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb66e9d1fac8f41568d331441cfc882">&#9670;&#160;</a></span>output()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -105,7 +145,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int reSIDfp::EnvelopeGenerator::output </td>
+          <td class="memname">uint8_t reSIDfp::EnvelopeGenerator::output </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -121,8 +161,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9060da40055077fe00859b78dc6021cf" name="a9060da40055077fe00859b78dc6021cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9060da40055077fe00859b78dc6021cf">&#9670;&#160;</a></span>readENV()</h2>
+<a id="ab57ab5526076cd6c724f4346ee207c08" name="ab57ab5526076cd6c724f4346ee207c08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab57ab5526076cd6c724f4346ee207c08">&#9670;&#160;</a></span>readENV()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -131,7 +171,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned char reSIDfp::EnvelopeGenerator::readENV </td>
+          <td class="memname">uint8_t reSIDfp::EnvelopeGenerator::readENV </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -166,8 +206,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a120df24755604ad5a9a9078c0fd9f2ef" name="a120df24755604ad5a9a9078c0fd9f2ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a120df24755604ad5a9a9078c0fd9f2ef">&#9670;&#160;</a></span>writeATTACK_DECAY()</h2>
+<a id="a1399e24decf6d61203072ea06eaa4181" name="a1399e24decf6d61203072ea06eaa4181"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1399e24decf6d61203072ea06eaa4181">&#9670;&#160;</a></span>writeATTACK_DECAY()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -175,7 +215,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void reSIDfp::EnvelopeGenerator::writeATTACK_DECAY </td>
           <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>attack_decay</em></td><td>)</td>
           <td></td>
         </tr>
@@ -191,8 +231,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a818b47958703edf6c96b30ee209f0500" name="a818b47958703edf6c96b30ee209f0500"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a818b47958703edf6c96b30ee209f0500">&#9670;&#160;</a></span>writeCONTROL_REG()</h2>
+<a id="a4fa5e3ab2690da0c6f5cf576ec1bd06b" name="a4fa5e3ab2690da0c6f5cf576ec1bd06b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fa5e3ab2690da0c6f5cf576ec1bd06b">&#9670;&#160;</a></span>writeCONTROL_REG()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,7 +240,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void reSIDfp::EnvelopeGenerator::writeCONTROL_REG </td>
           <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>control</em></td><td>)</td>
           <td></td>
         </tr>
@@ -216,8 +256,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a57ee144932a1a69c379a38f661f4e075" name="a57ee144932a1a69c379a38f661f4e075"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57ee144932a1a69c379a38f661f4e075">&#9670;&#160;</a></span>writeSUSTAIN_RELEASE()</h2>
+<a id="af9257f1cf525f2e9e81f451b4f1e3a0f" name="af9257f1cf525f2e9e81f451b4f1e3a0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9257f1cf525f2e9e81f451b4f1e3a0f">&#9670;&#160;</a></span>writeSUSTAIN_RELEASE()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,7 +265,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void reSIDfp::EnvelopeGenerator::writeSUSTAIN_RELEASE </td>
           <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>sustain_release</em></td><td>)</td>
           <td></td>
         </tr>
@@ -248,7 +288,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 15 2026 12:59:32 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 21 2026 09:22:38 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

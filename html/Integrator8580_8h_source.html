@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.0</span>
    </div>
   </td>
  </tr>
@@ -92,58 +92,61 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00055" data-start="{" data-end="};">
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1Integrator8580.html">   55</a></span><span class="keyword">class </span><a class="code hl_class" href="classreSIDfp_1_1Integrator8580.html">Integrator8580</a> : <span class="keyword">public</span> <a class="code hl_class" href="classreSIDfp_1_1Integrator.html">Integrator</a></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>{</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> nVgt;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> n_dac;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_class" href="classreSIDfp_1_1FilterModelConfig8580.html">FilterModelConfig8580</a>&amp; fmc;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_struct" href="structreSIDfp_1_1State.html">State</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    uint16_t nVgt;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    uint16_t n_dac;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classreSIDfp_1_1Integrator8580.html">Integrator8580</a>(<a class="code hl_class" href="classreSIDfp_1_1FilterModelConfig8580.html">FilterModelConfig8580</a>&amp; new_fmc) :</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        fmc(new_fmc)</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <a class="code hl_function" href="classreSIDfp_1_1Integrator8580.html#aec485c8ed6d1ae6bc0096e9a4971827c">setV</a>(1.5);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1Integrator8580.html#a943dbfbceedab1d75342348e26353389">   73</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Integrator8580.html#a943dbfbceedab1d75342348e26353389">setFc</a>(<span class="keywordtype">double</span> wl)</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="comment">// Normalized current factor, 1 cycle at 1MHz.</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        n_dac = fmc.getNormalizedCurrentFactor&lt;17&gt;(wl);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_class" href="classreSIDfp_1_1FilterModelConfig8580.html">FilterModelConfig8580</a>&amp; fmc;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classreSIDfp_1_1Integrator8580.html">Integrator8580</a>(<a class="code hl_class" href="classreSIDfp_1_1FilterModelConfig8580.html">FilterModelConfig8580</a>&amp; new_fmc) :</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        fmc(new_fmc)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <a class="code hl_function" href="classreSIDfp_1_1Integrator8580.html#aec485c8ed6d1ae6bc0096e9a4971827c">setV</a>(1.5);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1Integrator8580.html#a943dbfbceedab1d75342348e26353389">   75</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Integrator8580.html#a943dbfbceedab1d75342348e26353389">setFc</a>(<span class="keywordtype">double</span> wl)</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="comment">// Normalized current factor, 1 cycle at 1MHz.</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        n_dac = fmc.getNormalizedCurrentFactor&lt;17&gt;(wl);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
 </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="foldopen" id="foldopen00082" data-start="{" data-end="}">
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1Integrator8580.html#aec485c8ed6d1ae6bc0096e9a4971827c">   82</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Integrator8580.html#aec485c8ed6d1ae6bc0096e9a4971827c">setV</a>(<span class="keywordtype">double</span> v)</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="comment">// Gate voltage is controlled by the switched capacitor voltage divider</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="comment">// Ua = Ue * v = 4.75v  1&lt;v&lt;2</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        assert(v &gt; 1.0 &amp;&amp; v &lt; 2.0);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keyword">const</span> <span class="keywordtype">double</span> Vg = fmc.getVref() * v;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keyword">const</span> <span class="keywordtype">double</span> Vgt = Vg - fmc.getVth();</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="comment">// Vg - Vth, normalized so that translated values can be subtracted:</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="comment">// Vgt - x = (Vgt - t) - (x - t)</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        nVgt = fmc.getNormalizedValue(Vgt);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="foldopen" id="foldopen00084" data-start="{" data-end="}">
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1Integrator8580.html#aec485c8ed6d1ae6bc0096e9a4971827c">   84</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Integrator8580.html#aec485c8ed6d1ae6bc0096e9a4971827c">setV</a>(<span class="keywordtype">double</span> v)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="comment">// Gate voltage is controlled by the switched capacitor voltage divider</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="comment">// Ua = Ue * v = 4.75v  1&lt;v&lt;2</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        assert(v &gt; 1.0 &amp;&amp; v &lt; 2.0);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keyword">const</span> <span class="keywordtype">double</span> Vg = fmc.getVref() * v;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keyword">const</span> <span class="keywordtype">double</span> Vgt = Vg - fmc.getVth();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="comment">// Vg - Vth, normalized so that translated values can be subtracted:</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="comment">// Vgt - x = (Vgt - t) - (x - t)</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        nVgt = fmc.getNormalizedValue(Vgt);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
 </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">int</span> solve(<span class="keywordtype">int</span> vi) <span class="keyword">const override</span>;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>};</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    int32_t solve(int32_t vi) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>};</div>
 </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>} <span class="comment">// namespace reSIDfp</span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>} <span class="comment">// namespace reSIDfp</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassreSIDfp_1_1FilterModelConfig8580_html"><div class="ttname"><a href="classreSIDfp_1_1FilterModelConfig8580.html">reSIDfp::FilterModelConfig8580</a></div><div class="ttdef"><b>Definition</b> FilterModelConfig8580.h:41</div></div>
 <div class="ttc" id="aclassreSIDfp_1_1Integrator8580_html"><div class="ttname"><a href="classreSIDfp_1_1Integrator8580.html">reSIDfp::Integrator8580</a></div><div class="ttdef"><b>Definition</b> Integrator8580.h:56</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1Integrator8580_html_a943dbfbceedab1d75342348e26353389"><div class="ttname"><a href="classreSIDfp_1_1Integrator8580.html#a943dbfbceedab1d75342348e26353389">reSIDfp::Integrator8580::setFc</a></div><div class="ttdeci">void setFc(double wl)</div><div class="ttdef"><b>Definition</b> Integrator8580.h:73</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1Integrator8580_html_aec485c8ed6d1ae6bc0096e9a4971827c"><div class="ttname"><a href="classreSIDfp_1_1Integrator8580.html#aec485c8ed6d1ae6bc0096e9a4971827c">reSIDfp::Integrator8580::setV</a></div><div class="ttdeci">void setV(double v)</div><div class="ttdef"><b>Definition</b> Integrator8580.h:82</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1Integrator_html"><div class="ttname"><a href="classreSIDfp_1_1Integrator.html">reSIDfp::Integrator</a></div><div class="ttdef"><b>Definition</b> Integrator.h:30</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1Integrator8580_html_a943dbfbceedab1d75342348e26353389"><div class="ttname"><a href="classreSIDfp_1_1Integrator8580.html#a943dbfbceedab1d75342348e26353389">reSIDfp::Integrator8580::setFc</a></div><div class="ttdeci">void setFc(double wl)</div><div class="ttdef"><b>Definition</b> Integrator8580.h:75</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1Integrator8580_html_aec485c8ed6d1ae6bc0096e9a4971827c"><div class="ttname"><a href="classreSIDfp_1_1Integrator8580.html#aec485c8ed6d1ae6bc0096e9a4971827c">reSIDfp::Integrator8580::setV</a></div><div class="ttdeci">void setV(double v)</div><div class="ttdef"><b>Definition</b> Integrator8580.h:84</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1Integrator_html"><div class="ttname"><a href="classreSIDfp_1_1Integrator.html">reSIDfp::Integrator</a></div><div class="ttdef"><b>Definition</b> Integrator.h:32</div></div>
+<div class="ttc" id="astructreSIDfp_1_1State_html"><div class="ttname"><a href="structreSIDfp_1_1State.html">reSIDfp::State</a></div><div class="ttdef"><b>Definition</b> State.h:47</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 15 2026 12:59:32 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 21 2026 09:22:38 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

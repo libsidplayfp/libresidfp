@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.0</span>
    </div>
   </td>
  </tr>
@@ -49,6 +49,7 @@
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classreSIDfp_1_1WaveformGenerator-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">reSIDfp::WaveformGenerator Class Reference</div></div>
 </div><!--header-->
@@ -58,12 +59,12 @@
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a442571b13cc9db6ed9f70f7418874827" id="r_a442571b13cc9db6ed9f70f7418874827"><td class="memItemLeft" align="right" valign="top"><a id="a442571b13cc9db6ed9f70f7418874827" name="a442571b13cc9db6ed9f70f7418874827"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setWaveformModels</b> (<a class="el" href="classmatrix.html">matrix_t</a> *models)</td></tr>
-<tr class="separator:a442571b13cc9db6ed9f70f7418874827"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1501c8121be263eb254a13d7b4f0b26" id="r_ae1501c8121be263eb254a13d7b4f0b26"><td class="memItemLeft" align="right" valign="top"><a id="ae1501c8121be263eb254a13d7b4f0b26" name="ae1501c8121be263eb254a13d7b4f0b26"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPulldownModels</b> (<a class="el" href="classmatrix.html">matrix_t</a> *models)</td></tr>
-<tr class="separator:ae1501c8121be263eb254a13d7b4f0b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab51c558af331682ec51b4ce6209dea7c" id="r_ab51c558af331682ec51b4ce6209dea7c"><td class="memItemLeft" align="right" valign="top"><a id="ab51c558af331682ec51b4ce6209dea7c" name="ab51c558af331682ec51b4ce6209dea7c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setWaveformModels</b> (rc_matrix_t models)</td></tr>
+<tr class="separator:ab51c558af331682ec51b4ce6209dea7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85faed27ab62a344fa1dd26085ca0db2" id="r_a85faed27ab62a344fa1dd26085ca0db2"><td class="memItemLeft" align="right" valign="top"><a id="a85faed27ab62a344fa1dd26085ca0db2" name="a85faed27ab62a344fa1dd26085ca0db2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPulldownModels</b> (rc_matrix_t models)</td></tr>
+<tr class="separator:a85faed27ab62a344fa1dd26085ca0db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac87d7b3c5af7f022b2338cf118a4a18f" id="r_ac87d7b3c5af7f022b2338cf118a4a18f"><td class="memItemLeft" align="right" valign="top"><a id="ac87d7b3c5af7f022b2338cf118a4a18f" name="ac87d7b3c5af7f022b2338cf118a4a18f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setOtherWaveforms</b> (const <a class="el" href="classreSIDfp_1_1WaveformGenerator.html">WaveformGenerator</a> *prev, <a class="el" href="classreSIDfp_1_1WaveformGenerator.html">WaveformGenerator</a> *next)</td></tr>
 <tr class="separator:ac87d7b3c5af7f022b2338cf118a4a18f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -73,30 +74,36 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setOtherWaveforms</b>
 <tr class="separator:a6141d2e81a99b755e7bae9f0455dab8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe93e18157fce952eccb5669ec8a0d33" id="r_afe93e18157fce952eccb5669ec8a0d33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#afe93e18157fce952eccb5669ec8a0d33">synchronize</a> () const</td></tr>
 <tr class="separator:afe93e18157fce952eccb5669ec8a0d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62876be8a7bb7e125de5954d667d8b39" id="r_a62876be8a7bb7e125de5954d667d8b39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a62876be8a7bb7e125de5954d667d8b39">writeFREQ_LO</a> (unsigned char freq_lo)</td></tr>
-<tr class="separator:a62876be8a7bb7e125de5954d667d8b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35dd5fed0b7b954f777bb63c3e442025" id="r_a35dd5fed0b7b954f777bb63c3e442025"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a35dd5fed0b7b954f777bb63c3e442025">writeFREQ_HI</a> (unsigned char freq_hi)</td></tr>
-<tr class="separator:a35dd5fed0b7b954f777bb63c3e442025"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bc455df4641b562ec0bbe68db61008b" id="r_a4bc455df4641b562ec0bbe68db61008b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a4bc455df4641b562ec0bbe68db61008b">writePW_LO</a> (unsigned char pw_lo)</td></tr>
-<tr class="separator:a4bc455df4641b562ec0bbe68db61008b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d0bf964c2ea4dce2624096bc0096afc" id="r_a1d0bf964c2ea4dce2624096bc0096afc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a1d0bf964c2ea4dce2624096bc0096afc">writePW_HI</a> (unsigned char pw_hi)</td></tr>
-<tr class="separator:a1d0bf964c2ea4dce2624096bc0096afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e7a5ce8355222ef3b10748a9d1d859c" id="r_a7e7a5ce8355222ef3b10748a9d1d859c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a7e7a5ce8355222ef3b10748a9d1d859c">writeCONTROL_REG</a> (unsigned char control)</td></tr>
-<tr class="separator:a7e7a5ce8355222ef3b10748a9d1d859c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d989c0bc3c1660958ef4d880cc9b9ee" id="r_a1d989c0bc3c1660958ef4d880cc9b9ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a1d989c0bc3c1660958ef4d880cc9b9ee">writeFREQ_LO</a> (uint8_t freq_lo)</td></tr>
+<tr class="separator:a1d989c0bc3c1660958ef4d880cc9b9ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7776535ce65d8f1f4c16ab5b7c5a8c25" id="r_a7776535ce65d8f1f4c16ab5b7c5a8c25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a7776535ce65d8f1f4c16ab5b7c5a8c25">writeFREQ_HI</a> (uint8_t freq_hi)</td></tr>
+<tr class="separator:a7776535ce65d8f1f4c16ab5b7c5a8c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad880b7420685fdad76ff94565d1c250e" id="r_ad880b7420685fdad76ff94565d1c250e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#ad880b7420685fdad76ff94565d1c250e">writePW_LO</a> (uint8_t pw_lo)</td></tr>
+<tr class="separator:ad880b7420685fdad76ff94565d1c250e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfb98b5c7aab7104d372a857112abf2e" id="r_acfb98b5c7aab7104d372a857112abf2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#acfb98b5c7aab7104d372a857112abf2e">writePW_HI</a> (uint8_t pw_hi)</td></tr>
+<tr class="separator:acfb98b5c7aab7104d372a857112abf2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a469a6ac7890568b30504531ccf9e78c7" id="r_a469a6ac7890568b30504531ccf9e78c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a469a6ac7890568b30504531ccf9e78c7">writeCONTROL_REG</a> (uint8_t control)</td></tr>
+<tr class="separator:a469a6ac7890568b30504531ccf9e78c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad242d9ca647ea24a611e68e9712dec3f" id="r_ad242d9ca647ea24a611e68e9712dec3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#ad242d9ca647ea24a611e68e9712dec3f">reset</a> ()</td></tr>
 <tr class="separator:ad242d9ca647ea24a611e68e9712dec3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb4757dfd004902eeb298f141ba9b3cc" id="r_adb4757dfd004902eeb298f141ba9b3cc"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#adb4757dfd004902eeb298f141ba9b3cc">output</a> ()</td></tr>
-<tr class="separator:adb4757dfd004902eeb298f141ba9b3cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a532b98bc2138188134ffe822c8ed16a5" id="r_a532b98bc2138188134ffe822c8ed16a5"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a532b98bc2138188134ffe822c8ed16a5">readOSC</a> () const</td></tr>
-<tr class="separator:a532b98bc2138188134ffe822c8ed16a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91f7cc2b7b25beb09b81ec2e7a48454e" id="r_a91f7cc2b7b25beb09b81ec2e7a48454e"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a91f7cc2b7b25beb09b81ec2e7a48454e">readAccumulator</a> () const</td></tr>
-<tr class="separator:a91f7cc2b7b25beb09b81ec2e7a48454e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19fff68a8f79cc5e9229d42d79c000d3" id="r_a19fff68a8f79cc5e9229d42d79c000d3"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a19fff68a8f79cc5e9229d42d79c000d3">readFreq</a> () const</td></tr>
-<tr class="separator:a19fff68a8f79cc5e9229d42d79c000d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26c30b61e18a2f07e54fa1ef796df79b" id="r_a26c30b61e18a2f07e54fa1ef796df79b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a26c30b61e18a2f07e54fa1ef796df79b">output</a> ()</td></tr>
+<tr class="separator:a26c30b61e18a2f07e54fa1ef796df79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc9ed4c0d53150e16be0a1615589156a" id="r_acc9ed4c0d53150e16be0a1615589156a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#acc9ed4c0d53150e16be0a1615589156a">readOSC</a> () const</td></tr>
+<tr class="separator:acc9ed4c0d53150e16be0a1615589156a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fe929d9d9f7fa2db922afaac284c528" id="r_a2fe929d9d9f7fa2db922afaac284c528"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a2fe929d9d9f7fa2db922afaac284c528">readAccumulator</a> () const</td></tr>
+<tr class="separator:a2fe929d9d9f7fa2db922afaac284c528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6685361eb037bbaca51cfe6d944148a0" id="r_a6685361eb037bbaca51cfe6d944148a0"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a6685361eb037bbaca51cfe6d944148a0">readFreq</a> () const</td></tr>
+<tr class="separator:a6685361eb037bbaca51cfe6d944148a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b189db363290d7e03d2f1e8af44cd51" id="r_a0b189db363290d7e03d2f1e8af44cd51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#a0b189db363290d7e03d2f1e8af44cd51">readTest</a> () const</td></tr>
 <tr class="separator:a0b189db363290d7e03d2f1e8af44cd51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad09bd7f44919d2821324ed1f4e697bd9" id="r_ad09bd7f44919d2821324ed1f4e697bd9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1WaveformGenerator.html#ad09bd7f44919d2821324ed1f4e697bd9">readFollowingVoiceSync</a> () const</td></tr>
 <tr class="separator:ad09bd7f44919d2821324ed1f4e697bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a7edbf9e31116a21e4e18cd2dd004ae63" id="r_a7edbf9e31116a21e4e18cd2dd004ae63"><td class="memItemLeft" align="right" valign="top"><a id="a7edbf9e31116a21e4e18cd2dd004ae63" name="a7edbf9e31116a21e4e18cd2dd004ae63"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>State</b></td></tr>
+<tr class="separator:a7edbf9e31116a21e4e18cd2dd004ae63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A 24 bit accumulator is the basis for waveform generation. FREQ is added to the lower 16 bits of the accumulator each cycle. The accumulator is set to zero when TEST is set, and starts counting when TEST is cleared.</p>
@@ -137,14 +144,14 @@ Waveform bits:       1   1       9     8   7       6     5   4
 
 </div>
 </div>
-<a id="adb4757dfd004902eeb298f141ba9b3cc" name="adb4757dfd004902eeb298f141ba9b3cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb4757dfd004902eeb298f141ba9b3cc">&#9670;&#160;</a></span>output()</h2>
+<a id="a26c30b61e18a2f07e54fa1ef796df79b" name="a26c30b61e18a2f07e54fa1ef796df79b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26c30b61e18a2f07e54fa1ef796df79b">&#9670;&#160;</a></span>output()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">RESIDFP_INLINE unsigned int reSIDfp::WaveformGenerator::output </td>
+          <td class="memname">RESIDFP_INLINE uint32_t reSIDfp::WaveformGenerator::output </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -156,8 +163,8 @@ Waveform bits:       1   1       9     8   7       6     5   4
 
 </div>
 </div>
-<a id="a91f7cc2b7b25beb09b81ec2e7a48454e" name="a91f7cc2b7b25beb09b81ec2e7a48454e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91f7cc2b7b25beb09b81ec2e7a48454e">&#9670;&#160;</a></span>readAccumulator()</h2>
+<a id="a2fe929d9d9f7fa2db922afaac284c528" name="a2fe929d9d9f7fa2db922afaac284c528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fe929d9d9f7fa2db922afaac284c528">&#9670;&#160;</a></span>readAccumulator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,7 +173,7 @@ Waveform bits:       1   1       9     8   7       6     5   4
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int reSIDfp::WaveformGenerator::readAccumulator </td>
+          <td class="memname">uint32_t reSIDfp::WaveformGenerator::readAccumulator </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -208,8 +215,8 @@ Waveform bits:       1   1       9     8   7       6     5   4
 
 </div>
 </div>
-<a id="a19fff68a8f79cc5e9229d42d79c000d3" name="a19fff68a8f79cc5e9229d42d79c000d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19fff68a8f79cc5e9229d42d79c000d3">&#9670;&#160;</a></span>readFreq()</h2>
+<a id="a6685361eb037bbaca51cfe6d944148a0" name="a6685361eb037bbaca51cfe6d944148a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6685361eb037bbaca51cfe6d944148a0">&#9670;&#160;</a></span>readFreq()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,7 +225,7 @@ Waveform bits:       1   1       9     8   7       6     5   4
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int reSIDfp::WaveformGenerator::readFreq </td>
+          <td class="memname">uint32_t reSIDfp::WaveformGenerator::readFreq </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -234,8 +241,8 @@ Waveform bits:       1   1       9     8   7       6     5   4
 
 </div>
 </div>
-<a id="a532b98bc2138188134ffe822c8ed16a5" name="a532b98bc2138188134ffe822c8ed16a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a532b98bc2138188134ffe822c8ed16a5">&#9670;&#160;</a></span>readOSC()</h2>
+<a id="acc9ed4c0d53150e16be0a1615589156a" name="acc9ed4c0d53150e16be0a1615589156a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc9ed4c0d53150e16be0a1615589156a">&#9670;&#160;</a></span>readOSC()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -244,7 +251,7 @@ Waveform bits:       1   1       9     8   7       6     5   4
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned char reSIDfp::WaveformGenerator::readOSC </td>
+          <td class="memname">uint8_t reSIDfp::WaveformGenerator::readOSC </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -355,8 +362,8 @@ Waveform bits:       1   1       9     8   7       6     5   4
 
 </div>
 </div>
-<a id="a7e7a5ce8355222ef3b10748a9d1d859c" name="a7e7a5ce8355222ef3b10748a9d1d859c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e7a5ce8355222ef3b10748a9d1d859c">&#9670;&#160;</a></span>writeCONTROL_REG()</h2>
+<a id="a469a6ac7890568b30504531ccf9e78c7" name="a469a6ac7890568b30504531ccf9e78c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469a6ac7890568b30504531ccf9e78c7">&#9670;&#160;</a></span>writeCONTROL_REG()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -364,7 +371,7 @@ Waveform bits:       1   1       9     8   7       6     5   4
         <tr>
           <td class="memname">void reSIDfp::WaveformGenerator::writeCONTROL_REG </td>
           <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>control</em></td><td>)</td>
           <td></td>
         </tr>
@@ -380,8 +387,8 @@ Waveform bits:       1   1       9     8   7       6     5   4
 
 </div>
 </div>
-<a id="a35dd5fed0b7b954f777bb63c3e442025" name="a35dd5fed0b7b954f777bb63c3e442025"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35dd5fed0b7b954f777bb63c3e442025">&#9670;&#160;</a></span>writeFREQ_HI()</h2>
+<a id="a7776535ce65d8f1f4c16ab5b7c5a8c25" name="a7776535ce65d8f1f4c16ab5b7c5a8c25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7776535ce65d8f1f4c16ab5b7c5a8c25">&#9670;&#160;</a></span>writeFREQ_HI()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -392,7 +399,7 @@ Waveform bits:       1   1       9     8   7       6     5   4
         <tr>
           <td class="memname">void reSIDfp::WaveformGenerator::writeFREQ_HI </td>
           <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>freq_hi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -413,8 +420,8 @@ Waveform bits:       1   1       9     8   7       6     5   4
 
 </div>
 </div>
-<a id="a62876be8a7bb7e125de5954d667d8b39" name="a62876be8a7bb7e125de5954d667d8b39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62876be8a7bb7e125de5954d667d8b39">&#9670;&#160;</a></span>writeFREQ_LO()</h2>
+<a id="a1d989c0bc3c1660958ef4d880cc9b9ee" name="a1d989c0bc3c1660958ef4d880cc9b9ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d989c0bc3c1660958ef4d880cc9b9ee">&#9670;&#160;</a></span>writeFREQ_LO()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -425,7 +432,7 @@ Waveform bits:       1   1       9     8   7       6     5   4
         <tr>
           <td class="memname">void reSIDfp::WaveformGenerator::writeFREQ_LO </td>
           <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>freq_lo</em></td><td>)</td>
           <td></td>
         </tr>
@@ -446,8 +453,8 @@ Waveform bits:       1   1       9     8   7       6     5   4
 
 </div>
 </div>
-<a id="a1d0bf964c2ea4dce2624096bc0096afc" name="a1d0bf964c2ea4dce2624096bc0096afc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d0bf964c2ea4dce2624096bc0096afc">&#9670;&#160;</a></span>writePW_HI()</h2>
+<a id="acfb98b5c7aab7104d372a857112abf2e" name="acfb98b5c7aab7104d372a857112abf2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfb98b5c7aab7104d372a857112abf2e">&#9670;&#160;</a></span>writePW_HI()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -458,7 +465,7 @@ Waveform bits:       1   1       9     8   7       6     5   4
         <tr>
           <td class="memname">void reSIDfp::WaveformGenerator::writePW_HI </td>
           <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>pw_hi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -479,8 +486,8 @@ Waveform bits:       1   1       9     8   7       6     5   4
 
 </div>
 </div>
-<a id="a4bc455df4641b562ec0bbe68db61008b" name="a4bc455df4641b562ec0bbe68db61008b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4bc455df4641b562ec0bbe68db61008b">&#9670;&#160;</a></span>writePW_LO()</h2>
+<a id="ad880b7420685fdad76ff94565d1c250e" name="ad880b7420685fdad76ff94565d1c250e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad880b7420685fdad76ff94565d1c250e">&#9670;&#160;</a></span>writePW_LO()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -491,7 +498,7 @@ Waveform bits:       1   1       9     8   7       6     5   4
         <tr>
           <td class="memname">void reSIDfp::WaveformGenerator::writePW_LO </td>
           <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>pw_lo</em></td><td>)</td>
           <td></td>
         </tr>
@@ -519,7 +526,7 @@ Waveform bits:       1   1       9     8   7       6     5   4
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 15 2026 12:59:32 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 21 2026 09:22:38 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

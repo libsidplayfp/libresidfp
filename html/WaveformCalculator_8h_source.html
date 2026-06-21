@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.0</span>
    </div>
   </td>
  </tr>
@@ -89,7 +89,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1WaveformCalculator.html">   86</a></span><span class="keyword">class </span><a class="code hl_class" href="classreSIDfp_1_1WaveformCalculator.html">WaveformCalculator</a></div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>{</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_class" href="classmatrix.html">matrix_t</a> wftable;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    rc_matrix_t wftable;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_class" href="classreSIDfp_1_1WaveformCalculator.html">WaveformCalculator</a>();</div>
@@ -97,27 +97,26 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">static</span> <a class="code hl_class" href="classreSIDfp_1_1WaveformCalculator.html">WaveformCalculator</a>* <a class="code hl_function" href="classreSIDfp_1_1WaveformCalculator.html#a70ffec367dd863bd6f03e61ecc4ba2c0">getInstance</a>();</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1WaveformCalculator.html#a6519c5a27995cea7cac33283012a2baf">  105</a></span>    <a class="code hl_class" href="classmatrix.html">matrix_t</a>* <a class="code hl_function" href="classreSIDfp_1_1WaveformCalculator.html#a6519c5a27995cea7cac33283012a2baf">getWaveTable</a>() { <span class="keywordflow">return</span> &amp;wftable; }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1WaveformCalculator.html#a49033bb2d0a03eaa607c2938c558d939">  105</a></span>    rc_matrix_t <a class="code hl_function" href="classreSIDfp_1_1WaveformCalculator.html#a49033bb2d0a03eaa607c2938c558d939">getWaveTable</a>() { <span class="keywordflow">return</span> wftable; }</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">static</span> <a class="code hl_class" href="classmatrix.html">matrix_t</a>* <a class="code hl_function" href="classreSIDfp_1_1WaveformCalculator.html#a6e89f0c4e00a2f75dc90080b17ed2ef2">buildPulldownTable</a>(<a class="code hl_enumeration" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190">ChipModel</a> model, <a class="code hl_enumeration" href="residfp__defs_8h.html#a6c26deb7932c47336d99840baeb97259">CombinedWaveforms</a> cws);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">static</span> rc_matrix_t <a class="code hl_function" href="classreSIDfp_1_1WaveformCalculator.html#a75479c6e686c80bf1386f00d7ec7ad77">buildPulldownTable</a>(<a class="code hl_enumeration" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190">ChipModel</a> model, <a class="code hl_enumeration" href="residfp__defs_8h.html#a6c26deb7932c47336d99840baeb97259">CombinedWaveforms</a> cws);</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>};</div>
 </div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>} <span class="comment">// namespace reSIDfp</span></div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassmatrix_html"><div class="ttname"><a href="classmatrix.html">matrix&lt; short &gt;</a></div></div>
 <div class="ttc" id="aclassreSIDfp_1_1WaveformCalculator_html"><div class="ttname"><a href="classreSIDfp_1_1WaveformCalculator.html">reSIDfp::WaveformCalculator</a></div><div class="ttdef"><b>Definition</b> WaveformCalculator.h:87</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1WaveformCalculator_html_a6519c5a27995cea7cac33283012a2baf"><div class="ttname"><a href="classreSIDfp_1_1WaveformCalculator.html#a6519c5a27995cea7cac33283012a2baf">reSIDfp::WaveformCalculator::getWaveTable</a></div><div class="ttdeci">matrix_t * getWaveTable()</div><div class="ttdef"><b>Definition</b> WaveformCalculator.h:105</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1WaveformCalculator_html_a6e89f0c4e00a2f75dc90080b17ed2ef2"><div class="ttname"><a href="classreSIDfp_1_1WaveformCalculator.html#a6e89f0c4e00a2f75dc90080b17ed2ef2">reSIDfp::WaveformCalculator::buildPulldownTable</a></div><div class="ttdeci">static matrix_t * buildPulldownTable(ChipModel model, CombinedWaveforms cws)</div><div class="ttdef"><b>Definition</b> WaveformCalculator.cpp:250</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1WaveformCalculator_html_a49033bb2d0a03eaa607c2938c558d939"><div class="ttname"><a href="classreSIDfp_1_1WaveformCalculator.html#a49033bb2d0a03eaa607c2938c558d939">reSIDfp::WaveformCalculator::getWaveTable</a></div><div class="ttdeci">rc_matrix_t getWaveTable()</div><div class="ttdef"><b>Definition</b> WaveformCalculator.h:105</div></div>
 <div class="ttc" id="aclassreSIDfp_1_1WaveformCalculator_html_a70ffec367dd863bd6f03e61ecc4ba2c0"><div class="ttname"><a href="classreSIDfp_1_1WaveformCalculator.html#a70ffec367dd863bd6f03e61ecc4ba2c0">reSIDfp::WaveformCalculator::getInstance</a></div><div class="ttdeci">static WaveformCalculator * getInstance()</div><div class="ttdef"><b>Definition</b> WaveformCalculator.cpp:54</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1WaveformCalculator_html_a75479c6e686c80bf1386f00d7ec7ad77"><div class="ttname"><a href="classreSIDfp_1_1WaveformCalculator.html#a75479c6e686c80bf1386f00d7ec7ad77">reSIDfp::WaveformCalculator::buildPulldownTable</a></div><div class="ttdeci">static rc_matrix_t buildPulldownTable(ChipModel model, CombinedWaveforms cws)</div><div class="ttdef"><b>Definition</b> WaveformCalculator.cpp:250</div></div>
 <div class="ttc" id="aresidfp__defs_8h_html"><div class="ttname"><a href="residfp__defs_8h.html">residfp_defs.h</a></div></div>
 <div class="ttc" id="aresidfp__defs_8h_html_a6c26deb7932c47336d99840baeb97259"><div class="ttname"><a href="residfp__defs_8h.html#a6c26deb7932c47336d99840baeb97259">reSIDfp::CombinedWaveforms</a></div><div class="ttdeci">CombinedWaveforms</div><div class="ttdef"><b>Definition</b> residfp_defs.h:62</div></div>
 <div class="ttc" id="aresidfp__defs_8h_html_a951e115c4d2ff52ae48583aa9d055190"><div class="ttname"><a href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190">reSIDfp::ChipModel</a></div><div class="ttdeci">ChipModel</div><div class="ttdef"><b>Definition</b> residfp_defs.h:54</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 15 2026 12:59:32 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 21 2026 09:22:38 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.0.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.0</span>
    </div>
   </td>
  </tr>
@@ -49,6 +49,7 @@
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classreSIDfp_1_1ExternalFilter-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">reSIDfp::ExternalFilter Class Reference</div></div>
 </div><!--header-->
@@ -58,14 +59,20 @@
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab5f27728926f964ff0f779b974fefac8" id="r_ab5f27728926f964ff0f779b974fefac8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1ExternalFilter.html#ab5f27728926f964ff0f779b974fefac8">clock</a> (int input)</td></tr>
-<tr class="separator:ab5f27728926f964ff0f779b974fefac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e41a2d643305288d5bfcc64fc158641" id="r_a5e41a2d643305288d5bfcc64fc158641"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1ExternalFilter.html#a5e41a2d643305288d5bfcc64fc158641">clock</a> (int32_t input)</td></tr>
+<tr class="separator:a5e41a2d643305288d5bfcc64fc158641"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66014b71ab74301c04a0d6ffd65e855f" id="r_a66014b71ab74301c04a0d6ffd65e855f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1ExternalFilter.html#a66014b71ab74301c04a0d6ffd65e855f">ExternalFilter</a> ()</td></tr>
 <tr class="separator:a66014b71ab74301c04a0d6ffd65e855f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57fcd2a32f856ffbcd63ec8a9709b3ed" id="r_a57fcd2a32f856ffbcd63ec8a9709b3ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1ExternalFilter.html#a57fcd2a32f856ffbcd63ec8a9709b3ed">setClockFrequency</a> (double frequency)</td></tr>
 <tr class="separator:a57fcd2a32f856ffbcd63ec8a9709b3ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e9411c5bc187a2bb014702d9da063fe" id="r_a4e9411c5bc187a2bb014702d9da063fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1ExternalFilter.html#a4e9411c5bc187a2bb014702d9da063fe">reset</a> ()</td></tr>
 <tr class="separator:a4e9411c5bc187a2bb014702d9da063fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a7edbf9e31116a21e4e18cd2dd004ae63" id="r_a7edbf9e31116a21e4e18cd2dd004ae63"><td class="memItemLeft" align="right" valign="top"><a id="a7edbf9e31116a21e4e18cd2dd004ae63" name="a7edbf9e31116a21e4e18cd2dd004ae63"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>State</b></td></tr>
+<tr class="separator:a7edbf9e31116a21e4e18cd2dd004ae63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The audio output stage in a Commodore 64 consists of two STC networks, a low-pass RC filter with 3 dB frequency 16kHz followed by a DC-blocker which acts as a high-pass filter with a cutoff dependent on the attached audio equipment impedance. Here we suppose an impedance of 10kOhm resulting in a 3 dB attenuation at 1.6Hz. The STC networks are connected with a <a href="https://en.wikipedia.org/wiki/Bipolar_junction_transistor">BJT</a> based <a href="https://en.wikipedia.org/wiki/Common_collector">common collector</a> used as a voltage follower (featuring a 2SC1815 NPN transistor).</p>
@@ -118,16 +125,16 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab5f27728926f964ff0f779b974fefac8" name="ab5f27728926f964ff0f779b974fefac8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5f27728926f964ff0f779b974fefac8">&#9670;&#160;</a></span>clock()</h2>
+<a id="a5e41a2d643305288d5bfcc64fc158641" name="a5e41a2d643305288d5bfcc64fc158641"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e41a2d643305288d5bfcc64fc158641">&#9670;&#160;</a></span>clock()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">RESIDFP_INLINE int reSIDfp::ExternalFilter::clock </td>
+          <td class="memname">RESIDFP_INLINE int32_t reSIDfp::ExternalFilter::clock </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>input</em></td><td>)</td>
           <td></td>
         </tr>
@@ -194,7 +201,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 15 2026 12:59:32 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 21 2026 09:22:38 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
