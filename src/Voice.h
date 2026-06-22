@@ -42,10 +42,10 @@ private:
 
     EnvelopeGenerator envelopeGenerator;
 
-    /// The DAC LUT for analog waveform output
+    /// The DAC LUT for analog waveform output, range [-0.5,0.5]
     float* wavDAC; //-V730_NOINIT this is initialized in the SID constructor
 
-    /// The DAC LUT for analog envelope output
+    /// The DAC LUT for analog envelope output, range [0,1]
     float* envDAC; //-V730_NOINIT this is initialized in the SID constructor
 
 public:
@@ -61,7 +61,7 @@ public:
      *
      * Ideal range [-2048*255, 2047*255].
      *
-     * @return the voice analog output
+     * @return the voice analog output, range [-0.5,0.5]
      */
     RESIDFP_INLINE
     float output()
