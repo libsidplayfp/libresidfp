@@ -70,7 +70,7 @@ protected:
 
 private:
     /// Filter external input.
-    int32_t Ve = 0;
+    int32_t extin = 0;
 
     /// Filter cutoff frequency.
     uint16_t fc = 0;
@@ -105,16 +105,14 @@ private:
     uint8_t filt = 0;
 
 private:
-    inline int32_t getNormalizedVoice(Voice& v) const
+    inline int32_t getNormalizedVoice(float v, uint8_t env) const
     {
-        return fmc.getNormalizedVoice(v.output(), v.envelope()->output());
+        return fmc.getNormalizedVoice(v, env);
     }
 
-    // If voice 3 is off we still need to clock the waveform generator
-    inline static int32_t getSilentVoice(Voice& v)
+    inline int32_t getNormalizedScaledVoice(float v, uint8_t env, float scale) const
     {
-        v.wave()->output();
-        return 0;
+        return fmc.getNormalizedVoice(v*scale, env);
     }
 
 protected:
@@ -143,6 +141,8 @@ protected:
     virtual int32_t solveIntegrators() = 0;
 
     virtual void restartIntegrators() = 0;
+
+    virtual float filterScale() const = 0;
 
 public:
     Filter(FilterModelConfig& fmc);
@@ -204,7 +204,7 @@ public:
      *
      * @param input a signed 16 bit sample
      */
-    void input(int16_t input) { Ve = fmc.getNormalizedVoice(input/32768.f, 0); }
+    void input(int16_t input) { extin = input; }
 
     void restart() { restartIntegrators(); Vhp = 0; Vlp = 0; Vbp = 0; }
 };
@@ -219,21 +219,37 @@ namespace reSIDfp
 RESIDFP_INLINE
 uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
 {
-    const int32_t V1 = getNormalizedVoice(voice1);
-    const int32_t V2 = getNormalizedVoice(voice2);
-    // Voice 3 is silenced by voice3off if it is not routed through the filter.
-    const int32_t V3 = (filt3 || !voice3off) ? getNormalizedVoice(voice3) : getSilentVoice(voice3);
+    // Waveform outputs
+    const float wav1 = voice1.output();
+    const float wav2 = voice2.output();
+    const float wav3 = voice3.output();
+    const float wavE = extin/65535.f;
 
+    // Envelope outputs
+    const uint8_t env1 = voice1.envelope()->output();
+    const uint8_t env2 = voice2.envelope()->output();
+    const uint8_t env3 = voice3.envelope()->output();
+
+    // Voltage summer for filter input
     int32_t Vsum = 0;
+    Vsum += filt1 ? getNormalizedVoice(wav1, env1) : 0;
+    Vsum += filt2 ? getNormalizedVoice(wav2, env2) : 0;
+    Vsum += filt3 ? getNormalizedVoice(wav3, env3) : 0;
+    Vsum += filtE ? getNormalizedVoice(wavE, 0) : 0;
+    Vsum += Vlp;
+    Vsum += currentResonance[Vbp];
+
+    Vhp = currentSummer[Vsum];
+
+    // Voltage summer for mixer input
+    // The filter input resistors on the 6581 are slightly bigger than the voice ones
+    // Scale the values accordingly
     int32_t Vmix = 0;
-
-    (filt1 ? Vsum : Vmix) += V1;
-    (filt2 ? Vsum : Vmix) += V2;
-    (filt3 ? Vsum : Vmix) += V3;
-    (filtE ? Vsum : Vmix) += Ve;
-
-    Vhp = currentSummer[currentResonance[Vbp] + Vlp + Vsum];
-
+    Vmix += filt1 ? 0 : getNormalizedScaledVoice(wav1, env1, filterScale());
+    Vmix += filt2 ? 0 : getNormalizedScaledVoice(wav2, env2, filterScale());
+    // Voice 3 is silenced by voice3off if it is not routed through the filter
+    Vmix += (filt3 || voice3off) ? 0 : getNormalizedScaledVoice(wav3, env3, filterScale());
+    Vmix += filtE ? 0 : getNormalizedScaledVoice(wavE, 0, filterScale());
     Vmix += solveIntegrators();
 
     return currentVolume[currentMixer[Vmix]];
