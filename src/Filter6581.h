@@ -340,6 +340,8 @@ protected:
 
     void restartIntegrators() override { hpIntegrator.restart(); bpIntegrator.restart(); }
 
+    constexpr float filterScale() const override { return 1.07f; }
+
 public:
     Filter6581() :
         Filter(*FilterModelConfig6581::getInstance()),

@@ -297,6 +297,8 @@ protected:
 
     void restartIntegrators() override { hpIntegrator.restart(); bpIntegrator.restart(); }
 
+    constexpr float filterScale() const override { return 1.0f; }
+
 public:
     Filter8580() :
         Filter(*FilterModelConfig8580::getInstance()),

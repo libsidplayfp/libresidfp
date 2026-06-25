@@ -39,13 +39,7 @@ int32_t Filter6581::solveIntegrators()
     if (bp) Vfilt += Vbp;
     if (hp) Vfilt += Vhp;
 
-    // The filter input resistors are slightly bigger than the voice ones
-    // Scale the values accordingly
-    constexpr int32_t filterGain = static_cast<int32_t>(0.93 * (1 << 12));
-    // Scaling unsigned values adds a DC offset
-    constexpr int32_t offset = 32767 * ((1 << 12) - filterGain);
-    assert(Vfilt >= 0);
-    return (Vfilt * filterGain + offset) >> 12;
+    return Vfilt;
 }
 
 Filter6581::~Filter6581()
