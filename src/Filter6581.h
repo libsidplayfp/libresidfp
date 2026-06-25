@@ -95,7 +95,7 @@ class Integrator6581;
  * $17           |   |                    (CAP2B)     |  (CAP1B)     |
  * 0=to mixer    |   +--R8--+  +---R8--+      +---C---o      +---C---o
  * 1=to filter   |          |  |       |      |       |      |       |
- *                ------R8--o--o--[A>--o--Rw--o--[A>--o--Rw--o--[A>--o
+ *               +------R8--o--o--[A>--o--Rw--o--[A>--o--Rw--o--[A>--o
  *     ve (EXT IN)          |          |              |              |
  * D3  \ ---------------R8--o          |              | (CAP2A)      | (CAP1A)
  *     |   v3               |          | vhp          | vbp          | vlp
