@@ -339,12 +339,12 @@ protected:
     void restartIntegrators() override { hpIntegrator.restart(); bpIntegrator.restart(); }
 
     /*
-     * The filter input resistors on the 6581 are slightly bigger than the voice ones
-     * Scale the values accordingly
+     * The filter input resistors on the 6581 are slightly bigger than the voice ones,
+     * scale the values accordingly.
      */
     int32_t getNormalizedMixerVoice(float v, uint8_t env) const override
     {
-        return getNormalizedVoice(v * 1.07f, env);
+        return getNormalizedVoice(v * static_cast<float>(FilterModelConfig6581::VF_TR_RATIO), env);
     }
 
 public:
