@@ -73,7 +73,7 @@ private:
     int32_t Vlp = 0;
 
     /// Filter external input.
-    int32_t extin = 0;
+    float extin = 0;
 
     /// Filter cutoff frequency.
     uint16_t fc = 0;
@@ -200,7 +200,7 @@ public:
      *
      * @param input a signed 16 bit sample
      */
-    void input(int16_t input) { extin = input; }
+    void input(int16_t input) { extin = input/65535.f; }
 
     void restart() { restartIntegrators(); Vhp = 0; Vlp = 0; Vbp = 0; }
 };
@@ -219,7 +219,6 @@ uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
     const float wav1 = voice1.output();
     const float wav2 = voice2.output();
     const float wav3 = voice3.output();
-    const float wavE = extin/65535.f;
 
     // Envelope outputs
     const uint8_t env1 = voice1.envelope()->output();
@@ -231,7 +230,7 @@ uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
     Vsum += filt1 ? getNormalizedVoice(wav1, env1) : 0;
     Vsum += filt2 ? getNormalizedVoice(wav2, env2) : 0;
     Vsum += filt3 ? getNormalizedVoice(wav3, env3) : 0;
-    Vsum += filtE ? getNormalizedVoice(wavE, 0) : 0;
+    Vsum += filtE ? getNormalizedVoice(extin, 0) : 0;
     Vsum += Vlp;
     Vsum += currentResonance[Vbp];
 
@@ -251,7 +250,7 @@ uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
     Vmix += filt2 ? 0 : getNormalizedMixerVoice(wav2, env2);
     // Voice 3 is silenced by voice3off if it is not routed through the filter
     Vmix += (filt3 || voice3off) ? 0 : getNormalizedMixerVoice(wav3, env3);
-    Vmix += filtE ? 0 : getNormalizedMixerVoice(wavE, 0);
+    Vmix += filtE ? 0 : getNormalizedMixerVoice(extin, 0);
     Vmix += Vfilt;
 
     return currentVolume[currentMixer[Vmix]];
