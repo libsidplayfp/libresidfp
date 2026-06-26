@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2025 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2026 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  * Copyright 2004 Dag Lem <resid@nimrod.no>
  *
@@ -24,6 +24,7 @@
 #define FILTER_H
 
 #include "FilterModelConfig.h"
+#include "Integrator.h"
 #include "Voice.h"
 
 #include "siddefs-fp.h"
@@ -44,7 +45,11 @@ private:
     uint16_t* resonance;
     uint16_t* volume;
 
-    FilterModelConfig& fmc;
+    const FilterModelConfig& m_fmc;
+
+    const Integrator& m_hpIntegrator;
+
+    const Integrator& m_bpIntegrator;
 
     /// Current filter/voice mixer setting.
     uint16_t* currentMixer = nullptr;
@@ -58,7 +63,6 @@ private:
     /// Current volume amplifier setting.
     uint16_t* currentVolume = nullptr;
 
-protected:
     /// Filter highpass state.
     int32_t Vhp = 0;
 
@@ -68,7 +72,6 @@ protected:
     /// Filter lowpass state.
     int32_t Vlp = 0;
 
-private:
     /// Filter external input.
     int32_t extin = 0;
 
@@ -86,7 +89,6 @@ private:
     /// Switch voice 3 off.
     bool voice3off = false;
 
-protected:
     /// Highpass, bandpass, and lowpass filter modes.
     //@{
     bool hp = false;
@@ -103,17 +105,6 @@ private:
 
     /// Selects which inputs to route through filter.
     uint8_t filt = 0;
-
-private:
-    inline int32_t getNormalizedVoice(float v, uint8_t env) const
-    {
-        return fmc.getNormalizedVoice(v, env);
-    }
-
-    inline int32_t getNormalizedScaledVoice(float v, uint8_t env, float scale) const
-    {
-        return fmc.getNormalizedVoice(v*scale, env);
-    }
 
 protected:
     /**
@@ -138,14 +129,19 @@ protected:
      */
     inline unsigned int getFC() const { return static_cast<unsigned int>(fc); }
 
-    virtual int32_t solveIntegrators() = 0;
-
     virtual void restartIntegrators() = 0;
 
-    virtual float filterScale() const = 0;
+    inline int32_t getNormalizedVoice(float v, uint8_t env) const
+    {
+        return m_fmc.getNormalizedVoice(v, env);
+    }
+
+    virtual int32_t getNormalizedMixerVoice(float v, uint8_t env) const = 0;
 
 public:
-    Filter(FilterModelConfig& fmc);
+    Filter(const FilterModelConfig& fmc,
+           const Integrator& hpIntegrator,
+           const Integrator& bpIntegrator);
 
     virtual ~Filter() = default;
 
@@ -239,18 +235,24 @@ uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
     Vsum += Vlp;
     Vsum += currentResonance[Vbp];
 
+    // Filter
     Vhp = currentSummer[Vsum];
+    Vbp = m_hpIntegrator.solve(Vhp);
+    Vlp = m_bpIntegrator.solve(Vbp);
+
+    int32_t Vfilt = 0;
+    if (lp) Vfilt += Vlp;
+    if (bp) Vfilt += Vbp;
+    if (hp) Vfilt += Vhp;
 
     // Voltage summer for mixer input
-    // The filter input resistors on the 6581 are slightly bigger than the voice ones
-    // Scale the values accordingly
     int32_t Vmix = 0;
-    Vmix += filt1 ? 0 : getNormalizedScaledVoice(wav1, env1, filterScale());
-    Vmix += filt2 ? 0 : getNormalizedScaledVoice(wav2, env2, filterScale());
+    Vmix += filt1 ? 0 : getNormalizedMixerVoice(wav1, env1);
+    Vmix += filt2 ? 0 : getNormalizedMixerVoice(wav2, env2);
     // Voice 3 is silenced by voice3off if it is not routed through the filter
-    Vmix += (filt3 || voice3off) ? 0 : getNormalizedScaledVoice(wav3, env3, filterScale());
-    Vmix += filtE ? 0 : getNormalizedScaledVoice(wavE, 0, filterScale());
-    Vmix += solveIntegrators();
+    Vmix += (filt3 || voice3off) ? 0 : getNormalizedMixerVoice(wav3, env3);
+    Vmix += filtE ? 0 : getNormalizedMixerVoice(wavE, 0);
+    Vmix += Vfilt;
 
     return currentVolume[currentMixer[Vmix]];
 }
