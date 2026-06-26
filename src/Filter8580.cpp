@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2024 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2026 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  * Copyright 2004,2010 Dag Lem <resid@nimrod.no>
  *
@@ -26,19 +26,6 @@
 
 namespace reSIDfp
 {
-
-int32_t Filter8580::solveIntegrators()
-{
-    Vbp = hpIntegrator.solve(Vhp);
-    Vlp = bpIntegrator.solve(Vbp);
-
-    int32_t Vfilt = 0;
-    if (lp) Vfilt += Vlp;
-    if (bp) Vfilt += Vbp;
-    if (hp) Vfilt += Vhp;
-
-    return Vfilt;
-}
 
 /**
  * W/L ratio of frequency DAC bit 0,

@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2024 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2026 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  * Copyright 2004,2010 Dag Lem <resid@nimrod.no>
  *
@@ -336,15 +336,20 @@ protected:
      */
     void updateCenterFrequency() override;
 
-    int32_t solveIntegrators() override;
-
     void restartIntegrators() override { hpIntegrator.restart(); bpIntegrator.restart(); }
 
-    constexpr float filterScale() const override { return 1.07f; }
+    /*
+     * The filter input resistors on the 6581 are slightly bigger than the voice ones
+     * Scale the values accordingly
+     */
+    int32_t getNormalizedMixerVoice(float v, uint8_t env) const override
+    {
+        return getNormalizedVoice(v * 1.07f, env);
+    }
 
 public:
     Filter6581() :
-        Filter(*FilterModelConfig6581::getInstance()),
+        Filter(*FilterModelConfig6581::getInstance(), hpIntegrator, bpIntegrator),
         hpIntegrator(*FilterModelConfig6581::getInstance()),
         bpIntegrator(*FilterModelConfig6581::getInstance()),
         f0_dac(FilterModelConfig6581::getInstance()->getDAC(0.5))
