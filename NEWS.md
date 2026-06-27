@@ -1,3 +1,9 @@
+1.1.1 2026-06-28
+* Properly store/restore paddle_y
+* Reworked voice scaling to fix the DC offset on 6581
+
+
+
 1.1.0 2026-06-21
 * Reduced the 6581 filter curve parameter range to avoid overflows (#19)
 * Clear filter state on model change (#27)
