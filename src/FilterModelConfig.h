@@ -173,8 +173,7 @@ protected:
     virtual double getVoiceDC(uint8_t env) const = 0;
 
     /**
-     * The filter summer operates at n ~ 1, and has 5 fundamentally different
-     * input configurations (2 - 6 input "resistors").
+     * The filter summer operates at n ~ 1, and has 6 input "resistors".
      *
      * Note that all "on" transistors are modeled as one. This is not
      * entirely accurate, since the input for each transistor is different,
@@ -185,27 +184,22 @@ protected:
     {
         const double r_N16 = 1. / N16;
 
-        int idx = 0;
-        for (int i = 0; i < 5; i++)
-        {
-            const int idiv = 2 + i;        // 2 - 6 input "resistors".
-            const int size = idiv << 16;
-            const double n = idiv;
-            const double r_idiv = 1. / idiv;
-            opampModel.reset();
+        constexpr int idiv = 6;
+        constexpr int size = idiv << 16;
+        const double n = idiv;
+        constexpr double r_idiv = 1. / idiv;
+        opampModel.reset();
 
-            for (int vi = 0; vi < size; vi++)
-            {
-                const double vin = vmin + vi * r_N16 * r_idiv; /* vmin .. vmax */
-                summer[idx++] = getNormalizedValue(opampModel.solve(n, vin));
-            }
+        for (int vi = 0; vi < size; vi++)
+        {
+            const double vin = vmin + vi * r_N16 * r_idiv; /* vmin .. vmax */
+            summer[vi] = getNormalizedValue(opampModel.solve(n, vin));
         }
     }
 
     /**
      * The audio mixer operates at n ~ 8/6 (6581) or 8/5 (8580),
-     * and has 8 fundamentally different input configurations
-     * (0 - 7 input "resistors").
+     * and has 7 input "resistors".
      *
      * All "on", transistors are modeled as one - see comments above for
      * the filter summer.
@@ -214,20 +208,16 @@ protected:
     {
         const double r_N16 = 1. / N16;
 
-        int idx = 0;
-        for (int i = 0; i < 8; i++)
-        {
-            const int idiv = (i == 0) ? 1 : i;
-            const int size = (i == 0) ? 1 : i << 16;
-            const double n = i * nRatio;
-            const double r_idiv = 1. / idiv;
-            opampModel.reset();
+        constexpr int idiv = 7;
+        constexpr int size = idiv << 16;
+        const double n = idiv * nRatio;
+        constexpr double r_idiv = 1. / idiv;
+        opampModel.reset();
 
-            for (int vi = 0; vi < size; vi++)
-            {
-                const double vin = vmin + vi * r_N16 * r_idiv; /* vmin .. vmax */
-                mixer[idx++] = getNormalizedValue(opampModel.solve(n, vin));
-            }
+        for (int vi = 0; vi < size; vi++)
+        {
+            const double vin = vmin + vi * r_N16 * r_idiv; /* vmin .. vmax */
+            mixer[vi] = getNormalizedValue(opampModel.solve(n, vin));
         }
     }
 
