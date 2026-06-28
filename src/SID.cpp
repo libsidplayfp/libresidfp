@@ -629,7 +629,7 @@ void SID::setDacLeakage(double level)
 void SID::setOffset6581(double offset)
 {
     // TODO determine a reasonable range
-    offset_6581 = 0x380 + static_cast<unsigned int>(offset * 0x20);
+    offset_6581 = 0x380 + static_cast<unsigned int>((1. - offset) * 0x200);
     setChipModel(model);
 }
 
