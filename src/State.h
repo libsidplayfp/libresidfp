@@ -63,6 +63,7 @@ struct State
     // SID
     int bus_value_ttl;
     unsigned int nextVoiceSync;
+    unsigned int offset_6581;
     ChipModel model;
     CombinedWaveforms cws;
     double dacLeakage;
