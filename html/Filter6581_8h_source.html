@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.0</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.1</span>
    </div>
   </td>
  </tr>
@@ -56,7 +56,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * This file is part of libsidplayfp, a SID player engine.</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * Copyright 2011-2024 Leandro Nini &lt;drfiemost@users.sourceforge.net&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * Copyright 2011-2026 Leandro Nini &lt;drfiemost@users.sourceforge.net&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * Copyright 2007-2010 Antti Lankila</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Copyright 2004,2010 Dag Lem &lt;resid@nimrod.no&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *</span></div>
@@ -104,54 +104,61 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Filter6581.html#ad63b0f969d78454a2c9645ff8cef9e28">updateCenterFrequency</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    int32_t solveIntegrators() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <span class="keywordtype">void</span> restartIntegrators()<span class="keyword"> override </span>{ hpIntegrator.restart(); bpIntegrator.restart(); }</div>
 <div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="keywordtype">void</span> restartIntegrators()<span class="keyword"> override </span>{ hpIntegrator.restart(); bpIntegrator.restart(); }</div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    <a class="code hl_class" href="classreSIDfp_1_1Filter6581.html">Filter6581</a>() :</div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        <a class="code hl_class" href="classreSIDfp_1_1Filter.html">Filter</a>(*FilterModelConfig6581::getInstance()),</div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>        hpIntegrator(*FilterModelConfig6581::getInstance()),</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        bpIntegrator(*FilterModelConfig6581::getInstance()),</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        f0_dac(FilterModelConfig6581::getInstance()-&gt;getDAC(0.5))</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    {}</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <a class="code hl_class" href="classreSIDfp_1_1Filter6581.html">~Filter6581</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Filter6581.html#a53fb448a90aebcb80a5ad3a26f517fe7">setFilterCurve</a>(<span class="keywordtype">double</span> curvePosition);</div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span> </div>
-<div class="foldopen" id="foldopen00367" data-start="{" data-end="}">
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1Filter6581.html#ac247c20c470b7b0dce452eb8189efe17">  367</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Filter6581.html#ac247c20c470b7b0dce452eb8189efe17">setFilterRange</a>(<span class="keywordtype">double</span> adjustment)</div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    {</div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        FilterModelConfig6581::getInstance()-&gt;setFilterRange(adjustment);</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    }</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="comment">     * The filter input resistors on the 6581 are slightly bigger than the voice ones,</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="comment">     * scale the values accordingly.</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    int32_t getNormalizedMixerVoice(<span class="keywordtype">float</span> v, uint8_t env)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        <span class="keywordflow">return</span> getNormalizedVoice(v * <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(FilterModelConfig6581::VF_TR_RATIO), env);</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    }</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <a class="code hl_class" href="classreSIDfp_1_1Filter6581.html">Filter6581</a>() :</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        <a class="code hl_class" href="classreSIDfp_1_1Filter.html">Filter</a>(*FilterModelConfig6581::getInstance(), hpIntegrator, bpIntegrator),</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        hpIntegrator(*FilterModelConfig6581::getInstance()),</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>        bpIntegrator(*FilterModelConfig6581::getInstance()),</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>        f0_dac(FilterModelConfig6581::getInstance()-&gt;getDAC(0.5))</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    {}</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <a class="code hl_class" href="classreSIDfp_1_1Filter6581.html">~Filter6581</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Filter6581.html#a53fb448a90aebcb80a5ad3a26f517fe7">setFilterCurve</a>(<span class="keywordtype">double</span> curvePosition);</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="foldopen" id="foldopen00374" data-start="{" data-end="}">
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1Filter6581.html#ac247c20c470b7b0dce452eb8189efe17">  374</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Filter6581.html#ac247c20c470b7b0dce452eb8189efe17">setFilterRange</a>(<span class="keywordtype">double</span> adjustment)</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    {</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>        FilterModelConfig6581::getInstance()-&gt;setFilterRange(adjustment);</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    }</div>
 </div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
-<div class="foldopen" id="foldopen00377" data-start="{" data-end="}">
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1Filter6581.html#a51909c468983b169f3db9518ff666a3b">  377</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Filter6581.html#a51909c468983b169f3db9518ff666a3b">enableOldCaps</a>(<span class="keywordtype">bool</span> <a class="code hl_function" href="classreSIDfp_1_1Filter.html#aa1448375bdf13af37ddf8aa830fda581">enable</a>)</div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    {</div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        FilterModelConfig6581::getInstance()-&gt;enableOldCaps(<a class="code hl_function" href="classreSIDfp_1_1Filter.html#aa1448375bdf13af37ddf8aa830fda581">enable</a>);</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>    }</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="foldopen" id="foldopen00384" data-start="{" data-end="}">
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1Filter6581.html#a51909c468983b169f3db9518ff666a3b">  384</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classreSIDfp_1_1Filter6581.html#a51909c468983b169f3db9518ff666a3b">enableOldCaps</a>(<span class="keywordtype">bool</span> <a class="code hl_function" href="classreSIDfp_1_1Filter.html#aa1448375bdf13af37ddf8aa830fda581">enable</a>)</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    {</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>        FilterModelConfig6581::getInstance()-&gt;enableOldCaps(<a class="code hl_function" href="classreSIDfp_1_1Filter.html#aa1448375bdf13af37ddf8aa830fda581">enable</a>);</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    }</div>
 </div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>};</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>};</div>
 </div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>} <span class="comment">// namespace reSIDfp</span></div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>} <span class="comment">// namespace reSIDfp</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> </div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassreSIDfp_1_1Filter6581_html"><div class="ttname"><a href="classreSIDfp_1_1Filter6581.html">reSIDfp::Filter6581</a></div><div class="ttdef"><b>Definition</b> Filter6581.h:321</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1Filter6581_html_a51909c468983b169f3db9518ff666a3b"><div class="ttname"><a href="classreSIDfp_1_1Filter6581.html#a51909c468983b169f3db9518ff666a3b">reSIDfp::Filter6581::enableOldCaps</a></div><div class="ttdeci">static void enableOldCaps(bool enable)</div><div class="ttdef"><b>Definition</b> Filter6581.h:377</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1Filter6581_html_a53fb448a90aebcb80a5ad3a26f517fe7"><div class="ttname"><a href="classreSIDfp_1_1Filter6581.html#a53fb448a90aebcb80a5ad3a26f517fe7">reSIDfp::Filter6581::setFilterCurve</a></div><div class="ttdeci">void setFilterCurve(double curvePosition)</div><div class="ttdef"><b>Definition</b> Filter6581.cpp:63</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1Filter6581_html_ac247c20c470b7b0dce452eb8189efe17"><div class="ttname"><a href="classreSIDfp_1_1Filter6581.html#ac247c20c470b7b0dce452eb8189efe17">reSIDfp::Filter6581::setFilterRange</a></div><div class="ttdeci">static void setFilterRange(double adjustment)</div><div class="ttdef"><b>Definition</b> Filter6581.h:367</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1Filter6581_html_ad63b0f969d78454a2c9645ff8cef9e28"><div class="ttname"><a href="classreSIDfp_1_1Filter6581.html#ad63b0f969d78454a2c9645ff8cef9e28">reSIDfp::Filter6581::updateCenterFrequency</a></div><div class="ttdeci">void updateCenterFrequency() override</div><div class="ttdef"><b>Definition</b> Filter6581.cpp:56</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1Filter_html"><div class="ttname"><a href="classreSIDfp_1_1Filter.html">reSIDfp::Filter</a></div><div class="ttdef"><b>Definition</b> Filter.h:38</div></div>
-<div class="ttc" id="aclassreSIDfp_1_1Filter_html_aa1448375bdf13af37ddf8aa830fda581"><div class="ttname"><a href="classreSIDfp_1_1Filter.html#aa1448375bdf13af37ddf8aa830fda581">reSIDfp::Filter::enable</a></div><div class="ttdeci">void enable(bool enable)</div><div class="ttdef"><b>Definition</b> Filter.cpp:125</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1Filter6581_html_a51909c468983b169f3db9518ff666a3b"><div class="ttname"><a href="classreSIDfp_1_1Filter6581.html#a51909c468983b169f3db9518ff666a3b">reSIDfp::Filter6581::enableOldCaps</a></div><div class="ttdeci">static void enableOldCaps(bool enable)</div><div class="ttdef"><b>Definition</b> Filter6581.h:384</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1Filter6581_html_a53fb448a90aebcb80a5ad3a26f517fe7"><div class="ttname"><a href="classreSIDfp_1_1Filter6581.html#a53fb448a90aebcb80a5ad3a26f517fe7">reSIDfp::Filter6581::setFilterCurve</a></div><div class="ttdeci">void setFilterCurve(double curvePosition)</div><div class="ttdef"><b>Definition</b> Filter6581.cpp:44</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1Filter6581_html_ac247c20c470b7b0dce452eb8189efe17"><div class="ttname"><a href="classreSIDfp_1_1Filter6581.html#ac247c20c470b7b0dce452eb8189efe17">reSIDfp::Filter6581::setFilterRange</a></div><div class="ttdeci">static void setFilterRange(double adjustment)</div><div class="ttdef"><b>Definition</b> Filter6581.h:374</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1Filter6581_html_ad63b0f969d78454a2c9645ff8cef9e28"><div class="ttname"><a href="classreSIDfp_1_1Filter6581.html#ad63b0f969d78454a2c9645ff8cef9e28">reSIDfp::Filter6581::updateCenterFrequency</a></div><div class="ttdeci">void updateCenterFrequency() override</div><div class="ttdef"><b>Definition</b> Filter6581.cpp:37</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1Filter_html"><div class="ttname"><a href="classreSIDfp_1_1Filter.html">reSIDfp::Filter</a></div><div class="ttdef"><b>Definition</b> Filter.h:39</div></div>
+<div class="ttc" id="aclassreSIDfp_1_1Filter_html_aa1448375bdf13af37ddf8aa830fda581"><div class="ttname"><a href="classreSIDfp_1_1Filter.html#aa1448375bdf13af37ddf8aa830fda581">reSIDfp::Filter::enable</a></div><div class="ttdeci">void enable(bool enable)</div><div class="ttdef"><b>Definition</b> Filter.cpp:129</div></div>
 <div class="ttc" id="aclassreSIDfp_1_1Integrator6581_html"><div class="ttname"><a href="classreSIDfp_1_1Integrator6581.html">reSIDfp::Integrator6581</a></div><div class="ttdef"><b>Definition</b> Integrator6581.h:165</div></div>
 <div class="ttc" id="astructreSIDfp_1_1State_html"><div class="ttname"><a href="structreSIDfp_1_1State.html">reSIDfp::State</a></div><div class="ttdef"><b>Definition</b> State.h:47</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 21 2026 09:22:38 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 28 2026 07:10:42 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

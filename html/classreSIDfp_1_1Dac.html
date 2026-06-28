@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.0</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.1</span>
    </div>
   </td>
  </tr>
@@ -71,7 +71,7 @@ Public Member Functions</h2></td></tr>
    2R  2R      2R  2R  2R     2R   only for
     |   |       |   |   |      |   MOS 8580
 Vo -o-R-o-R-...-o-R-o-R--    --+
-</pre><p>All MOS 6581 DACs are missing a termination resistor at bit 0. This causes pronounced errors for the lower 4 - 5 bits (e.g. the output for bit 0 is actually equal to the output for bit 1), resulting in DAC discontinuities for the lower bits. In addition to this, the 6581 DACs exhibit further severe discontinuities for higher bits, which may be explained by a less than perfect match between the R and 2R resistors, or by output impedance in the NMOS transistors providing the bit voltages. A good approximation of the actual DAC output is achieved for 2R/R ~ 2.20.</p>
+</pre><p>All MOS 6581 DACs are missing a termination resistor at bit 0. This causes pronounced errors for the lower 4 - 5 bits (e.g. the output for bit 0 is actually equal to the output for bit 1), resulting in DAC discontinuities for the lower bits. In addition to this, the 6581 DACs exhibit further severe discontinuities for higher bits, which may be explained by a less than perfect match between the R and 2R resistors, or by output impedance in the NMOS transistors providing the bit voltages. A good approximation of the actual DAC output is achieved for 2R/R ~ 2.20. NOTE: from the schematics the 2R/R ratio seems pretty accurate.</p>
 <p>The MOS 8580 DACs, on the other hand, do not exhibit any discontinuities. These DACs include the correct termination resistor, and also seem to have very accurately matched R and 2R resistors (2R/R = 2.00).</p>
 <p>On the 6581 the output of the waveform and envelope DACs go through a voltage follower built with two NMOS: </p><pre class="fragment">        Vdd
 
@@ -182,7 +182,7 @@ Vo -o-R-o-R-...-o-R-o-R--    --+
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 21 2026 09:22:38 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 28 2026 07:10:42 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

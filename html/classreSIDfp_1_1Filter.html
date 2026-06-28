@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.0</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.1</span>
    </div>
   </td>
  </tr>
@@ -50,7 +50,6 @@
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classreSIDfp_1_1Filter-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">reSIDfp::Filter Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
@@ -71,9 +70,9 @@ Inheritance diagram for reSIDfp::Filter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4be85dc7b7a5ff1e5f5e4b88f7f680d5" id="r_a4be85dc7b7a5ff1e5f5e4b88f7f680d5"><td class="memItemLeft" align="right" valign="top"><a id="a4be85dc7b7a5ff1e5f5e4b88f7f680d5" name="a4be85dc7b7a5ff1e5f5e4b88f7f680d5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Filter</b> (<a class="el" href="classreSIDfp_1_1FilterModelConfig.html">FilterModelConfig</a> &amp;fmc)</td></tr>
-<tr class="separator:a4be85dc7b7a5ff1e5f5e4b88f7f680d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac152c39052f82afb3b0d59199b445259" id="r_ac152c39052f82afb3b0d59199b445259"><td class="memItemLeft" align="right" valign="top"><a id="ac152c39052f82afb3b0d59199b445259" name="ac152c39052f82afb3b0d59199b445259"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Filter</b> (const <a class="el" href="classreSIDfp_1_1FilterModelConfig.html">FilterModelConfig</a> &amp;fmc, const <a class="el" href="classreSIDfp_1_1Integrator.html">Integrator</a> &amp;hpIntegrator, const <a class="el" href="classreSIDfp_1_1Integrator.html">Integrator</a> &amp;bpIntegrator)</td></tr>
+<tr class="separator:ac152c39052f82afb3b0d59199b445259"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbd7f11a1898355b73fa2d78a6d761ce" id="r_adbd7f11a1898355b73fa2d78a6d761ce"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Filter.html#adbd7f11a1898355b73fa2d78a6d761ce">clock</a> (<a class="el" href="classreSIDfp_1_1Voice.html">Voice</a> &amp;voice1, <a class="el" href="classreSIDfp_1_1Voice.html">Voice</a> &amp;voice2, <a class="el" href="classreSIDfp_1_1Voice.html">Voice</a> &amp;voice3)</td></tr>
 <tr class="separator:adbd7f11a1898355b73fa2d78a6d761ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1448375bdf13af37ddf8aa830fda581" id="r_aa1448375bdf13af37ddf8aa830fda581"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Filter.html#aa1448375bdf13af37ddf8aa830fda581">enable</a> (bool enable)</td></tr>
@@ -104,37 +103,15 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:aa857d5efb3725e8171d078155536b628"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae93bef21b1ce439a4837e99cdeb789a6" id="r_ae93bef21b1ce439a4837e99cdeb789a6"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Filter.html#ae93bef21b1ce439a4837e99cdeb789a6">getFC</a> () const</td></tr>
 <tr class="separator:ae93bef21b1ce439a4837e99cdeb789a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8660ad298ebb6cab596916bf4ca53479" id="r_a8660ad298ebb6cab596916bf4ca53479"><td class="memItemLeft" align="right" valign="top"><a id="a8660ad298ebb6cab596916bf4ca53479" name="a8660ad298ebb6cab596916bf4ca53479"></a>
-virtual int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>solveIntegrators</b> ()=0</td></tr>
-<tr class="separator:a8660ad298ebb6cab596916bf4ca53479"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8b77c9ec69d15868614141f0e66362e" id="r_ab8b77c9ec69d15868614141f0e66362e"><td class="memItemLeft" align="right" valign="top"><a id="ab8b77c9ec69d15868614141f0e66362e" name="ab8b77c9ec69d15868614141f0e66362e"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>restartIntegrators</b> ()=0</td></tr>
 <tr class="separator:ab8b77c9ec69d15868614141f0e66362e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:ad184fe6bf6b33f567d662139e9a527ab" id="r_ad184fe6bf6b33f567d662139e9a527ab"><td class="memItemLeft" align="right" valign="top"><a id="ad184fe6bf6b33f567d662139e9a527ab" name="ad184fe6bf6b33f567d662139e9a527ab"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Vhp</b> = 0</td></tr>
-<tr class="memdesc:ad184fe6bf6b33f567d662139e9a527ab"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classreSIDfp_1_1Filter.html">Filter</a> highpass state. <br /></td></tr>
-<tr class="separator:ad184fe6bf6b33f567d662139e9a527ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d43114a454bd493fc7ee297a80f3fbb" id="r_a0d43114a454bd493fc7ee297a80f3fbb"><td class="memItemLeft" align="right" valign="top"><a id="a0d43114a454bd493fc7ee297a80f3fbb" name="a0d43114a454bd493fc7ee297a80f3fbb"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Vbp</b> = 0</td></tr>
-<tr class="memdesc:a0d43114a454bd493fc7ee297a80f3fbb"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classreSIDfp_1_1Filter.html">Filter</a> bandpass state. <br /></td></tr>
-<tr class="separator:a0d43114a454bd493fc7ee297a80f3fbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0d9657bff836c19af840ec4eb963b45" id="r_ac0d9657bff836c19af840ec4eb963b45"><td class="memItemLeft" align="right" valign="top"><a id="ac0d9657bff836c19af840ec4eb963b45" name="ac0d9657bff836c19af840ec4eb963b45"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Vlp</b> = 0</td></tr>
-<tr class="memdesc:ac0d9657bff836c19af840ec4eb963b45"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classreSIDfp_1_1Filter.html">Filter</a> lowpass state. <br /></td></tr>
-<tr class="separator:ac0d9657bff836c19af840ec4eb963b45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cb685bf1f271613d5cc3d4ae4d5fc6f" id="r_a0cb685bf1f271613d5cc3d4ae4d5fc6f"><td class="memItemLeft" align="right" valign="top"><a id="a0cb685bf1f271613d5cc3d4ae4d5fc6f" name="a0cb685bf1f271613d5cc3d4ae4d5fc6f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hp</b> = false</td></tr>
-<tr class="memdesc:a0cb685bf1f271613d5cc3d4ae4d5fc6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Highpass, bandpass, and lowpass filter modes. <br /></td></tr>
-<tr class="separator:a0cb685bf1f271613d5cc3d4ae4d5fc6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab64c4d4bc5e0030c78e46ec29f087f3d" id="r_ab64c4d4bc5e0030c78e46ec29f087f3d"><td class="memItemLeft" align="right" valign="top"><a id="ab64c4d4bc5e0030c78e46ec29f087f3d" name="ab64c4d4bc5e0030c78e46ec29f087f3d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>bp</b> = false</td></tr>
-<tr class="separator:ab64c4d4bc5e0030c78e46ec29f087f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab66282c15517137aea41c811e59b5fb5" id="r_ab66282c15517137aea41c811e59b5fb5"><td class="memItemLeft" align="right" valign="top"><a id="ab66282c15517137aea41c811e59b5fb5" name="ab66282c15517137aea41c811e59b5fb5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>lp</b> = false</td></tr>
-<tr class="separator:ab66282c15517137aea41c811e59b5fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fc375c90440673629415c29f78eef9f" id="r_a7fc375c90440673629415c29f78eef9f"><td class="memItemLeft" align="right" valign="top"><a id="a7fc375c90440673629415c29f78eef9f" name="a7fc375c90440673629415c29f78eef9f"></a>
+int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>getNormalizedVoice</b> (float v, uint8_t env) const</td></tr>
+<tr class="separator:a7fc375c90440673629415c29f78eef9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fcab2762e8cd9cf6bc6b5a82269bf1f" id="r_a4fcab2762e8cd9cf6bc6b5a82269bf1f"><td class="memItemLeft" align="right" valign="top"><a id="a4fcab2762e8cd9cf6bc6b5a82269bf1f" name="a4fcab2762e8cd9cf6bc6b5a82269bf1f"></a>
+virtual int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>getNormalizedMixerVoice</b> (float v, uint8_t env) const =0</td></tr>
+<tr class="separator:a4fcab2762e8cd9cf6bc6b5a82269bf1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -485,7 +462,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>State</b></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 21 2026 09:22:38 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 28 2026 07:10:42 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
