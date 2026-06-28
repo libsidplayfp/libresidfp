@@ -98,6 +98,8 @@ private:
     /// Time until #voiceSync must be run.
     unsigned int nextVoiceSync;
 
+    unsigned int offset_6581;
+
     /// Currently active chip model.
     ChipModel model;
 
@@ -366,6 +368,11 @@ public:
      * Set the DAC leakage level.
      */
     void setDacLeakage(double level);
+
+    /*
+     * Set the 6581 wave offset.
+     */
+    void setOffset6581(double offset);
 };
 
 } // namespace reSIDfp

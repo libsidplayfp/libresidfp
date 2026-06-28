@@ -155,6 +155,11 @@ void residfp::enableOld6581caps(bool enable)
     sid.enableOld6581caps(enable);
 }
 
+void residfp::setOffset6581(double offset)
+{
+    sid.setOffset6581(offset);
+}
+
 void residfp::setPaddle(unsigned char x, unsigned char y)
 {
     sid.setPaddle(x, y);

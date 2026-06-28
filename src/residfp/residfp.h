@@ -290,6 +290,15 @@ public:
      * @since 1.2
      */
     void setDacLeakage(double level);
+
+    /**
+     * Set the 6581 wave offset.
+     *
+     * @param offset the waveform offset, between 0 and 1
+     *
+     * @since 1.2
+     */
+    void setOffset6581(double offset);
 };
 
 }

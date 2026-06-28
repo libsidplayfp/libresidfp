@@ -142,6 +142,7 @@ SID::SID() :
     filter6581(new Filter6581()),
     filter8580(new Filter8580()),
     resampler(nullptr),
+    offset_6581(OFFSET_6581),
     cws(AVERAGE),
     dacLeakage(1.0),
     p(new Params)
@@ -269,8 +270,7 @@ void SID::setChipModel(ChipModel new_model)
         Dac dacBuilder(OSC_DAC_BITS);
         dacBuilder.kinkedDac(model, dacLeakage);
 
-        //const double offset = dacBuilder.getOutput(is6581 ? OFFSET_6581 : OFFSET_8580);
-        const double offset = dacBuilder.getOutput(is6581 ? OFFSET_6581 : 0x7ff, is6581);
+        const double offset = dacBuilder.getOutput(is6581 ? offset_6581 : 0x800, is6581);
 
         for (unsigned int i = 0; i < (1 << OSC_DAC_BITS); i++)
         {
@@ -616,7 +616,6 @@ void SID::setPaddle(uint8_t x, uint8_t y)
     paddleY = y;
 }
 
-
 void SID::setDacLeakage(double level)
 {
 #ifdef HAVE_CXX17
@@ -624,6 +623,13 @@ void SID::setDacLeakage(double level)
 #else
      dacLeakage = std::max(std::min(level, 1.0), 0.0);
 #endif
+    setChipModel(model);
+}
+
+void SID::setOffset6581(double offset)
+{
+    // TODO determine a reasonable range
+    offset_6581 = 0x380 + static_cast<unsigned int>(offset * 0x20);
     setChipModel(model);
 }
 
