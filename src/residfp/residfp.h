@@ -293,8 +293,9 @@ public:
 
     /**
      * Set the 6581 wave offset.
+     * Affects the volume of digi samples.
      *
-     * @param offset the waveform offset, between 0 and 1
+     * @param offset the waveform offset, between 0 (faint digis) and 1 (loud digis)
      *
      * @since 1.2
      */
