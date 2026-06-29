@@ -136,8 +136,8 @@ RESIDFP_INLINE
 int32_t ExternalFilter::clock(int32_t input)
 {
     const int32_t Vi = input << 11;
-    const int32_t dVlp = (w0lp_1_s7 * (Vi - Vlp) >> 7);
-    const int32_t dVhp = (w0hp_1_s17 * (Vlp - Vhp) >> 17);
+    const int32_t dVlp = (w0lp_1_s7 * (Vi - Vlp)) >> 7;
+    const int32_t dVhp = (w0hp_1_s17 * (Vlp - Vhp)) >> 17;
     Vlp += dVlp;
     Vhp += dVhp;
     return (Vlp - Vhp) >> 11;
