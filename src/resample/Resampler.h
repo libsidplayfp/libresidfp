@@ -40,6 +40,21 @@ protected:
 
     Resampler() = default;
 
+    mutable uint32_t m_wnoise = 34653463u;
+    mutable int32_t m_bnoise = 0;
+
+    int32_t bnoise() const
+    {
+        // white noise
+        m_wnoise = m_wnoise * 1664525u + 1013904223u;
+
+        // low-passed noise
+        int32_t n = (int32_t)((m_wnoise >> 20) & 0x7f) - 0x80;
+        m_bnoise = m_bnoise + ((0x06*(n - m_bnoise)) >> 7);
+
+        return m_bnoise;
+    }
+
 public:
     virtual ~Resampler() = default;
 
@@ -59,7 +74,7 @@ public:
     inline int16_t getOutput(int32_t scaleFactor) const
     {
         const int32_t out = (scaleFactor * output()) / 2;
-        return Limiter::softClip(out);
+        return Limiter::softClip(out + bnoise());
     }
 
     virtual void reset() = 0;
