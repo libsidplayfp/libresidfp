@@ -280,6 +280,16 @@ public:
      * @since 1.1
      */
     void restoreState(char* buffer, int size);
+
+    /**
+     * Set the DAC leakage level.
+     * Affects the envelope and waveforms.
+     *
+     * @param level the leakage level, between 0 (no leakage) and 1
+     *
+     * @since 1.2
+     */
+    void setDacLeakage(double level);
 };
 
 }
