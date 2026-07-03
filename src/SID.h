@@ -104,6 +104,9 @@ private:
     /// Currently selected combined waveforms strength.
     CombinedWaveforms cws;
 
+    // Dac leakage
+    double dacLeakage;
+
     /// Last written value
     uint8_t busValue;
 
@@ -358,6 +361,11 @@ public:
      * Set paddle coordinates.
      */
     void setPaddle(uint8_t x, uint8_t y);
+
+    /*
+     * Set the DAC leakage level.
+     */
+    void setDacLeakage(double level);
 };
 
 } // namespace reSIDfp

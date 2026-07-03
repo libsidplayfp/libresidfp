@@ -65,6 +65,7 @@ struct State
     unsigned int nextVoiceSync;
     ChipModel model;
     CombinedWaveforms cws;
+    double dacLeakage;
     uint8_t bus_value;
     uint8_t paddle_x;
     uint8_t paddle_y;

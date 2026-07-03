@@ -174,3 +174,8 @@ void residfp::restoreState(char* buffer, int size)
 {
     State::restoreState(sid, buffer, size);
 }
+
+void residfp::setDacLeakage(double level)
+{
+    sid.setDacLeakage(level);
+}

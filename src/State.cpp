@@ -84,6 +84,7 @@ int State::saveState(SID &s, char* buffer, int size)
         state.env3[i] = envelope->env3;
     }
 
+    state.dacLeakage = s.dacLeakage;
     state.bus_value = s.busValue;
     state.bus_value_ttl = s.busValueTtl;
     state.nextVoiceSync = s.nextVoiceSync;
@@ -194,6 +195,7 @@ void State::restoreState(SID &s, char* buffer, int size)
     State state;
     std::memcpy(&state, buffer, cnt);
 
+    s.dacLeakage = state.dacLeakage;
     s.busValue = state.bus_value;
     s.busValueTtl = state.bus_value_ttl;
     s.nextVoiceSync = state.nextVoiceSync;

@@ -24,6 +24,7 @@
 
 #include "SID.h"
 
+#include <algorithm>
 #include <limits>
 
 #include "array.h"
@@ -142,6 +143,7 @@ SID::SID() :
     filter8580(new Filter8580()),
     resampler(nullptr),
     cws(AVERAGE),
+    dacLeakage(1.0),
     p(new Params)
 {
     voice[0].setOtherVoices(voice[2], voice[1]);
@@ -252,7 +254,7 @@ void SID::setChipModel(ChipModel new_model)
     // calculate envelope DAC table
     {
         Dac dacBuilder(ENV_DAC_BITS);
-        dacBuilder.kinkedDac(model);
+        dacBuilder.kinkedDac(model, dacLeakage);
 
         for (unsigned int i = 0; i < (1 << ENV_DAC_BITS); i++)
         {
@@ -265,7 +267,7 @@ void SID::setChipModel(ChipModel new_model)
 
     {
         Dac dacBuilder(OSC_DAC_BITS);
-        dacBuilder.kinkedDac(model);
+        dacBuilder.kinkedDac(model, dacLeakage);
 
         //const double offset = dacBuilder.getOutput(is6581 ? OFFSET_6581 : OFFSET_8580);
         const double offset = dacBuilder.getOutput(is6581 ? OFFSET_6581 : 0x7ff, is6581);
@@ -612,6 +614,17 @@ void SID::setPaddle(uint8_t x, uint8_t y)
 {
     paddleX = x;
     paddleY = y;
+}
+
+
+void SID::setDacLeakage(double level)
+{
+#ifdef HAVE_CXX17
+     dacLeakage = std::clamp(level, 0.0, 1.0);
+#else
+     dacLeakage = std::max(std::min(level, 1.0), 0.0);
+#endif
+    setChipModel(model);
 }
 
 } // namespace reSIDfp
