@@ -1,3 +1,9 @@
+1.1.2 2026-07-xx
+* Make DAC leakage adjustable (#10)
+* Make the 6581 waveform offset adjustable (#13)
+
+
+
 1.1.2 2026-07-17
 * Removed typo in configure script
 
