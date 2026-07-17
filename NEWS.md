@@ -1,3 +1,8 @@
+1.1.2 2026-07-17
+* Removed typo in configure script
+
+
+
 1.1.1 2026-06-28
 * Properly store/restore paddle_y
 * Reworked voice scaling to fix the DC offset on 6581
