@@ -57,7 +57,7 @@ namespace reSIDfp
  *                                  GND
  * ~~~
  *
- * * Only for the 6581.
+ * * Pulldown resistor, only for the 6581.
  * ** The C64c board additionally includes a [bootstrap] capacitor to increase
  *    the input impedance of the common collector.
  *

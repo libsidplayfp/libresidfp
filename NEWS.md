@@ -1,4 +1,4 @@
-1.1.2 2026-07-xx
+1.2.0 2026-07-xx
 * Make DAC leakage adjustable (#10)
 * Make the 6581 waveform offset adjustable (#13)
 
