@@ -41,6 +41,14 @@
 #  include <numbers>
 #endif
 
+#if __cplusplus >= 201402L
+#  define CONSTEXPR_FUNC  constexpr
+#  define CONSTEXPR_VAR   constexpr
+#else
+#  define CONSTEXPR_FUNC
+#  define CONSTEXPR_VAR   const
+#endif
+
 namespace reSIDfp
 {
 
@@ -57,7 +65,8 @@ constexpr int BITS = 16;
  * @param x evaluate I0 at x
  * @return value of I0 at x.
  */
-constexpr double I0(double x)
+CONSTEXPR_FUNC
+double I0(double x)
 {
     double sum = 1.;
     double u = 1.;
@@ -205,7 +214,7 @@ SincResampler::SincResampler(
     // function in the MATLAB Signal Processing Toolbox:
     // http://www.mathworks.com/help/signal/ref/kaiserord.html
     constexpr double beta = 0.1102 * (A - 8.7);
-    constexpr double I0beta = I0(beta);
+    CONSTEXPR_VAR double I0beta = I0(beta);
     const double cyclesPerSampleD = clockFrequency / samplingFrequency;
     const double inv_cyclesPerSampleD = samplingFrequency / clockFrequency;
 
