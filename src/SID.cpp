@@ -640,7 +640,7 @@ void SID::setOffset6581(double offset)
 
 void SID::setDCBRes(double res)
 {
-    externalFilter.setExtResistance(res);
+    externalFilter.setExtResistance(clamp(res));
 }
 
 } // namespace reSIDfp
