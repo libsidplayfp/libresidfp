@@ -639,4 +639,10 @@ void SID::setOffset6581(double offset)
     setChipModel(model);
 }
 
+void SID::setDCBRes(double res)
+{
+    //offset_6581 = 0x380 + static_cast<unsigned int>((1. - clamp(offset)) * 0x200);
+    //setChipModel(model);
+}
+
 } // namespace reSIDfp

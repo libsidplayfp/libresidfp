@@ -184,3 +184,8 @@ void residfp::setDacLeakage(double level)
 {
     sid.setDacLeakage(level);
 }
+
+void residfp::setDCBRes(double res)
+{
+    sid.setDCBRes(res);
+}
