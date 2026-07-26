@@ -251,9 +251,10 @@ void State::restoreState(SID &s, char* buffer, int size)
 
     s.externalFilter.Vlp = state.exVlp;
     s.externalFilter.Vhp = state.exVhp;
-    s.externalFilter.setExtResistance(state.ext_res);
+    s.externalFilter.m_ext_res = state.ext_res;
 
     s.setSamplingParameters(state.clockFrequency, state.method, state.samplingFrequency);
+    s.externalFilter.recalcParams();
 
     for (int i = 0; i < 3; i++)
     {
