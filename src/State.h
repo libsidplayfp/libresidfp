@@ -35,7 +35,6 @@ class SID;
 struct Params
 {
     SamplingMethod method;
-    double clockFrequency;
     double samplingFrequency;
     double filterCurve6581;
     double filterRange6581;
@@ -149,6 +148,7 @@ struct State
     /// External filter
     int32_t exVlp;
     int32_t exVhp;
+    double ext_res;
 
     // Resampler
     double clockFrequency;

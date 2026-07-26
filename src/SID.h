@@ -373,6 +373,11 @@ public:
      * Set the 6581 wave offset.
      */
     void setOffset6581(double offset);
+
+    /*
+     * Set the DC-Blocker resistance.
+     */
+    void setDCBRes(double res);
 };
 
 } // namespace reSIDfp

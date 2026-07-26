@@ -300,6 +300,16 @@ public:
      * @since 1.2
      */
     void setOffset6581(double offset);
+
+    /**
+     * Set the DC-Blocker resistance.
+     * Affects the highpass cutoff frequency.
+     *
+     * @param res the resistance value, between 0 (~1.6Hz) and 1 (~16Hz)
+     *
+     * @since 1.2
+     */
+    void setDCBRes(double res);
 };
 
 }

@@ -136,9 +136,10 @@ int State::saveState(SID &s, char* buffer, int size)
 
     state.exVlp = s.externalFilter.Vlp;
     state.exVhp = s.externalFilter.Vhp;
+    state.ext_res = s.externalFilter.m_ext_res;
+    state.clockFrequency = s.externalFilter.m_frequency;
 
     state.method = s.p->method;
-    state.clockFrequency = s.p->clockFrequency;
     state.samplingFrequency = s.p->samplingFrequency;
 
     switch (s.p->method)
@@ -250,8 +251,10 @@ void State::restoreState(SID &s, char* buffer, int size)
 
     s.externalFilter.Vlp = state.exVlp;
     s.externalFilter.Vhp = state.exVhp;
+    s.externalFilter.m_ext_res = state.ext_res;
 
     s.setSamplingParameters(state.clockFrequency, state.method, state.samplingFrequency);
+    s.externalFilter.recalcParams();
 
     for (int i = 0; i < 3; i++)
     {
