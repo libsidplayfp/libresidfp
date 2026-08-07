@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.2.0</span>
    </div>
   </td>
  </tr>
@@ -102,6 +102,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0b7e8598b5fe3bbc95bf9df740ff637f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a513a5df96d4f96983461ac8ef7f44535" id="r_a513a5df96d4f96983461ac8ef7f44535"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1residfp.html#a513a5df96d4f96983461ac8ef7f44535">restoreState</a> (char *buffer, int size)</td></tr>
 <tr class="separator:a513a5df96d4f96983461ac8ef7f44535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af57a83da61a313dbad4362c764b9df14" id="r_af57a83da61a313dbad4362c764b9df14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1residfp.html#af57a83da61a313dbad4362c764b9df14">setDacLeakage</a> (double level)</td></tr>
+<tr class="separator:af57a83da61a313dbad4362c764b9df14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43ddb6ce52d57472fb8df02d3e4484b3" id="r_a43ddb6ce52d57472fb8df02d3e4484b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1residfp.html#a43ddb6ce52d57472fb8df02d3e4484b3">setOffset6581</a> (double offset)</td></tr>
+<tr class="separator:a43ddb6ce52d57472fb8df02d3e4484b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ad29c640f8efcb2a470a5144afdefd0" id="r_a4ad29c640f8efcb2a470a5144afdefd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1residfp.html#a4ad29c640f8efcb2a470a5144afdefd0">setDCBRes</a> (double res)</td></tr>
+<tr class="separator:a4ad29c640f8efcb2a470a5144afdefd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cycle exact <a class="el" href="classreSIDfp_1_1SID.html">SID</a> emulation </p>
@@ -525,6 +531,58 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af57a83da61a313dbad4362c764b9df14" name="af57a83da61a313dbad4362c764b9df14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af57a83da61a313dbad4362c764b9df14">&#9670;&#160;</a></span>setDacLeakage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void residfp::setDacLeakage </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>level</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the DAC leakage level. Affects the envelope and waveforms.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>the leakage level, between 0 (no leakage) and 1</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
+
+</div>
+</div>
+<a id="a4ad29c640f8efcb2a470a5144afdefd0" name="a4ad29c640f8efcb2a470a5144afdefd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ad29c640f8efcb2a470a5144afdefd0">&#9670;&#160;</a></span>setDCBRes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void residfp::setDCBRes </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>res</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the DC-Blocker resistance. Affects the highpass cutoff frequency.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">res</td><td>the resistance value, between 0 (~1.6Hz) and 1 (~16Hz)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
+
+</div>
+</div>
 <a id="a77afb8cd4ef966ddfcf4c87c73e0123c" name="a77afb8cd4ef966ddfcf4c87c73e0123c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a77afb8cd4ef966ddfcf4c87c73e0123c">&#9670;&#160;</a></span>setFilter6581Curve()</h2>
 
@@ -582,6 +640,32 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Set filter curve parameter for 8580 model.</p>
 <dl class="section see"><dt>See also</dt><dd>Filter8580::setFilterCurve(double) </dd></dl>
+
+</div>
+</div>
+<a id="a43ddb6ce52d57472fb8df02d3e4484b3" name="a43ddb6ce52d57472fb8df02d3e4484b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43ddb6ce52d57472fb8df02d3e4484b3">&#9670;&#160;</a></span>setOffset6581()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void residfp::setOffset6581 </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>offset</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the 6581 wave offset. Affects the volume of digi samples.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>the waveform offset, between 0 (faint digis) and 1 (loud digis)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 
 </div>
 </div>
@@ -726,7 +810,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 17 2026 08:46:13 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Aug 7 2026 12:08:16 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

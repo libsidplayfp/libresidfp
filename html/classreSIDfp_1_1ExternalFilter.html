@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.2.0</span>
    </div>
   </td>
  </tr>
@@ -65,6 +65,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a66014b71ab74301c04a0d6ffd65e855f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57fcd2a32f856ffbcd63ec8a9709b3ed" id="r_a57fcd2a32f856ffbcd63ec8a9709b3ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1ExternalFilter.html#a57fcd2a32f856ffbcd63ec8a9709b3ed">setClockFrequency</a> (double frequency)</td></tr>
 <tr class="separator:a57fcd2a32f856ffbcd63ec8a9709b3ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f3813434902f5be644eb7769c749aaf" id="r_a9f3813434902f5be644eb7769c749aaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1ExternalFilter.html#a9f3813434902f5be644eb7769c749aaf">setExtResistance</a> (double res)</td></tr>
+<tr class="separator:a9f3813434902f5be644eb7769c749aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e9411c5bc187a2bb014702d9da063fe" id="r_a4e9411c5bc187a2bb014702d9da063fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1ExternalFilter.html#a4e9411c5bc187a2bb014702d9da063fe">reset</a> ()</td></tr>
 <tr class="separator:a4e9411c5bc187a2bb014702d9da063fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -90,7 +92,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>State</b></td></tr>
 <div class="line"> </div>
 <div class="line">                                 GND</div>
 </div><!-- fragment --><ul>
-<li>Only for the 6581. ** The C64c board additionally includes a <a href="https://en.wikipedia.org/wiki/Bootstrapping_(electronics)">bootstrap</a> capacitor to increase the input impedance of the common collector.</li>
+<li>Pulldown resistor, only for the 6581. ** The C64c board additionally includes a <a href="https://en.wikipedia.org/wiki/Bootstrapping_(electronics)">bootstrap</a> capacitor to increase the input impedance of the common collector.</li>
 </ul>
 <p>The C128 boards include an additional capacitor and a resistor to the ouptput stage.</p>
 <div class="fragment"><div class="line">                                9/12V</div>
@@ -187,7 +189,32 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>State</b></td></tr>
 <p>Setup of the external filter sampling parameters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">frequency</td><td>the main system clock frequency </td></tr>
+    <tr><td class="paramname">frequency</td><td>the main system clock frequency in Hertz </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9f3813434902f5be644eb7769c749aaf" name="a9f3813434902f5be644eb7769c749aaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f3813434902f5be644eb7769c749aaf">&#9670;&#160;</a></span>setExtResistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void reSIDfp::ExternalFilter::setExtResistance </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>res</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Setup of the external filter sampling parameters.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">res</td><td>the resistance value in Ohms </td></tr>
   </table>
   </dd>
 </dl>
@@ -201,7 +228,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>State</b></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 17 2026 08:46:13 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Aug 7 2026 12:08:16 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

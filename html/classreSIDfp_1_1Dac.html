@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.1.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.2.0</span>
    </div>
   </td>
  </tr>
@@ -60,8 +60,8 @@
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a32c4a2cd67fa7d9918afbbeaf1fea5" id="r_a1a32c4a2cd67fa7d9918afbbeaf1fea5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Dac.html#a1a32c4a2cd67fa7d9918afbbeaf1fea5">Dac</a> (unsigned int bits)</td></tr>
 <tr class="separator:a1a32c4a2cd67fa7d9918afbbeaf1fea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acef19a169e750eb26460c120317c6979" id="r_acef19a169e750eb26460c120317c6979"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Dac.html#acef19a169e750eb26460c120317c6979">kinkedDac</a> (<a class="el" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190">ChipModel</a> chipModel)</td></tr>
-<tr class="separator:acef19a169e750eb26460c120317c6979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4457180f06521e37a8b0e3a1d82d5ae" id="r_ad4457180f06521e37a8b0e3a1d82d5ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Dac.html#ad4457180f06521e37a8b0e3a1d82d5ae">kinkedDac</a> (<a class="el" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190">ChipModel</a> chipModel, double leakLevel=1.0)</td></tr>
+<tr class="separator:ad4457180f06521e37a8b0e3a1d82d5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ff591bc430cdd23dddf784f4820ae23" id="r_a6ff591bc430cdd23dddf784f4820ae23"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Dac.html#a6ff591bc430cdd23dddf784f4820ae23">getOutput</a> (unsigned int input, bool saturate=false) const</td></tr>
 <tr class="separator:a6ff591bc430cdd23dddf784f4820ae23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -150,8 +150,8 @@ Vo -o-R-o-R-...-o-R-o-R--    --+
 
 </div>
 </div>
-<a id="acef19a169e750eb26460c120317c6979" name="acef19a169e750eb26460c120317c6979"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acef19a169e750eb26460c120317c6979">&#9670;&#160;</a></span>kinkedDac()</h2>
+<a id="ad4457180f06521e37a8b0e3a1d82d5ae" name="ad4457180f06521e37a8b0e3a1d82d5ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4457180f06521e37a8b0e3a1d82d5ae">&#9670;&#160;</a></span>kinkedDac()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -160,8 +160,18 @@ Vo -o-R-o-R-...-o-R-o-R--    --+
           <td class="memname">void reSIDfp::Dac::kinkedDac </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190">ChipModel</a>&#160;</td>
-          <td class="paramname"><em>chipModel</em></td><td>)</td>
+          <td class="paramname"><em>chipModel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>leakLevel</em> = <code>1.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -169,6 +179,7 @@ Vo -o-R-o-R-...-o-R-o-R--    --+
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">chipModel</td><td>6581 or 8580 </td></tr>
+    <tr><td class="paramname">leakLevel</td><td>the level of the transistor leakage </td></tr>
   </table>
   </dd>
 </dl>
@@ -182,7 +193,7 @@ Vo -o-R-o-R-...-o-R-o-R--    --+
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 17 2026 08:46:13 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Aug 7 2026 12:08:16 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
