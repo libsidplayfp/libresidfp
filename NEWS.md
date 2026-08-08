@@ -1,3 +1,8 @@
+1.2.1 2026-08-08
+* Fixed external filter parameter range
+
+
+
 1.2.0 2026-08-07
 * Make DAC leakage adjustable (#10)
 * Make the 6581 waveform offset adjustable (#13)
