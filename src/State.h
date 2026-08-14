@@ -42,8 +42,9 @@ struct Params
     bool   old6581caps;
 };
 
-struct State
+class State
 {
+public:
     /**
      * Save current state.
      */
@@ -59,6 +60,7 @@ struct State
      */
     static int size(SID &s);
 
+private:
     // SID
     int bus_value_ttl;
     unsigned int nextVoiceSync;
