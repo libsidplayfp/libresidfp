@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2024 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2026 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  *
  * This program is free software; you can redistribute it and/or modify
@@ -22,8 +22,6 @@
 #ifndef RESAMPLER_H
 #define RESAMPLER_H
 
-#include "Limiter.h"
-
 #include <cstdint>
 
 namespace reSIDfp
@@ -36,7 +34,7 @@ namespace reSIDfp
 class Resampler
 {
 protected:
-    virtual int32_t output() const = 0;
+    virtual float output() const = 0;
 
     Resampler() {}
 
@@ -49,18 +47,14 @@ public:
      * @param sample input sample
      * @return true when a sample is ready
      */
-    virtual bool input(int32_t sample) = 0;
+    virtual bool input(float sample) = 0;
 
     /**
      * Output a sample from resampler.
      *
      * @return resampled sample
      */
-    inline int16_t getOutput(int32_t scaleFactor) const
-    {
-        const int32_t out = (scaleFactor * output()) / 2;
-        return Limiter::softClip(out);
-    }
+    inline int16_t getOutput() const { return output(); }
 
     virtual void reset() = 0;
 };

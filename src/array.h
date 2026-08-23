@@ -57,6 +57,7 @@ public:
 };
 
 using matrix_t = matrix<int16_t>;
+using matrixf_t = matrix<float>;
 using rc_matrix_t = std::shared_ptr<matrix_t>;
 
 #endif

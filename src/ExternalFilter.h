@@ -89,14 +89,14 @@ class ExternalFilter
 
 private:
     /// Lowpass filter voltage
-    int32_t Vlp;
+    float Vlp;
 
     /// Highpass filter voltage
-    int32_t Vhp;
+    float Vhp;
 
-    int32_t w0lp_1_s7 = 0;
+    float w0lp = 0;
 
-    int32_t w0hp_1_s17 = 0;
+    float w0hp = 0;
 
     double m_frequency;
 
@@ -109,10 +109,10 @@ public:
     /**
      * SID clocking.
      *
-     * @param input input sample, signed 16 bit
+     * @param Vi input sample, signed 16 bit
      * @return filtered sample, signed 16 bit
      */
-    int32_t clock(int32_t input);
+    float clock(float Vi);
 
     /**
      * Constructor.
@@ -147,14 +147,13 @@ namespace reSIDfp
 {
 
 RESIDFP_INLINE
-int32_t ExternalFilter::clock(int32_t input)
+float ExternalFilter::clock(float Vi)
 {
-    const int32_t Vi = input << 11;
-    const int32_t dVlp = (w0lp_1_s7 * (Vi - Vlp)) >> 7;
-    const int32_t dVhp = (w0hp_1_s17 * (Vlp - Vhp)) >> 17;
+    const float dVlp = w0lp * (Vi - Vlp);
+    const float dVhp = w0hp * (Vlp - Vhp);
     Vlp += dVlp;
     Vhp += dVhp;
-    return (Vlp - Vhp) >> 11;
+    return Vlp - Vhp;
 }
 
 } // namespace reSIDfp

@@ -55,14 +55,14 @@ private:
 
 #ifdef RUNTIME_DISPATCH
 private:
-    using convolve_func_t = auto (*)(const int32_t*, const int16_t*, int) -> int32_t;
+    using convolve_func_t = auto (*)(const float*, const float*, int) -> float;
 
     convolve_func_t simd_convolve;
 #endif
 
 private:
     /// Table of the fir filter coefficients
-    matrix_t* firTable;
+    matrixf_t* firTable;
 
     int sampleIndex = 0;
 
@@ -76,12 +76,12 @@ private:
 
     int sampleOffset = 0;
 
-    int32_t outputValue = 0;
+    float outputValue = 0.f;
 
-    int32_t sample[RINGSIZE * 2];
+    float sample[RINGSIZE * 2];
 
 private:
-    int32_t fir(int subcycle);
+    float fir(int subcycle);
 
 private:
     SincResampler(const SincResampler&) = delete;
@@ -110,9 +110,9 @@ public:
         double highestAccurateFrequency);
     ~SincResampler() override;
 
-    bool input(int32_t input) override;
+    bool input(float input) override;
 
-    int32_t output() const override { return outputValue; }
+    float output() const override { return outputValue; }
 
     void reset() override;
 };

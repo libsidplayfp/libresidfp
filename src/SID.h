@@ -87,7 +87,7 @@ private:
     Voice voice[3];
 
     /// Used to amplify the output by x/2 to get an adequate playback volume
-    int scaleFactor;
+    float scaleFactor;
 
     /// Time to live for the last written value
     int busValueTtl;
@@ -168,10 +168,11 @@ private:
     }
 
     /// clock internal and external filters
-    inline int32_t clockFilt()
+    inline float clockFilt()
     {
         uint16_t filtOutput = filter->clock(voice[0], voice[1], voice[2]);
-        int32_t exFiltInput = static_cast<int32_t>(filtOutput) + INT16_MIN;
+        int signedOutput = static_cast<int>(filtOutput) + INT16_MIN;
+        float exFiltInput = static_cast<float>(signedOutput);
         return externalFilter.clock(exFiltInput);
     }
 
@@ -387,6 +388,7 @@ public:
 #include <algorithm>
 
 #include "resample/Resampler.h"
+#include "resample/Limiter.h"
 
 namespace reSIDfp
 {
@@ -425,10 +427,11 @@ int SID::clock(unsigned int cycles, int16_t* buf)
                 clockWaveGen();
                 clockEnvGen();
 
-                int32_t output = clockFilt();
+                float output = clockFilt();
                 if (unlikely(resampler->input(output)))
                 {
-                    buf[s++] = resampler->getOutput(scaleFactor);
+                    float out = scaleFactor * resampler->getOutput();
+                    buf[s++] = Limiter::softClip(out);
                 }
             }
 
@@ -466,10 +469,11 @@ int SID::clock(int16_t* buf, int bufSize)
                 clockWaveGen();
                 clockEnvGen();
 
-                int32_t output = clockFilt();
+                float output = clockFilt();
                 if (unlikely(resampler->input(output)))
                 {
-                    buf[s++] = resampler->getOutput(scaleFactor);
+                    float out = scaleFactor * resampler->getOutput();
+                    buf[s++] = Limiter::softClip(out);
                     if (unlikely(s == bufSize))
                     {
                         break;

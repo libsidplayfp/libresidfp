@@ -30,22 +30,22 @@
 class Limiter
 {
 private:
-    static constexpr int32_t threshold = 28000;
+    static constexpr float threshold = 28000.f;
 
     template<int m>
-    static inline int32_t clipper(int32_t x)
+    static inline int32_t clipper(float x)
     {
         static_assert(m > 0, "Clipper range must be a positive value");
-        assert(x >= 0);
+        assert(x >= 0.f);
         if (likely(x < threshold))
             return x;
 
-        constexpr double max_val = static_cast<double>(m);
-        constexpr double t = threshold / max_val;
-        constexpr double a = 1. - t;
-        constexpr double b = 1. / a;
+        constexpr float max_val = static_cast<float>(m);
+        constexpr float t = threshold / max_val;
+        constexpr float a = 1. - t;
+        constexpr float b = 1. / a;
 
-        double value = static_cast<double>(x - threshold) / max_val;
+        float value = (x - threshold) / max_val;
         value = a * std::tanh(b * value);
         return static_cast<int32_t>(threshold + (value * max_val));
     }
@@ -53,16 +53,16 @@ private:
     /*
      * Soft Clipping implementation, splitted for test.
      */
-    static inline int32_t softClipImpl(int32_t x)
+    static inline int32_t softClipImpl(float x)
     {
-        return x < 0 ? -clipper<32768>(-x) : clipper<32767>(x);
+        return std::signbit(x) ? -clipper<32768>(-x) : clipper<32767>(x);
     }
 
 public:
     /*
      * Soft Clipping into 16 bit range [-32768,32767]
      */
-    static inline int16_t softClip(int32_t x) { return static_cast<int16_t>(softClipImpl(x)); }
+    static inline int16_t softClip(float x) { return static_cast<int16_t>(softClipImpl(x)); }
 
 };
 
