@@ -27,49 +27,9 @@
 namespace reSIDfp
 {
 
-static constexpr int summerIdx[5] =
-{
-    FilterModelConfig::summer_offset<0>::value,
-    FilterModelConfig::summer_offset<1>::value,
-    FilterModelConfig::summer_offset<2>::value,
-    FilterModelConfig::summer_offset<3>::value,
-    FilterModelConfig::summer_offset<4>::value
-};
-
-static constexpr int mixerIdx[8] =
-{
-    FilterModelConfig::mixer_offset<0>::value,
-    FilterModelConfig::mixer_offset<1>::value,
-    FilterModelConfig::mixer_offset<2>::value,
-    FilterModelConfig::mixer_offset<3>::value,
-    FilterModelConfig::mixer_offset<4>::value,
-    FilterModelConfig::mixer_offset<5>::value,
-    FilterModelConfig::mixer_offset<6>::value,
-    FilterModelConfig::mixer_offset<7>::value
-};
-
 void Filter::updateMixing()
 {
     currentVolume = volume + (vol * (1<<16));
-
-    int Nsum = 0;
-    int Nmix = 0;
-
-    (filt1 ? Nsum : Nmix)++;
-    (filt2 ? Nsum : Nmix)++;
-
-    if (filt3) Nsum++;
-    else if (!voice3off) Nmix++;
-
-    (filtE ? Nsum : Nmix)++;
-
-    currentSummer = summer + summerIdx[Nsum];
-
-    if (lp) Nmix++;
-    if (bp) Nmix++;
-    if (hp) Nmix++;
-
-    currentMixer = mixer + mixerIdx[Nmix];
 }
 
 void Filter::writeFC_LO(uint8_t fc_lo)
