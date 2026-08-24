@@ -93,11 +93,10 @@ double I0(double x)
 #  if __has_cpp_attribute( assume )
 #    define CONVOLVE_SIMD(simd, name) \
         __attribute__ ((__target__ (#simd))) \
-        int32_t convolve_ ## name(const int32_t* a, const int16_t* b, int bLength)  \
+        float convolve_ ## name(const float* a, const float* b, int bLength)  \
         { \
             [[assume( bLength > 0 )]]; \
-            int32_t out = std::inner_product(a, a+bLength, b, out); \
-            return (out + (1 << 14)) >> 15; \
+            return std::inner_product(a, a+bLength, b, 0.f); \
         }
 #  endif
 #endif
@@ -105,10 +104,9 @@ double I0(double x)
 #ifndef CONVOLVE_SIMD
 #  define CONVOLVE_SIMD(simd, name) \
         __attribute__ ((__target__ (#simd))) \
-        int32_t convolve_ ## name(const int32_t* a, const int16_t* b, int bLength)  \
+        float convolve_ ## name(const float* a, const float* b, int bLength)  \
         { \
-            int32_t out = std::inner_product(a, a+bLength, b, out); \
-            return (out + (1 << 14)) >> 15; \
+            return std::inner_product(a, a+bLength, b, 0.f); \
         }
 #endif
 
@@ -135,19 +133,18 @@ float convolve(const float* a, const float* b, int bLength)
     [[assume( bLength > 0 )]];
 #  endif
 #endif
-    float out = 0.f;
 #ifndef __clang__
-    out = std::inner_product(a, a+bLength, b, out);
+    return std::inner_product(a, a+bLength, b, 0.f);
 #else
     // Apparently clang is unable to fully optimize the above
     // feed it some plain ol' C code
+    float out = 0.f;
     for (int i=0; i<bLength; i++)
     {
         out += a[i] * b[i];
     }
-#endif
-
     return out;
+#endif
 }
 
 float SincResampler::fir(float subcycle)

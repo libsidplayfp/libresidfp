@@ -36,7 +36,7 @@ private:
     static inline int32_t clipper(float x)
     {
         static_assert(m > 0, "Clipper range must be a positive value");
-        assert(x >= 0.f);
+        assert(!std::signbit(x));
         if (likely(x < threshold))
             return x;
 
