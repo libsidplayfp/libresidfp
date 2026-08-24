@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2013 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2026 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  *
  * This program is free software; you can redistribute it and/or modify
@@ -43,9 +43,9 @@ private:
     float cachedSample;
 
     /// Number of cycles per sample
-    const int cyclesPerSample;
+    const float cyclesPerSample;
 
-    int sampleOffset;
+    float sampleOffset;
 
     /// Calculated sample
     float outputValue;
@@ -53,22 +53,22 @@ private:
 public:
     ZeroOrderResampler(double clockFrequency, double samplingFrequency) :
         cachedSample(0.f),
-        cyclesPerSample(static_cast<int>(clockFrequency / samplingFrequency * 1024.)),
-        sampleOffset(0),
+        cyclesPerSample(static_cast<float>(clockFrequency / samplingFrequency)),
+        sampleOffset(0.f),
         outputValue(0.f) {}
 
     bool input(float sample) override
     {
         bool ready = false;
 
-        if (sampleOffset < 1024)
+        if (sampleOffset < 1.f)
         {
-            outputValue = cachedSample + (sampleOffset * (sample - cachedSample) / 1024.f);
+            outputValue = cachedSample + (sampleOffset * (sample - cachedSample));
             ready = true;
             sampleOffset += cyclesPerSample;
         }
 
-        sampleOffset -= 1024;
+        sampleOffset -= 1.f;
 
         cachedSample = sample;
 
@@ -79,8 +79,8 @@ public:
 
     void reset() override
     {
-        sampleOffset = 0;
-        cachedSample = 0;
+        sampleOffset = 0.f;
+        cachedSample = 0.f;
     }
 };
 

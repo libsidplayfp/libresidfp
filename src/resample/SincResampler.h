@@ -72,16 +72,16 @@ private:
     /// Filter length
     int firN;
 
-    const int cyclesPerSample;
+    const float cyclesPerSample;
 
-    int sampleOffset = 0;
+    float sampleOffset = 0.f;
 
     float outputValue = 0.f;
 
     float sample[RINGSIZE * 2];
 
 private:
-    float fir(int subcycle);
+    float fir(float subcycle);
 
 private:
     SincResampler(const SincResampler&) = delete;

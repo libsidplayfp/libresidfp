@@ -150,11 +150,12 @@ float convolve(const float* a, const float* b, int bLength)
     return out;
 }
 
-float SincResampler::fir(int subcycle)
+float SincResampler::fir(float subcycle)
 {
     // Find the first of the nearest fir tables close to the phase
-    int firTableFirst = (subcycle * firRES >> 10);
-    const int firTableOffset = (subcycle * firRES) & 0x3ff;
+    float i;
+    const float firTableOffset = std::modf(subcycle * firRES, &i);
+    int firTableFirst = static_cast<int>(i);
 
     // Find firN most recent samples, plus one extra in case the FIR wraps.
     int sampleStart = sampleIndex - firN + RINGSIZE - 1;
@@ -181,14 +182,14 @@ float SincResampler::fir(int subcycle)
 
     // Linear interpolation between the sinc tables yields good
     // approximation for the exact value.
-    return v1 + (firTableOffset * (v2 - v1) / 1024.f);
+    return v1 + (firTableOffset * (v2 - v1));
 }
 
 SincResampler::SincResampler(
         double clockFrequency,
         double samplingFrequency,
         double highestAccurateFrequency) :
-    cyclesPerSample(static_cast<int>(clockFrequency / samplingFrequency * 1024.))
+    cyclesPerSample(static_cast<float>(clockFrequency / samplingFrequency))
 {
 #ifdef __cpp_lib_math_constants
     constexpr double PI = std::numbers::pi;
@@ -309,14 +310,14 @@ bool SincResampler::input(float input)
     sample[sampleIndex] = sample[sampleIndex + RINGSIZE] = input;
     sampleIndex = (sampleIndex + 1) & (RINGSIZE - 1);
 
-    if (sampleOffset < 1024)
+    if (sampleOffset < 1.f)
     {
         outputValue = fir(sampleOffset);
         ready = true;
         sampleOffset += cyclesPerSample;
     }
 
-    sampleOffset -= 1024;
+    sampleOffset -= 1.f;
 
     return ready;
 }
@@ -324,7 +325,7 @@ bool SincResampler::input(float input)
 void SincResampler::reset()
 {
     std::fill(std::begin(sample), std::end(sample), 0.f);
-    sampleOffset = 0;
+    sampleOffset = 0.f;
 }
 
 } // namespace reSIDfp

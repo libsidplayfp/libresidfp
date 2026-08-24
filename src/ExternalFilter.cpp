@@ -71,8 +71,8 @@ void ExternalFilter::recalcParams()
 void ExternalFilter::reset()
 {
     // State of filter.
-    Vlp = 0; //1 << (15 + 11);
-    Vhp = 0;
+    Vlp = 0.f;
+    Vhp = 0.f;
 }
 
 } // namespace reSIDfp

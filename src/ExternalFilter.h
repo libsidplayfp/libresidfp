@@ -94,9 +94,9 @@ private:
     /// Highpass filter voltage
     float Vhp;
 
-    float w0lp = 0;
+    float w0lp = 0.f;
 
-    float w0hp = 0;
+    float w0hp = 0.f;
 
     double m_frequency;
 
