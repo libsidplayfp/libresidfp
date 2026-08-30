@@ -1,3 +1,8 @@
+1.2.2 2026-08-30
+* Correctly restore filter status
+
+
+
 1.2.1 2026-08-08
 * Fixed external filter parameter range
 
