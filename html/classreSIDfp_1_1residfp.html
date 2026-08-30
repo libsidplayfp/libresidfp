@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.2.1</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.2.2</span>
    </div>
   </td>
  </tr>
@@ -282,7 +282,7 @@ Public Member Functions</h2></td></tr>
 <p>Enable/disable old caps for 6581 model. When enabled the filter cutoff is lower.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">enable</td><td>true to enable old 2200pF caps used on ASSY 326298 false to use the standard 470pF caps. </td></tr>
+    <tr><td class="paramname">enable</td><td>true to enable old 2200pF caps used on ASSY 326298 false to use the standard 470pF caps. (default off) </td></tr>
   </table>
   </dd>
 </dl>
@@ -549,7 +549,7 @@ Public Member Functions</h2></td></tr>
 <p>Set the DAC leakage level. Affects the envelope and waveforms.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">level</td><td>the leakage level, between 0 (no leakage) and 1</td></tr>
+    <tr><td class="paramname">level</td><td>the leakage level, between 0 (no leakage) and 1 (standard leakage) (default 1.0)</td></tr>
   </table>
   </dd>
 </dl>
@@ -575,7 +575,7 @@ Public Member Functions</h2></td></tr>
 <p>Set the DC-Blocker resistance. Affects the highpass cutoff frequency.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">res</td><td>the resistance value, between 0 (~1.6Hz) and 1 (~16Hz)</td></tr>
+    <tr><td class="paramname">res</td><td>the resistance value, between 0 (10KOhm =&gt; ~1.6Hz) and 1 (1KOhm =&gt; ~16Hz) (default 0.0)</td></tr>
   </table>
   </dd>
 </dl>
@@ -661,7 +661,7 @@ Public Member Functions</h2></td></tr>
 <p>Set the 6581 wave offset. Affects the volume of digi samples.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">offset</td><td>the waveform offset, between 0 (faint digis) and 1 (loud digis)</td></tr>
+    <tr><td class="paramname">offset</td><td>the waveform offset, between 0 (average digis) and 1 (loud digis) (default 1.0)</td></tr>
   </table>
   </dd>
 </dl>
@@ -810,7 +810,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 8 2026 16:04:36 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Aug 30 2026 14:44:54 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
