@@ -76,8 +76,6 @@ private:
 
     float sampleOffset = 0.f;
 
-    float outputValue = 0.f;
-
     float sample[RINGSIZE * 2];
 
 private:
@@ -111,8 +109,6 @@ public:
     ~SincResampler() override;
 
     bool input(float input) override;
-
-    float output() const override { return outputValue; }
 
     void reset() override;
 };

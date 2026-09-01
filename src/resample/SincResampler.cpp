@@ -307,7 +307,7 @@ bool SincResampler::input(float input)
     sample[sampleIndex] = sample[sampleIndex + RINGSIZE] = input;
     sampleIndex = (sampleIndex + 1) & (RINGSIZE - 1);
 
-    if (sampleOffset < 1.f)
+    if (unlikely(sampleOffset < 1.f))
     {
         outputValue = fir(sampleOffset);
         ready = true;
@@ -323,6 +323,7 @@ void SincResampler::reset()
 {
     std::fill(std::begin(sample), std::end(sample), 0.f);
     sampleOffset = 0.f;
+    outputValue = 0.f;
 }
 
 } // namespace reSIDfp

@@ -34,12 +34,11 @@ class PassThrough final : public Resampler
     friend class State;
 
 private:
-    /// Last sample
-    float outputValue;
+    PassThrough(const PassThrough&) = delete;
+    PassThrough& operator=(const PassThrough&) = delete;
 
 public:
-    PassThrough() :
-        outputValue(0.f) {}
+    PassThrough() = default;
 
     bool input(float sample) override
     {
@@ -48,11 +47,9 @@ public:
         return true;
     }
 
-    float output() const override { return outputValue; }
-
     void reset() override
     {
-        outputValue = 0;
+        outputValue = 0.f;
     }
 };
 

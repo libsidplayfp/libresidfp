@@ -47,21 +47,21 @@ private:
 
     float sampleOffset;
 
-    /// Calculated sample
-    float outputValue;
+private:
+    ZeroOrderResampler(const ZeroOrderResampler&) = delete;
+    ZeroOrderResampler& operator=(const ZeroOrderResampler&) = delete;
 
 public:
     ZeroOrderResampler(double clockFrequency, double samplingFrequency) :
         cachedSample(0.f),
         cyclesPerSample(static_cast<float>(clockFrequency / samplingFrequency)),
-        sampleOffset(0.f),
-        outputValue(0.f) {}
+        sampleOffset(0.f) {}
 
     bool input(float sample) override
     {
         bool ready = false;
 
-        if (sampleOffset < 1.f)
+        if (unlikely(sampleOffset < 1.f))
         {
             outputValue = cachedSample + (sampleOffset * (sample - cachedSample));
             ready = true;
@@ -75,12 +75,11 @@ public:
         return ready;
     }
 
-    float output() const override { return outputValue; }
-
     void reset() override
     {
-        sampleOffset = 0.f;
         cachedSample = 0.f;
+        sampleOffset = 0.f;
+        outputValue = 0.f;
     }
 };
 

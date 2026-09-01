@@ -71,7 +71,7 @@ int main(int, const char*[])
 
             if (r->input(signal))
             {
-                float out = r->output();
+                float out = r->getOutput();
                 pwr += out * out;
                 n += 1;
             }

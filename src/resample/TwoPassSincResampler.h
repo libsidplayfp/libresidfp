@@ -46,6 +46,10 @@ private:
     std::unique_ptr<SincResampler> const s2;
 
 private:
+    TwoPassSincResampler(const TwoPassSincResampler&) = delete;
+    TwoPassSincResampler& operator=(const TwoPassSincResampler&) = delete;
+
+private:
     TwoPassSincResampler(double clockFrequency, double samplingFrequency, double highestAccurateFrequency, double intermediateFrequency) :
         s1(new SincResampler(clockFrequency, intermediateFrequency, highestAccurateFrequency)),
         s2(new SincResampler(intermediateFrequency, samplingFrequency, highestAccurateFrequency))
@@ -76,12 +80,11 @@ public:
 
     bool input(float sample) override
     {
-        return s1->input(sample) && s2->input(s1->output());
-    }
+        bool ready = s1->input(sample) && s2->input(s1->getOutput());
+        if (unlikely(ready))
+            outputValue = s2->getOutput();
 
-    float output() const override
-    {
-        return s2->output();
+        return ready;
     }
 
     void reset() override
