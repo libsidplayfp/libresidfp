@@ -70,7 +70,7 @@ void ExternalFilter::recalcParams()
 
 void ExternalFilter::reset()
 {
-    // State of filter.
+    // Initial state of filter.
     Vlp = 0.f;
     Vhp = 0.f;
 }

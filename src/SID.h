@@ -86,7 +86,7 @@ private:
     /// SID voices
     Voice voice[3];
 
-    /// Used to amplify the output by x/2 to get an adequate playback volume
+    /// Used to amplify the output to get an adequate playback volume
     float scaleFactor;
 
     /// Time to live for the last written value
