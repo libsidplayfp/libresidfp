@@ -325,6 +325,7 @@ void SincResampler::reset()
 {
     std::fill(std::begin(sample), std::end(sample), 0);
     sampleOffset = 0;
+    outputValue = 0;
 }
 
 } // namespace reSIDfp

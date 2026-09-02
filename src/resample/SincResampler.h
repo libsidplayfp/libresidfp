@@ -78,7 +78,7 @@ private:
 
     int32_t outputValue = 0;
 
-    int32_t sample[RINGSIZE * 2];
+    int32_t sample[RINGSIZE * 2] = {0};
 
 private:
     int32_t fir(int subcycle);
