@@ -309,7 +309,7 @@ bool SincResampler::input(int32_t input)
     sample[sampleIndex] = sample[sampleIndex + RINGSIZE] = input;
     sampleIndex = (sampleIndex + 1) & (RINGSIZE - 1);
 
-    if (sampleOffset < 1024)
+    if (unlikely(sampleOffset < 1024))
     {
         outputValue = fir(sampleOffset);
         ready = true;
