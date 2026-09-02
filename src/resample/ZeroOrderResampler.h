@@ -59,7 +59,7 @@ public:
     {
         bool ready = false;
 
-        if (sampleOffset < 1024)
+        if (unlikely(sampleOffset < 1024))
         {
             outputValue = cachedSample + (sampleOffset * (sample - cachedSample) >> 10);
             ready = true;
