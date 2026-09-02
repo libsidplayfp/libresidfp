@@ -41,11 +41,12 @@ private:
             return x;
 
         constexpr double max_val = static_cast<double>(m);
+        constexpr double max_val_inv = 1. / static_cast<double>(m);
         constexpr double t = threshold / max_val;
         constexpr double a = 1. - t;
         constexpr double b = 1. / a;
 
-        double value = static_cast<double>(x - threshold) / max_val;
+        double value = static_cast<double>(x - threshold) * max_val_inv;
         value = a * std::tanh(b * value);
         return static_cast<int32_t>(threshold + (value * max_val));
     }
