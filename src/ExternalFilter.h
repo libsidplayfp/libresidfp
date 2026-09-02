@@ -149,7 +149,12 @@ namespace reSIDfp
 RESIDFP_INLINE
 int32_t ExternalFilter::clock(int32_t input)
 {
+#if __cplusplus >= 202002L
     const int32_t Vi = input << 11;
+#else
+    // Left shift of negative values is undefined
+    const int32_t Vi = input * (1 << 11);
+#endif
     const int32_t dVlp = (w0lp_1_s7 * (Vi - Vlp)) >> 7;
     const int32_t dVhp = (w0hp_1_s17 * (Vlp - Vhp)) >> 17;
     Vlp += dVlp;
