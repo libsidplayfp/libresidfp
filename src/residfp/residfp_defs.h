@@ -46,6 +46,17 @@
 #  endif
 #endif
 
+/* Deprecated attributes */
+#if __cplusplus >= 201402L
+# define RESIDFP_DEPRECATED [[deprecated]]
+#elif defined(_MSCVER)
+#  define RESIDFP_DEPRECATED __declspec(deprecated)
+#elif defined(__GNUC__) || defined(__clang__)
+#  define RESIDFP_DEPRECATED __attribute__ ((deprecated))
+#else
+#  define RESIDFP_DEPRECATED
+#endif
+
 namespace reSIDfp
 {
     /**

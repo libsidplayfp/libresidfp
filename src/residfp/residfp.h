@@ -242,7 +242,7 @@ public:
      * @deprecated since 1.3
      * @see #set6581caps(CapsType)
      */
-    void enableOld6581caps(bool enable);
+    RESIDFP_DEPRECATED void enableOld6581caps(bool enable);
 
     /**
      * Set paddle coordinates.
