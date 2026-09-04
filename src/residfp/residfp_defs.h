@@ -69,6 +69,15 @@ namespace reSIDfp
         RESAMPLE,   ///< Sinc resampling (high quality but CPU intensive)
         NONE        ///< No resampling (raw 1MHz output)
     } SamplingMethod;
+
+    /**
+     *  The SID 6581 caps type
+     */
+    typedef enum {
+        CAPS2200,    ///< Old 2200pF
+        CAPS470,     ///< New 440pF
+        CAPS330      ///< "Galway" 330pF
+    } CapsType;
 }
 
 #endif

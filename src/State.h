@@ -39,7 +39,7 @@ struct Params
     double filterCurve6581;
     double filterRange6581;
     double filterCurve8580;
-    bool   old6581caps;
+    CapsType caps6581;
 };
 
 class State
@@ -138,7 +138,7 @@ private:
     double filterCurve6581;
     double filterRange6581;
     double filterCurve8580;
-    bool   old6581caps;
+    CapsType caps6581;
 
     // Integrators
     int32_t vx[2][2];
