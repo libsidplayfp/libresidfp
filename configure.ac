@@ -93,9 +93,9 @@ dnl libtool-style version-info number
 #
 # If any interfaces have been removed or changed since the last public release, then set age to 0.
 
-LIBRESIDFPCUR=2
-LIBRESIDFPREV=2
-LIBRESIDFPAGE=2
+LIBRESIDFPCUR=3
+LIBRESIDFPREV=0
+LIBRESIDFPAGE=3
 LIBRESIDFPVERSION=$LIBRESIDFPCUR:$LIBRESIDFPREV:$LIBRESIDFPAGE
 
 AC_MSG_CHECKING([for debugging])

@@ -1,3 +1,10 @@
+1.3.0 2026-09-xx
+* Minor resampler fixes and optimizations
+* Allow choosing 330pF caps on the 6581 (#50)
+* Replace dithering with noise (#40)
+
+
+
 1.2.2 2026-08-30
 * Correctly restore filter status
 
