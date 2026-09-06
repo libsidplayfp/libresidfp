@@ -196,12 +196,6 @@ void SID::enableFilter(bool enable)
     filter8580->enable(enable);
 }
 
-void SID::enableOld6581caps(bool enable)
-{
-    p->old6581caps = enable;
-    filter6581->enableOldCaps(enable);
-}
-
 void SID::voiceSync(bool sync)
 {
     if (sync)
@@ -641,6 +635,12 @@ void SID::setOffset6581(double offset)
 void SID::setDCBRes(double res)
 {
     externalFilter.setExtResistance(clamp(res));
+}
+
+void SID::set6581caps(CapsType type)
+{
+    p->caps6581 = type;
+    filter6581->setCaps(type);
 }
 
 } // namespace reSIDfp

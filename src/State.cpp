@@ -117,7 +117,7 @@ int State::saveState(SID &s, char* buffer, int size)
     state.filterCurve6581 = s.p->filterCurve6581;
     state.filterRange6581 = s.p->filterRange6581;
     state.filterCurve8580 = s.p->filterCurve8580;
-    state.old6581caps = s.p->old6581caps;
+    state.caps6581 = s.p->caps6581;
 
     state.vx[0][0] = s.filter6581->hpIntegrator.vx;
     state.vx[0][1] = s.filter6581->bpIntegrator.vx;
@@ -234,7 +234,7 @@ void State::restoreState(SID &s, char* buffer, int size)
     s.setFilter6581Curve(state.filterCurve6581);
     s.setFilter6581Range(state.filterRange6581);
     s.setFilter8580Curve(state.filterCurve8580);
-    s.enableOld6581caps(state.old6581caps);
+    s.set6581caps(state.caps6581);
 
     s.filter6581->hpIntegrator.vx = state.vx[0][0];
     s.filter6581->bpIntegrator.vx = state.vx[0][1];
