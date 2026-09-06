@@ -48,9 +48,11 @@ protected:
         // white noise
         m_wnoise = m_wnoise * 1664525u + 1013904223u;
 
-        // low-passed noise
+        // Reduce to 9bit signed
         int32_t n = (int32_t)((m_wnoise >> 20) & 0x1ff) - 0x100;
-        m_bnoise = m_bnoise + ((0x06*(n - m_bnoise)) >> 7);
+
+        // low-passed noise
+        m_bnoise = m_bnoise + ((n - m_bnoise) / 16);
 
         return m_bnoise;
     }
