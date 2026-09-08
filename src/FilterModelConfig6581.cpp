@@ -140,6 +140,9 @@ void FilterModelConfig6581::updateParams()
         vcr_mult *= caps_mult;
         break;
     }
+    case CAPS470:
+        // keep parameters unchanged
+        break;
     case CAPS330: {
         constexpr double caps_mult = CAPS_NEW/CAPS_GALWAY;
         currFactorCoeff *= caps_mult;
