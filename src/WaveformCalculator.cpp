@@ -95,8 +95,8 @@ const CombinedWaveformConfig configAverage[2][5] =
         { exponentialDistance,  0.79111582f, 1.06053483f, 0.f, 1.97922957f, 2.67848182f },
         // PT  error  4590  (124/32768) [RMS: -11.40dB]
         { linearDistance, 0.941692829f, 1.f, 1.80072665f, 0.033124879f, 0.232303441f },
-        // PS  error   211 (1046/32768) [RMS: -10.32]
-        { linearDistance, 1.12330866f, 1.43878448f, 3.63146257f, 0.0944033489f, 0.104408808f },
+        // PS  error   211 (1044/32768) [RMS: -10.31]
+        { linearDistance, 1.12589085f, 1.43551648f, 3.64989567f, 0.0942798927f, 0.104755104f },
         // PTS error    57  (333/32768) [RMS: -20.29]
         { linearDistance, 1.52983034f, 0.0413390137f, 2.31868196f, 0.959919035f, 0.858174801f },
         // NP  guessed
