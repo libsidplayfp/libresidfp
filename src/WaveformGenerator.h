@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2025 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2026 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  * Copyright 2004,2010 Dag Lem <resid@nimrod.no>
  *
@@ -110,32 +110,32 @@ private:
     /// Emulation of pipeline causing bit 19 to clock the shift register.
     int shift_pipeline = 0;
 
-    uint32_t ring_msb_mask = 0;
-    uint32_t no_noise = 0;
-    uint32_t noise_output = 0;
-    uint32_t no_noise_or_noise_output = 0;
-    uint32_t no_pulse = 0;
-    uint32_t pulse_output = 0;
-
-    uint32_t waveform_output = 0;
-
     /// Current accumulator value.
     uint32_t accumulator = 0x555555; // Accumulator's even bits are high on powerup
 
     // Fout = (Fn*Fclk/16777216)Hz
     uint32_t freq = 0;
 
-    /// 8580 tri/saw pipeline
-    uint32_t tri_saw_pipeline = 0x555;
-
-    /// The OSC3 value
-    uint32_t osc3 = 0;
-
     /// Remaining time to fully reset shift register.
     unsigned int shift_register_reset = 0;
 
     // The wave signal TTL when no waveform is selected.
     unsigned int floating_output_ttl = 0;
+
+    uint16_t ring_msb_mask = 0;
+    uint16_t no_noise = 0;
+    uint16_t noise_output = 0;
+    uint16_t no_noise_or_noise_output = 0;
+    uint16_t no_pulse = 0;
+    uint16_t pulse_output = 0;
+
+    uint16_t waveform_output = 0;
+
+    /// 8580 tri/saw pipeline
+    uint16_t tri_saw_pipeline = 0x555;
+
+    /// The OSC3 value
+    uint16_t osc3 = 0;
 
     /// The control register right-shifted 4 bits; used for output function table lookup.
     uint8_t waveform = 0;
@@ -276,7 +276,7 @@ public:
      *
      * @return the waveform generator digital output
      */
-    uint32_t output();
+    uint16_t output();
 
     /**
      * Read OSC3 value.
@@ -377,7 +377,7 @@ void WaveformGenerator::clock()
 }
 
 RESIDFP_INLINE
-uint32_t WaveformGenerator::output()
+uint16_t WaveformGenerator::output()
 {
     // Set output value.
     if (likely(waveform != 0))
