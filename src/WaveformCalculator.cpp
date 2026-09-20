@@ -1,7 +1,7 @@
 /*
  * This file is part of libsidplayfp, a SID player engine.
  *
- * Copyright 2011-2023 Leandro Nini <drfiemost@users.sourceforge.net>
+ * Copyright 2011-2026 Leandro Nini <drfiemost@users.sourceforge.net>
  * Copyright 2007-2010 Antti Lankila
  *
  * This program is free software; you can redistribute it and/or modify
@@ -81,6 +81,8 @@ static float quadraticDistance(float distance, int i)
  *
  * The score here reported is the acoustic error
  * calculated XORing the estimated and the sampled values.
+ * For the combinations including saw on 6581 only
+ * the first half of the wave is considered.
  * In parentheses the number of mispredicted bits.
  *
  * [1] https://github.com/libsidplayfp/combined-waveforms
@@ -89,14 +91,14 @@ static float quadraticDistance(float distance, int i)
 const CombinedWaveformConfig configAverage[2][5] =
 {
     { /* 6581 R3 0486S sampled by Trurl */
-        // TS  error  3555 (324/32768) [RMS: -10.78dB]
-        { exponentialDistance,  0.877322257f, 1.11349654f, 0.f, 2.14537621f, 9.08618164f },
-        // PT  error  4590 (124/32768) [RMS: -11.40dB]
+        // TS  error   406  (764/32768) [RMS: -13.55]
+        { exponentialDistance,  0.79111582f, 1.06053483f, 0.f, 1.97922957f, 2.67848182f },
+        // PT  error  4590  (124/32768) [RMS: -11.40dB]
         { linearDistance, 0.941692829f, 1.f, 1.80072665f, 0.033124879f, 0.232303441f },
-        // PS  error 19352 (763/32768) [RMS: -8.44dB]
-        { linearDistance, 1.66494179f, 1.03760982f, 5.62705326f, 0.291590303f, 0.283631504f },
-        // PTS error  5068 ( 94/32768) [RMS: -15.76dB]
-        { linearDistance, 1.09762526f, 0.975265801f, 1.52196741f, 0.151528224f, 0.841949463f },
+        // PS  error   211 (1044/32768) [RMS: -10.31]
+        { linearDistance, 1.12589085f, 1.43551648f, 3.64989567f, 0.0942798927f, 0.104755104f },
+        // PTS error    57  (333/32768) [RMS: -20.29]
+        { linearDistance, 1.52983034f, 0.0413390137f, 2.31868196f, 0.959919035f, 0.858174801f },
         // NP  guessed
         { exponentialDistance, 0.96f, 1.f, 2.5f, 1.1f, 1.2f },
     },
@@ -117,14 +119,14 @@ const CombinedWaveformConfig configAverage[2][5] =
 const CombinedWaveformConfig configWeak[2][5] =
 {
     { /* 6581 R2 4383 sampled by ltx128 */
-        // TS  error 1474 (198/32768) [RMS: -12.20dB]
-        { exponentialDistance, 0.892563999f, 1.11905622f, 0.f, 2.21876144f, 9.63837719f },
-        // PT  error  612 (102/32768) [RMS: -15.35dB]
+        // TS  error  751  (390/32768) [RMS: -13.56]
+        { exponentialDistance, 0.885195196f, 1.48950899f, 0.f, 2.02920771f, 3.7329123f },
+        // PT  error  612  (102/32768) [RMS: -15.35dB]
         { linearDistance, 1.01262534f, 1.f, 2.46070528f, 0.0537485816f, 0.0986242667f },
-        // PS  error 8135 (575/32768) [RMS: -10.65dB]
-        { linearDistance, 2.14896345f, 1.0216713f, 10.5400085f, 0.244498149f, 0.126134038f },
-        // PTS error 2489 (60/32768) [RMS: -20.41dB]
-        { linearDistance, 1.22330308f, 0.933797896f, 2.83245254f, 0.0615176819f, 0.323831677f },
+        // PS  error    5 (1536/32768) [RMS: -15.71]
+        { linearDistance, 0.74411875f, 0.062505953f, 0.232185543f, 0.0717892349f, 0.000250642159f },
+        // PTS error    0  (138/32768) [RMS: -25.46]
+        { linearDistance, 1.10582423f, 0.578988612f, 1.94850934f, 0.0783150643f, 0.300926387f },
         // NP  guessed
         { exponentialDistance, 0.96f, 1.f, 2.5f, 1.1f, 1.2f },
     },
@@ -145,14 +147,14 @@ const CombinedWaveformConfig configWeak[2][5] =
 const CombinedWaveformConfig configStrong[2][5] =
 {
     { /* 6581 R2 0384 sampled by Trurl */
-        // TS  error 20337 (1579/32768) [RMS: -9.22dB]
-        { exponentialDistance, 0.000637792516f, 1.56725872f, 0.f, 0.00036806846f, 1.51800942f },
-        // PT  error  5190 (238/32768) [RMS: -9.73dB]
+        // TS  error   754 (2056/32768) [RMS: -18.87]
+        { exponentialDistance, 0.714277208f, 0.00729158986f, 0.f, 2.12244034f, 1.66707671f },
+        // PT  error  5190  (238/32768) [RMS: -9.73dB]
         { linearDistance, 0.924780309f, 1.f, 1.96809769f, 0.0888123438f, 0.234606609f },
-        // PS  error 31015 (2181/32768) [RMS: -6.95dB]
-        { linearDistance, 1.2328074f, 0.73079139f, 3.9719491f, 0.00156516861f, 0.314677745f },
-        // PTS error  9874 (201/32768) [RMS: -13.79dB]
-        { linearDistance, 1.08558261f, 0.857638359f, 1.52781796f, 0.152927235f, 1.02657032f },
+        // PS  error   860 (1313/32768) [RMS: -8.32]
+        { linearDistance, 1.02216077f, 1.32548738f, 3.66713548f, 0.00202088431f, 0.0824902132f },
+        // PTS error    85  (370/32768) [RMS: -16.34]
+        { linearDistance, 0.942416549f, 1.54389608f, 1.35665071f, 0.154163897f, 0.472713977f },
         // NP  guessed
         { exponentialDistance, 0.96f, 1.f, 2.5f, 1.1f, 1.2f },
     },
