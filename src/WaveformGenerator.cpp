@@ -383,14 +383,11 @@ void WaveformGenerator::writeCONTROL_REG(uint8_t control)
             floating_output_ttl = is6581 ? FLOATING_OUTPUT_TTL_6581R3 : FLOATING_OUTPUT_TTL_8580R5;
         }
 
-        msb_pulldown = false;
         // topbit pulldown happens only on 6581 when saw is selected
-        if (is6581 && (waveform & 2))
-        {
-            // but not if saw is combined with pulse and strongPS is selected
-            if (!(waveform & 4) || !strongPS)
-                msb_pulldown = true;
-        }
+        // but not if saw is combined with pulse and strongPS is selected
+        msb_pulldown = is6581
+            && (waveform & 2)
+            && !(strongPS && (waveform == 6));
     }
 
     if (test != test_prev)

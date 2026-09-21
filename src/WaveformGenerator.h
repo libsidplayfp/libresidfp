@@ -154,8 +154,8 @@ private:
 
     bool is6581; //-V730_NOINIT this is initialized in the SID constructor
 
-    bool strongPS;
-    bool msb_pulldown;
+    bool strongPS = false;
+    bool msb_pulldown = false;
 
     /// The other two waveform generators, for syncing and ring-mod.
     //@{
