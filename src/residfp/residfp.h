@@ -326,6 +326,18 @@ public:
      * @since 1.3
      */
     void set6581caps(CapsType type);
+
+    /**
+     * Set strong P+S for 6581 model.
+     * If enabled when Pulse and Saw are combined the
+     * topbit is not pulled down, providing a stronger
+     * sound.
+     *
+     * @param enable
+     *
+     * @since 1.3
+     */
+    void enableStrongPS(bool enable);
 };
 
 }

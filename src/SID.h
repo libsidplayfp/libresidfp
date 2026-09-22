@@ -378,6 +378,11 @@ public:
      * Set caps for 6581 model.
      */
     void set6581caps(CapsType type);
+
+    /**
+     * Set strong P+S for 6581 model.
+     */
+    void enableStrongPS(bool enable);
 };
 
 } // namespace reSIDfp

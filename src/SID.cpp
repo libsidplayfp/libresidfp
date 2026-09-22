@@ -643,4 +643,10 @@ void SID::set6581caps(CapsType type)
     filter6581->setCaps(type);
 }
 
+void SID::enableStrongPS(bool enable)
+{
+    for (int i = 0; i < 3; i++)
+        voice[i].wave()->setStrongPS(enable);
+}
+
 } // namespace reSIDfp

@@ -194,3 +194,8 @@ void residfp::set6581caps(CapsType type)
 {
     sid.set6581caps(type);
 }
+
+void residfp::enableStrongPS(bool enable)
+{
+    sid.enableStrongPS(enable);
+}
