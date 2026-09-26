@@ -51,12 +51,6 @@ private:
 
     const Integrator& m_bpIntegrator;
 
-    /// Current filter/voice mixer setting.
-    uint16_t* currentMixer = nullptr;
-
-    /// Filter input summer setting.
-    uint16_t* currentSummer = nullptr;
-
     /// Filter resonance value.
     uint16_t* currentResonance = nullptr;
 
@@ -106,6 +100,17 @@ private:
     /// Selects which inputs to route through filter.
     uint8_t filt = 0;
 
+private:
+    inline int32_t getNormalizedVoice(float v, uint8_t env) const
+    {
+        return m_fmc.getNormalizedVoice(v, env);
+    }
+
+    inline int32_t getNormalizedScaledVoice(float v, uint8_t env, float scale) const
+    {
+        return m_fmc.getNormalizedVoice(v*scale, env);
+    }
+
 protected:
     /**
      * Update filter cutoff frequency.
@@ -131,12 +136,11 @@ protected:
 
     virtual void restartIntegrators() = 0;
 
-    inline int32_t getNormalizedVoice(float v, uint8_t env) const
-    {
-        return m_fmc.getNormalizedVoice(v, env);
-    }
+    virtual float toFilterScale() const  = 0;
 
-    virtual int32_t getNormalizedMixerVoice(float v, uint8_t env) const = 0;
+    virtual float toMixerScale(bool filter) const  = 0;
+
+    virtual float voice3OffScale() const = 0;
 
 public:
     Filter(const FilterModelConfig& fmc,
@@ -227,33 +231,33 @@ uint16_t Filter::clock(Voice& voice1, Voice& voice2, Voice& voice3)
 
     // Voltage summer for filter input
     int32_t Vsum = 0;
-    Vsum += filt1 ? getNormalizedVoice(wav1, env1) : 0;
-    Vsum += filt2 ? getNormalizedVoice(wav2, env2) : 0;
-    Vsum += filt3 ? getNormalizedVoice(wav3, env3) : 0;
-    Vsum += filtE ? getNormalizedVoice(extin, 0) : 0;
+    Vsum += filt1 ? getNormalizedVoice(wav1, env1) : getNormalizedScaledVoice(wav1, env1, toFilterScale());
+    Vsum += filt2 ? getNormalizedVoice(wav2, env2) : getNormalizedScaledVoice(wav2, env2, toFilterScale());
+    Vsum += filt3 ? getNormalizedVoice(wav3, env3) : getNormalizedScaledVoice(wav3, env3, toFilterScale());
+    Vsum += filtE ? getNormalizedVoice(extin,   0) : getNormalizedScaledVoice(extin,   0, toFilterScale());
     Vsum += Vlp;
     Vsum += currentResonance[Vbp];
 
     // Filter
-    Vhp = currentSummer[Vsum];
+    Vhp = summer[Vsum];
     Vbp = m_hpIntegrator.solve(Vhp);
     Vlp = m_bpIntegrator.solve(Vbp);
 
-    int32_t Vfilt = 0;
-    if (lp) Vfilt += Vlp;
-    if (bp) Vfilt += Vbp;
-    if (hp) Vfilt += Vhp;
+    // Voice 3 is silenced by voice3off if it is not routed through the filter.
+    const float v3Scale = voice3off ? voice3OffScale() : 1.f;
 
     // Voltage summer for mixer input
     int32_t Vmix = 0;
-    Vmix += filt1 ? 0 : getNormalizedMixerVoice(wav1, env1);
-    Vmix += filt2 ? 0 : getNormalizedMixerVoice(wav2, env2);
-    // Voice 3 is silenced by voice3off if it is not routed through the filter
-    Vmix += (filt3 || voice3off) ? 0 : getNormalizedMixerVoice(wav3, env3);
-    Vmix += filtE ? 0 : getNormalizedMixerVoice(extin, 0);
-    Vmix += Vfilt;
+    Vmix += getNormalizedScaledVoice(wav1, env1, toMixerScale(filt1));
+    Vmix += getNormalizedScaledVoice(wav2, env2, toMixerScale(filt2));
+    Vmix += getNormalizedScaledVoice(wav3, env3, toMixerScale(filt3) * v3Scale);
+    Vmix += getNormalizedScaledVoice(extin,   0, toMixerScale(filtE));
+    // FIXME
+    Vmix += lp ? Vlp : 32768;
+    Vmix += bp ? Vbp : 32768;
+    Vmix += hp ? Vhp : 32768;
 
-    return currentVolume[currentMixer[Vmix]];
+    return currentVolume[mixer[Vmix]];
 }
 
 } // namespace reSIDfp
