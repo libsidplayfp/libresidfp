@@ -95,10 +95,10 @@ const CombinedWaveformConfig configAverage[2][5] =
         { exponentialDistance,  0.79111582f, 1.06053483f, 0.f, 1.97922957f, 2.67848182f },
         // PT  error  4590  (124/32768) [RMS: -11.40dB]
         { linearDistance, 0.941692829f, 1.f, 1.80072665f, 0.033124879f, 0.232303441f },
-        // PS  error   211 (1036/32768) [RMS: -10.33]
-        { linearDistance, 1.09182823f, 1.41560268f, 3.42711949f, 0.0792779177f, 0.102292374f },
-        // PTS error    57  (333/32768) [RMS: -20.29]
-        { linearDistance, 1.52983034f, 0.0413390137f, 2.31868196f, 0.959919035f, 0.858174801f },
+        // PS  error   211 (1030/32768) [RMS: -10.31]
+        { linearDistance, 1.09394681f, 1.42332006f, 3.44251633f, 0.0797301158f, 0.102444135f },
+        // PTS error    57  (278/32768) [RMS: -18.51]
+        { linearDistance, 1.53609717f, 0.0391017497f, 1.67601228f, 1.44580793f, 1.42448807f },
         // NP  guessed
         { exponentialDistance, 0.96f, 1.f, 2.5f, 1.1f, 1.2f },
     },
@@ -119,12 +119,12 @@ const CombinedWaveformConfig configAverage[2][5] =
 const CombinedWaveformConfig configWeak[2][5] =
 {
     { /* 6581 R2 4383 sampled by ltx128 */
-        // TS  error  751  (390/32768) [RMS: -13.56]
-        { exponentialDistance, 0.885195196f, 1.48950899f, 0.f, 2.02920771f, 3.7329123f },
+        // TS  error  169 (843/32768) [RMS: -14.61]
+        { exponentialDistance, 0.946056068f, 26.9527836f, 0.f, 6.38644743f, 3.61852479f },
         // PT  error  612  (102/32768) [RMS: -15.35dB]
         { linearDistance, 1.01262534f, 1.f, 2.46070528f, 0.0537485816f, 0.0986242667f },
-        // PS  error    5 (1536/32768) [RMS: -15.71]
-        { linearDistance, 0.74411875f, 0.062505953f, 0.232185543f, 0.0717892349f, 0.000250642159f },
+        // PS  error    5 (1535/32768) [RMS: -15.71]
+        { linearDistance, 0.760607481f, 0.0588437207f, 0.407531887f, 0.0994859114f, 0.000200334835f },
         // PTS error    0  (138/32768) [RMS: -25.46]
         { linearDistance, 1.10582423f, 0.578988612f, 1.94850934f, 0.0783150643f, 0.300926387f },
         // NP  guessed
@@ -135,8 +135,8 @@ const CombinedWaveformConfig configWeak[2][5] =
         { exponentialDistance, 0.812351167f, 1.1727736f, 0.f, 1.87459648f, 2.31578159f },
         // PT  error 7199 (192/32768) [RMS: -9.23]
         { exponentialDistance, 0.917997837f, 1.f, 1.01248944f, 1.05761552f, 1.37529826f },
-        // PS  error 9856 (332/32768) [RMS: -9.45dB]
-        { quadraticDistance, 0.968754232f, 1.00669801f, 1.29909098f, 0.00962483883f, 0.146850556f },
+        // PS  error 9849 (333/32768) [RMS: -9.45]
+        { quadraticDistance, 0.969898582f, 1.00785899f, 1.30233467f, 0.00962228701f, 0.146903187f },
         // PTS error 4809 (60/32768) [RMS: -15.03dB]
         { exponentialDistance, 0.941834152f, 1.06401193f, 0.991132736f, 0.995310068f, 1.41105855f },
         // NP  guessed
@@ -151,20 +151,20 @@ const CombinedWaveformConfig configStrong[2][5] =
         { exponentialDistance, 0.714277208f, 0.00729158986f, 0.f, 2.12244034f, 1.66707671f },
         // PT  error  5190  (238/32768) [RMS: -9.73dB]
         { linearDistance, 0.924780309f, 1.f, 1.96809769f, 0.0888123438f, 0.234606609f },
-        // PS  error   860 (1313/32768) [RMS: -8.32]
-        { linearDistance, 1.02216077f, 1.32548738f, 3.66713548f, 0.00202088431f, 0.0824902132f },
-        // PTS error    85  (370/32768) [RMS: -16.34]
-        { linearDistance, 0.942416549f, 1.54389608f, 1.35665071f, 0.154163897f, 0.472713977f },
+        // PS  error   860 (1288/32768) [RMS: -8.28]
+        { linearDistance, 1.02248156f, 1.36571658f, 3.66920304f, 0.00203792308f, 0.0826661736f },
+        // PTS error    60  (411/32768) [RMS: -17.97]
+        { linearDistance, 0.891591191f, 1.88450027f, 1.33901846f, 0.134212971f, 0.293466389f },
         // NP  guessed
         { exponentialDistance, 0.96f, 1.f, 2.5f, 1.1f, 1.2f },
     },
     { /* 8580 R5 1489 sampled by reFX-Mike */
         // TS  error  4837 (388/32768) [RMS: -10.54dB]
         { exponentialDistance, 0.89762634f, 56.7594185f, 0.f, 7.68995237f, 12.0754194f },
-        // PT  error  9266 (508/32768) [RMS: -6.03dB]
-        { exponentialDistance,  0.87147671f, 1.f, 1.44887495f, 1.05899632f, 1.43786001f },
-        // PS  error 13168 (718/32768) [RMS: -6.34dB]
-        { quadraticDistance, 0.89255774f, 1.2253896f, 1.75615835f, 0.0245045591f, 0.12982437f },
+        // PT  error  9242 (504/32768) [RMS: -6.03]
+        { exponentialDistance,  0.871706188f, 1.f, 1.44852948f, 1.05926013f, 1.43830109f },
+        // PS  error 13146 (713/32768) [RMS: -6.34]
+        { quadraticDistance, 0.892224431f, 1.22416508f, 1.74952936f, 0.0251259189f, 0.13089405f },
         // PTS error  6702 (300/32768) [RMS: -11.14dB]
         { linearDistance, 0.91124934f, 0.963609755f, 0.909965038f, 1.07445884f, 1.82399702f },
         // NP  guessed
