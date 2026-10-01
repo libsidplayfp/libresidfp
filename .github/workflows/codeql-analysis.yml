@@ -15,10 +15,12 @@ on:
   push:
     branches:
       - main
+      - stable/1.2
   pull_request:
     # The branches below must be a subset of the branches above
     branches:
       - main
+      - stable/1.2
 
 jobs:
   analyze:
