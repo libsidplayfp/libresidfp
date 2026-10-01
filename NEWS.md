@@ -1,3 +1,10 @@
+1.2.3 2026-10-xx
+* Fixed sanitizer warning (#47)
+* Adjusted 6581 combined waveforms (#54) (#55)
+* Other minor fixes and improvements
+
+
+
 1.2.2 2026-08-30
 * Correctly restore filter status
 

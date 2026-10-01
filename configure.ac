@@ -1,6 +1,6 @@
 m4_define([lib_major], [1])
 m4_define([lib_minor], [2])
-m4_define([lib_level], [2])
+m4_define([lib_level], [3])
 m4_define([lib_version], [lib_major.lib_minor.lib_level])
 
 AC_PREREQ([2.62])
@@ -94,7 +94,7 @@ dnl libtool-style version-info number
 # If any interfaces have been removed or changed since the last public release, then set age to 0.
 
 LIBRESIDFPCUR=2
-LIBRESIDFPREV=2
+LIBRESIDFPREV=3
 LIBRESIDFPAGE=2
 LIBRESIDFPVERSION=$LIBRESIDFPCUR:$LIBRESIDFPREV:$LIBRESIDFPAGE
 
