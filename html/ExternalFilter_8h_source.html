@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.2.2</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.2.3</span>
    </div>
   </td>
  </tr>
@@ -130,20 +130,25 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00150" data-start="{" data-end="}">
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classreSIDfp_1_1ExternalFilter.html#a5e41a2d643305288d5bfcc64fc158641">  150</a></span>int32_t <a class="code hl_function" href="classreSIDfp_1_1ExternalFilter.html#a5e41a2d643305288d5bfcc64fc158641">ExternalFilter::clock</a>(int32_t input)</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>{</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keyword">const</span> int32_t Vi = input &lt;&lt; 11;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keyword">const</span> int32_t dVlp = (w0lp_1_s7 * (Vi - Vlp)) &gt;&gt; 7;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">const</span> int32_t dVhp = (w0hp_1_s17 * (Vlp - Vhp)) &gt;&gt; 17;</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    Vlp += dVlp;</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    Vhp += dVhp;</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordflow">return</span> (Vlp - Vhp) &gt;&gt; 11;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>}</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">#if __cplusplus &gt;= 202002L</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keyword">const</span> int32_t Vi = input &lt;&lt; 11;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="comment">// Left shift of negative values is undefined</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keyword">const</span> int32_t Vi = input * (1 &lt;&lt; 11);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keyword">const</span> int32_t dVlp = (w0lp_1_s7 * (Vi - Vlp)) &gt;&gt; 7;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keyword">const</span> int32_t dVhp = (w0hp_1_s17 * (Vlp - Vhp)) &gt;&gt; 17;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    Vlp += dVlp;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    Vhp += dVhp;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">return</span> (Vlp - Vhp) &gt;&gt; 11;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>}</div>
 </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>} <span class="comment">// namespace reSIDfp</span></div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>} <span class="comment">// namespace reSIDfp</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassreSIDfp_1_1ExternalFilter_html"><div class="ttname"><a href="classreSIDfp_1_1ExternalFilter.html">reSIDfp::ExternalFilter</a></div><div class="ttdef"><b>Definition</b> ExternalFilter.h:87</div></div>
 <div class="ttc" id="aclassreSIDfp_1_1ExternalFilter_html_a4e9411c5bc187a2bb014702d9da063fe"><div class="ttname"><a href="classreSIDfp_1_1ExternalFilter.html#a4e9411c5bc187a2bb014702d9da063fe">reSIDfp::ExternalFilter::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdef"><b>Definition</b> ExternalFilter.cpp:71</div></div>
 <div class="ttc" id="aclassreSIDfp_1_1ExternalFilter_html_a57fcd2a32f856ffbcd63ec8a9709b3ed"><div class="ttname"><a href="classreSIDfp_1_1ExternalFilter.html#a57fcd2a32f856ffbcd63ec8a9709b3ed">reSIDfp::ExternalFilter::setClockFrequency</a></div><div class="ttdeci">void setClockFrequency(double frequency)</div><div class="ttdef"><b>Definition</b> ExternalFilter.cpp:46</div></div>
@@ -154,7 +159,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 30 2026 14:44:54 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Oct 2 2026 18:14:39 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
