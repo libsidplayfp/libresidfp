@@ -1,4 +1,4 @@
-1.2.3 2026-10-xx
+1.2.3 2026-10-02
 * Fixed sanitizer warning (#47)
 * Adjusted 6581 combined waveforms (#54) (#55)
 * Other minor fixes and improvements
