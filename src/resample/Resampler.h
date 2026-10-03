@@ -75,7 +75,7 @@ public:
      */
     inline int16_t getOutput(int32_t scaleFactor) const
     {
-        const int32_t out = (scaleFactor * output()) / 2;
+        const int32_t out = scaleFactor * output();
         return Limiter::softClip(out + bnoise());
     }
 

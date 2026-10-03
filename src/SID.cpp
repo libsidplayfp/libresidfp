@@ -236,13 +236,13 @@ void SID::setChipModel(ChipModel new_model)
     {
     case MOS6581:
         filter = filter6581;
-        scaleFactor = 3;
+        scaleFactor = 2;
         modelTTL = BUS_TTL_6581;
         break;
 
     case CSG8580:
         filter = filter8580;
-        scaleFactor = 5;
+        scaleFactor = 4;
         modelTTL = BUS_TTL_8580;
         break;
 
