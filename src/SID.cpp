@@ -152,6 +152,7 @@ SID::SID() :
     filter6581(new Filter6581()),
     filter8580(new Filter8580()),
     resampler(nullptr),
+    m_noise(8),
     offset_6581(OFFSET_6581),
     cws(AVERAGE),
     dacLeakage(1.0),
