@@ -139,13 +139,13 @@ constexpr int BUS_TTL_8580 = 0xa2000;
 //@}
 
 // Clamp parameter in defined range
-template<typename T, T min, T max>
+template<typename T, int min, int max>
 T clamp(T param)
 {
 #ifdef HAVE_CXX17
-     return std::clamp(param, min, max);
+     return std::clamp(param, (T)min, (T)max);
 #else
-     return std::max(std::min(param, max), min);
+     return std::max(std::min(param, (T)max), (T)min);
 #endif
 }
 
@@ -175,19 +175,19 @@ SID::~SID()
 
 void SID::setFilter6581Curve(double filterCurve)
 {
-    p->filterCurve6581 = clamp<double, 0.0, 1.0>(filterCurve);
+    p->filterCurve6581 = clamp<double, 0, 1>(filterCurve);
     filter6581->setFilterCurve(filterCurve);
 }
 
 void SID::setFilter6581Range(double adjustment)
 {
-    p->filterRange6581 = clamp<double, 0.0, 1.0>(adjustment);
+    p->filterRange6581 = clamp<double, 0, 1>(adjustment);
     filter6581->setFilterRange(adjustment);
 }
 
 void SID::setFilter8580Curve(double filterCurve)
 {
-    p->filterCurve8580 = clamp<double, 0.0, 1.0>(filterCurve);
+    p->filterCurve8580 = clamp<double, 0, 1>(filterCurve);
     filter8580->setFilterCurve(filterCurve);
 }
 
@@ -622,20 +622,20 @@ void SID::setPaddle(uint8_t x, uint8_t y)
 
 void SID::setDacLeakage(double level)
 {
-    dacLeakage = clamp<double, 0.0, 1.0>(level);
+    dacLeakage = clamp<double, 0, 1>(level);
     setChipModel(model);
 }
 
 void SID::setOffset6581(double offset)
 {
     // TODO determine a reasonable range
-    offset_6581 = 0x380 + static_cast<unsigned int>((1. - clamp<double, 0.0, 1.0>(offset)) * 0x200);
+    offset_6581 = 0x380 + static_cast<unsigned int>((1. - clamp<double, 0, 1>(offset)) * 0x200);
     setChipModel(model);
 }
 
 void SID::setDCBRes(double res)
 {
-    externalFilter.setExtResistance(clamp<double, 0.0, 1.0>(res));
+    externalFilter.setExtResistance(clamp<double, 0, 1>(res));
 }
 
 void SID::set6581caps(CapsType type)
