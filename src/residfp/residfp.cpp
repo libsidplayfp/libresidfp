@@ -199,3 +199,8 @@ void residfp::enableStrongPS(bool enable)
 {
     sid.enableStrongPS(enable);
 }
+
+void residfp::noiseLevel(int level)
+{
+    sid.setNoiseLevel(level);
+}

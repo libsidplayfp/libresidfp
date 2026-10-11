@@ -229,7 +229,7 @@ public:
     /**
      * Enable filter emulation.
      *
-     * @param enable false to turn off filter emulation
+     * @param enable false to turn off filter emulation (default enabled)
      */
     void enableFilter(bool enable);
 
@@ -333,11 +333,21 @@ public:
      * topbit is not pulled down, providing a stronger
      * sound.
      *
-     * @param enable
+     * @param enable true to turn on strong PS (default disabled)
      *
      * @since 1.3
      */
     void enableStrongPS(bool enable);
+
+    /**
+     * Set background noise level.
+     * @note: if noise is disabled there will be audible quantization noise.
+     *
+     * @param level the noise level, between 0 (no noise) and 8 (max level) (default 8)
+     *
+     * @since 1.3
+     */
+    void noiseLevel(int level);
 };
 
 }
