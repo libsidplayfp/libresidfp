@@ -30,14 +30,21 @@ private:
     mutable uint32_t m_wnoise = 34653463u;
     mutable int32_t m_hpnoise = 0;
 
-    const uint32_t m_mask;
-    const int32_t m_middle;
+    uint32_t m_mask;
+    int32_t m_middle;
 
+    static constexpr int defLevel = 8;
 public:
-    Noise(int bits) :
-        m_mask((1u << bits) - 1),
-        m_middle(1 << (bits - 1))
-    {}
+    Noise()
+    {
+        setLevel(defLevel);
+    }
+
+    void setLevel(int level)
+    {
+        m_mask = (1u << level) - 1;
+        m_middle = 1 << (level - 1);
+    }
 
     inline int32_t output() const
     {

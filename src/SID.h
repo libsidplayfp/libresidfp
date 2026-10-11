@@ -395,6 +395,11 @@ public:
      * Set strong P+S for 6581 model.
      */
     void enableStrongPS(bool enable);
+
+    /*
+     * Set the background noise level.
+     */
+    void setNoiseLevel(int level);
 };
 
 } // namespace reSIDfp
