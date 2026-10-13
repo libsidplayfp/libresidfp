@@ -33,7 +33,7 @@ private:
     uint32_t m_mask;
     int32_t m_middle;
 
-    static constexpr int defLevel = 8;
+    static constexpr int defLevel = 5;
 public:
     Noise()
     {

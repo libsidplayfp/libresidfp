@@ -343,7 +343,7 @@ public:
      * Set background noise level.
      * @note: if noise is disabled there will be audible quantization noise.
      *
-     * @param level the noise level, between 0 (no noise) and 8 (max level) (default 8)
+     * @param level the noise level, between 0 (no noise) and 8 (max level) (default 5)
      *
      * @since 1.3
      */
