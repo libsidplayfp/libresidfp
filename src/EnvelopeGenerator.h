@@ -127,6 +127,10 @@ public:
      * SID clocking.
      */
     void clock();
+    /**
+     * Advance the generator without producing audio.
+     */
+    void clockSilent(unsigned cycles);
 
     /**
      * Get the Envelope Generator digital output.
@@ -176,6 +180,50 @@ public:
 
 namespace reSIDfp
 {
+
+RESIDFP_INLINE
+void EnvelopeGenerator::clockSilent(unsigned cycles)
+{
+    // The non-zero 15-bit LFSR has period 32767. Shared phase tables permit
+    // exact jumps up to the next rate comparison; pipeline clocks stay ordinary.
+    struct Phases
+    {
+        uint16_t phase[32768]{};
+        uint16_t value[32767]{};
+        Phases()
+        {
+            unsigned x = 0x7fff;
+            for (unsigned i = 0; i < 32767; i++)
+            {
+                phase[x] = i;
+                value[i] = x;
+                x = (x >> 1) | (((x << 14) ^ (x << 13)) & 0x4000);
+            }
+        }
+    };
+    static const Phases phases;
+    while (cycles)
+    {
+        if (!(new_exponential_counter_period | state_pipeline | envelope_pipeline |
+              exponential_pipeline) &&
+            !resetLfsr && lfsr && rate)
+        {
+            unsigned p = phases.phase[lfsr];
+            unsigned distance = (phases.phase[rate] + 32767u - p) % 32767u;
+            unsigned skip = cycles < distance ? cycles : distance;
+            if (skip)
+            {
+                lfsr = phases.value[(p + skip) % 32767u];
+                env3 = envelope_counter;
+                cycles -= skip;
+                if (!cycles)
+                    break;
+            }
+        }
+        clock();
+        --cycles;
+    }
+}
 
 RESIDFP_INLINE
 void EnvelopeGenerator::clock()

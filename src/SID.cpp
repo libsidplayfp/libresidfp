@@ -583,34 +583,44 @@ void SID::clockDigital(unsigned int cycles)
 void SID::clockSilent(unsigned int cycles)
 {
     ageBusValue(cycles);
-
-    while (cycles != 0)
+    while (cycles)
     {
-        int delta_t = std::min(nextVoiceSync, cycles);
-
-        if (delta_t > 0)
+        unsigned delta = std::min(nextVoiceSync, cycles);
+        if (delta)
         {
-            for (int i = 0; i < delta_t; i++)
+            // Ring-modulated noise feedback couples voices during intermediate clocks.
+            bool independent = voice[0].wave()->canClockIndependently() &&
+                               voice[1].wave()->canClockIndependently() &&
+                               voice[2].wave()->canClockIndependently();
+            if (independent && delta > 2)
             {
-                // clock waveform generators (can affect OSC3)
+                // Retain two shared clocks for pulse and 8580 tri/saw output pipelines.
+                for (auto &v : voice)
+                    v.wave()->clockSilent(delta - 2);
+                voice[2].envelope()->clockSilent(delta - 2);
+            }
+            else
+            {
+                for (unsigned i = 2; i < delta; i++)
+                {
+                    clockWaveGen();
+                    for (auto &v : voice)
+                        v.wave()->output();
+                    voice[2].envelope()->clock();
+                }
+            }
+            for (unsigned i = 0; i < std::min(delta, 2u); i++)
+            {
                 clockWaveGen();
-
-                voice[0].wave()->output();
-                voice[1].wave()->output();
-                voice[2].wave()->output();
-
-                // clock ENV3 only
+                for (auto &v : voice)
+                    v.wave()->output();
                 voice[2].envelope()->clock();
             }
-
-            cycles -= delta_t;
-            nextVoiceSync -= delta_t;
+            cycles -= delta;
+            nextVoiceSync -= delta;
         }
-
         if (nextVoiceSync == 0)
-        {
             voiceSync(true);
-        }
     }
 }
 
