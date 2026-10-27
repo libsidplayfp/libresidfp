@@ -44,6 +44,8 @@ class RESIDFP_EXTERN residfp
 {
 private:
     SID &sid;
+    bool m_fastSilent = false;
+    bool m_fastSilentUsed = false;
 
 public:
     residfp();
@@ -204,6 +206,19 @@ public:
      * @param cycles c64 clocks to clock.
      */
     void clockSilent(unsigned int cycles);
+
+    /**
+     * Enable or disable seek clocking that advances bus decay without waveform or envelope synthesis.
+     */
+    void fastSilent(bool enable) { m_fastSilent = enable; }
+    /**
+     * Check whether seek clocking has omitted digital synthesis.
+     */
+    bool fastSilentUsed() const { return m_fastSilentUsed; }
+    /**
+     * Restore the checkpoint flag recording omitted digital synthesis.
+     */
+    void restoreFastSilentUsed(bool used) { m_fastSilentUsed = used; }
 
     /**
      * Set filter curve parameter for 6581 model.

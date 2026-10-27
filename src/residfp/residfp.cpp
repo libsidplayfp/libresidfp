@@ -71,6 +71,8 @@ bool residfp::setCombinedWaveforms(CombinedWaveforms cws)
 void residfp::reset()
 {
     sid.reset();
+    m_fastSilent = false;
+    m_fastSilentUsed = false;
 }
 
 void residfp::input(int value)
@@ -127,7 +129,15 @@ void residfp::clockDigital(unsigned int cycles)
 
 void residfp::clockSilent(unsigned int cycles)
 {
-    sid.clockSilent(cycles);
+    if (m_fastSilent)
+    {
+        sid.clockBus(cycles);
+        m_fastSilentUsed |= cycles != 0;
+    }
+    else
+    {
+        sid.clockSilent(cycles);
+    }
 }
 
 void residfp::setFilter6581Curve(double filterCurve)

@@ -339,6 +339,11 @@ public:
     void clockSilent(unsigned int cycles);
 
     /**
+     * Advance the readable bus latch while synthesis is omitted during seeks.
+     */
+    void clockBus(unsigned int cycles) { ageBusValue(cycles); }
+
+    /**
      * Set filter curve parameter for 6581 model.
      *
      * @see Filter6581::setFilterCurve(double)
