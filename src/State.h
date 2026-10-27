@@ -26,6 +26,7 @@
 #include "residfp/residfp_defs.h"
 
 #include <cstdint>
+#include "Noise.h"
 
 namespace reSIDfp
 {
@@ -61,6 +62,8 @@ public:
     static int size(SID &s);
 
 private:
+    Noise noise;
+
     // SID
     int bus_value_ttl;
     unsigned int nextVoiceSync;
