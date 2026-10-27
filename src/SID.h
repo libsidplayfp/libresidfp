@@ -405,6 +405,28 @@ public:
      * Set the background noise level.
      */
     void setNoiseLevel(int level);
+
+    /**
+     * Accumulate silent clocks for deferred digital-state advancement.
+     */
+    void clockSilentDeferred(unsigned cycles);
+    /**
+     * Apply pending silent clocks to the digital state.
+     */
+    void flushSilent() { if (silentPending) flushSilentState(); }
+    /**
+     * Discard deferred clocks before restoring a checkpoint.
+     */
+    void clearSilentPending() { silentPending = silentLastWrite = 0; }
+    /**
+     * Record the current deferred-clock position of a register write.
+     */
+    void noteSilentWrite() { silentLastWrite = silentPending; }
+private:
+    void flushSilentState();
+    unsigned silentPending = 0;
+    unsigned silentLastWrite = 0;
+
 };
 
 } // namespace reSIDfp

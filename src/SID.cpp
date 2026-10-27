@@ -323,6 +323,9 @@ void SID::setCombinedWaveforms(CombinedWaveforms new_cws)
 
 void SID::reset()
 {
+    // Oscillator accumulators survive reset, so materialise their elapsed clocks.
+    flushSilent();
+    silentPending = silentLastWrite = 0;
     for (int i = 0; i < 3; i++)
     {
         voice[i].reset();
@@ -666,3 +669,27 @@ void SID::setNoiseLevel(int level)
 }
 
 } // namespace reSIDfp
+
+namespace reSIDfp {
+void SID::flushSilentState() {
+    if (!silentPending) return;
+    const auto cycles = silentPending;
+    const auto lastWrite = silentLastWrite;
+    silentPending = silentLastWrite = 0;
+    const auto value = busValue;
+    const auto ttl = busValueTtl;
+    clockSilent(cycles);
+    // A register write refreshes the no-sync sentinel at its original clock.
+    if (lastWrite && cycles < unsigned(std::numeric_limits<int>::max()) &&
+        nextVoiceSync == unsigned(std::numeric_limits<int>::max()) - cycles)
+        nextVoiceSync += lastWrite;
+    busValue = value;
+    busValueTtl = ttl;
+}
+void SID::clockSilentDeferred(unsigned cycles) {
+    ageBusValue(cycles);
+    if (cycles > std::numeric_limits<unsigned>::max() - silentPending) flushSilent();
+    silentPending += cycles;
+    if (silentPending >= 65536) flushSilent();
+}
+}
