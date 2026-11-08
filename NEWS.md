@@ -1,8 +1,14 @@
-1.3.0 2026-09-xx
-* Minor resampler fixes and optimizations
-* Allow choosing 330pF caps on the 6581 (#50)
-* Replace dithering with noise (#40)
-* Adjusted 6581 combined waveforms
+1.3.0 2026-11-xx
+* Allow choosing 330pF caps on the 6581 for brighter "Galway sounding" filter (#50)
+* Replace dithering with high-passed noise with adjustable level (#40)
+* Minor resampler optimizations
+
+
+
+1.2.3 2026-10-02
+* Fixed sanitizer warning (#47)
+* Adjusted 6581 combined waveforms (#54) (#55)
+* Other minor fixes and improvements
 
 
 
