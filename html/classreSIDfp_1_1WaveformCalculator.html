@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.2.3</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.3.0</span>
    </div>
   </td>
  </tr>
@@ -30,6 +30,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -83,7 +84,7 @@ AND         0 0 0 1 1 1 1 1 0 0 0 0
 Output      0 0 0 0 1 1 1 0 0 0 0 0
 </pre><p>Re-vectorized die photographs reveal the mechanism behind this behavior. Each waveform selector bit acts as a switch, which directly connects internal outputs into the waveform DAC inputs as follows:</p>
 <ul>
-<li>Noise outputs the shift register bits to DAC inputs as described above. Each output is also used as input to the next bit when the shift register is shifted. Lower four bits are grounded.</li>
+<li><a class="el" href="classreSIDfp_1_1Noise.html">Noise</a> outputs the shift register bits to DAC inputs as described above. Each output is also used as input to the next bit when the shift register is shifted. Lower four bits are grounded.</li>
 <li>Pulse connects a single line to all DAC inputs. The line is connected to either 5V (pulse on) or 0V (pulse off) at bit 11, and ends at bit 0.</li>
 <li>Triangle connects the upper 11 bits of the (MSB EOR'ed) accumulator to the DAC inputs, so that DAC bit 0 = 0, DAC bit n = accumulator bit n - 1.</li>
 <li>Sawtooth connects the upper 12 bits of the accumulator to the DAC inputs, so that DAC bit n = accumulator bit n. Sawtooth blocks out the MSB from the EOR used to generate the triangle waveform.</li>
@@ -201,7 +202,7 @@ Output      0 0 0 0 1 1 1 0 0 0 0 0
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Oct 2 2026 18:14:39 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Nov 13 2026 15:13:53 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

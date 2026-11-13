@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.2.3</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.3.0</span>
    </div>
   </td>
  </tr>
@@ -30,6 +30,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -95,36 +96,58 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#  endif</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">namespace </span>reSIDfp</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
-<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190">   54</a></span>    <span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a3fec9a7a3db8851108a9d68e03bc54aa">   55</a></span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a3fec9a7a3db8851108a9d68e03bc54aa">MOS6581</a>,    </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a9bb661d08335b96b5b596cd98418ed8e">CSG8580</a>     </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a9bb661d08335b96b5b596cd98418ed8e">   57</a></span>    } ChipModel;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">/* Deprecated attributes */</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#if __cplusplus &gt;= 201402L</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor"># define RESIDFP_DEPRECATED [[deprecated]]</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#elif defined(_MSCVER)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#  define RESIDFP_DEPRECATED __declspec(deprecated)</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#elif defined(__GNUC__) || defined(__clang__)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#  define RESIDFP_DEPRECATED __attribute__ ((deprecated))</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#  define RESIDFP_DEPRECATED</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">namespace </span>reSIDfp</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="};">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190">   65</a></span>    <span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a3fec9a7a3db8851108a9d68e03bc54aa">   66</a></span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a3fec9a7a3db8851108a9d68e03bc54aa">MOS6581</a>,    </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a9bb661d08335b96b5b596cd98418ed8e">CSG8580</a>     </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a9bb661d08335b96b5b596cd98418ed8e">   68</a></span>    } ChipModel;</div>
 </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a6c26deb7932c47336d99840baeb97259">   62</a></span>    <span class="keyword">typedef</span> <span class="keyword">enum</span> { AVERAGE, WEAK, STRONG } CombinedWaveforms;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="foldopen" id="foldopen00067" data-start="{" data-end="};">
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009c">   67</a></span>    <span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009cac6e22dd9db3dc49340169b9ffe8f8d74">   68</a></span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009cac6e22dd9db3dc49340169b9ffe8f8d74">DECIMATE</a>,   </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca44a749ec4a168127d93bd3787dcff7c2">   69</a></span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca44a749ec4a168127d93bd3787dcff7c2">RESAMPLE</a>,   </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca82792dfe3aa1531ea3112fa8c876997f">NONE</a>        </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca82792dfe3aa1531ea3112fa8c876997f">   71</a></span>    } SamplingMethod;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a6c26deb7932c47336d99840baeb97259">   73</a></span>    <span class="keyword">typedef</span> <span class="keyword">enum</span> { AVERAGE, WEAK, STRONG } CombinedWaveforms;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="};">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009c">   78</a></span>    <span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009cac6e22dd9db3dc49340169b9ffe8f8d74">   79</a></span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009cac6e22dd9db3dc49340169b9ffe8f8d74">DECIMATE</a>,   </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca44a749ec4a168127d93bd3787dcff7c2">   80</a></span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca44a749ec4a168127d93bd3787dcff7c2">RESAMPLE</a>,   </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca82792dfe3aa1531ea3112fa8c876997f">NONE</a>        </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca82792dfe3aa1531ea3112fa8c876997f">   82</a></span>    } SamplingMethod;</div>
 </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aresidfp__defs_8h_html_a0deb9e3df077a9319bd4d8d6cbef009ca44a749ec4a168127d93bd3787dcff7c2"><div class="ttname"><a href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca44a749ec4a168127d93bd3787dcff7c2">reSIDfp::RESAMPLE</a></div><div class="ttdeci">@ RESAMPLE</div><div class="ttdoc">Sinc resampling (high quality but CPU intensive)</div><div class="ttdef"><b>Definition</b> residfp_defs.h:69</div></div>
-<div class="ttc" id="aresidfp__defs_8h_html_a0deb9e3df077a9319bd4d8d6cbef009ca82792dfe3aa1531ea3112fa8c876997f"><div class="ttname"><a href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca82792dfe3aa1531ea3112fa8c876997f">reSIDfp::NONE</a></div><div class="ttdeci">@ NONE</div><div class="ttdoc">No resampling (raw 1MHz output)</div><div class="ttdef"><b>Definition</b> residfp_defs.h:70</div></div>
-<div class="ttc" id="aresidfp__defs_8h_html_a0deb9e3df077a9319bd4d8d6cbef009cac6e22dd9db3dc49340169b9ffe8f8d74"><div class="ttname"><a href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009cac6e22dd9db3dc49340169b9ffe8f8d74">reSIDfp::DECIMATE</a></div><div class="ttdeci">@ DECIMATE</div><div class="ttdoc">Linear interpolation (fast but low quality)</div><div class="ttdef"><b>Definition</b> residfp_defs.h:68</div></div>
-<div class="ttc" id="aresidfp__defs_8h_html_a951e115c4d2ff52ae48583aa9d055190a3fec9a7a3db8851108a9d68e03bc54aa"><div class="ttname"><a href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a3fec9a7a3db8851108a9d68e03bc54aa">reSIDfp::MOS6581</a></div><div class="ttdeci">@ MOS6581</div><div class="ttdoc">Old MOS6581.</div><div class="ttdef"><b>Definition</b> residfp_defs.h:55</div></div>
-<div class="ttc" id="aresidfp__defs_8h_html_a951e115c4d2ff52ae48583aa9d055190a9bb661d08335b96b5b596cd98418ed8e"><div class="ttname"><a href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a9bb661d08335b96b5b596cd98418ed8e">reSIDfp::CSG8580</a></div><div class="ttdeci">@ CSG8580</div><div class="ttdoc">New CSG8580.</div><div class="ttdef"><b>Definition</b> residfp_defs.h:56</div></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="};">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381ea">   87</a></span>    <span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381eaa96397d005332a4e2d60ed4170d0e7e4a">   88</a></span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381eaa96397d005332a4e2d60ed4170d0e7e4a">CAPS2200</a>,    </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381eaa1def1b7a49b29f04e914eacb74cc2f8d">   89</a></span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381eaa1def1b7a49b29f04e914eacb74cc2f8d">CAPS470</a>,     </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <a class="code hl_enumvalue" href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381eaafcef971e9d469b10083778c23996e40c">CAPS330</a>      </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381eaafcef971e9d469b10083778c23996e40c">   91</a></span>    } CapsType;</div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>}</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aresidfp__defs_8h_html_a0deb9e3df077a9319bd4d8d6cbef009ca44a749ec4a168127d93bd3787dcff7c2"><div class="ttname"><a href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca44a749ec4a168127d93bd3787dcff7c2">reSIDfp::RESAMPLE</a></div><div class="ttdeci">@ RESAMPLE</div><div class="ttdoc">Sinc resampling (high quality but CPU intensive)</div><div class="ttdef"><b>Definition</b> residfp_defs.h:80</div></div>
+<div class="ttc" id="aresidfp__defs_8h_html_a0deb9e3df077a9319bd4d8d6cbef009ca82792dfe3aa1531ea3112fa8c876997f"><div class="ttname"><a href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009ca82792dfe3aa1531ea3112fa8c876997f">reSIDfp::NONE</a></div><div class="ttdeci">@ NONE</div><div class="ttdoc">No resampling (raw 1MHz output)</div><div class="ttdef"><b>Definition</b> residfp_defs.h:81</div></div>
+<div class="ttc" id="aresidfp__defs_8h_html_a0deb9e3df077a9319bd4d8d6cbef009cac6e22dd9db3dc49340169b9ffe8f8d74"><div class="ttname"><a href="residfp__defs_8h.html#a0deb9e3df077a9319bd4d8d6cbef009cac6e22dd9db3dc49340169b9ffe8f8d74">reSIDfp::DECIMATE</a></div><div class="ttdeci">@ DECIMATE</div><div class="ttdoc">Linear interpolation (fast but low quality)</div><div class="ttdef"><b>Definition</b> residfp_defs.h:79</div></div>
+<div class="ttc" id="aresidfp__defs_8h_html_a951e115c4d2ff52ae48583aa9d055190a3fec9a7a3db8851108a9d68e03bc54aa"><div class="ttname"><a href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a3fec9a7a3db8851108a9d68e03bc54aa">reSIDfp::MOS6581</a></div><div class="ttdeci">@ MOS6581</div><div class="ttdoc">Old MOS6581.</div><div class="ttdef"><b>Definition</b> residfp_defs.h:66</div></div>
+<div class="ttc" id="aresidfp__defs_8h_html_a951e115c4d2ff52ae48583aa9d055190a9bb661d08335b96b5b596cd98418ed8e"><div class="ttname"><a href="residfp__defs_8h.html#a951e115c4d2ff52ae48583aa9d055190a9bb661d08335b96b5b596cd98418ed8e">reSIDfp::CSG8580</a></div><div class="ttdeci">@ CSG8580</div><div class="ttdoc">New CSG8580.</div><div class="ttdef"><b>Definition</b> residfp_defs.h:67</div></div>
+<div class="ttc" id="aresidfp__defs_8h_html_ac0681795c57c0127ff8bd12beca381eaa1def1b7a49b29f04e914eacb74cc2f8d"><div class="ttname"><a href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381eaa1def1b7a49b29f04e914eacb74cc2f8d">reSIDfp::CAPS470</a></div><div class="ttdeci">@ CAPS470</div><div class="ttdoc">New 440pF.</div><div class="ttdef"><b>Definition</b> residfp_defs.h:89</div></div>
+<div class="ttc" id="aresidfp__defs_8h_html_ac0681795c57c0127ff8bd12beca381eaa96397d005332a4e2d60ed4170d0e7e4a"><div class="ttname"><a href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381eaa96397d005332a4e2d60ed4170d0e7e4a">reSIDfp::CAPS2200</a></div><div class="ttdeci">@ CAPS2200</div><div class="ttdoc">Old 2200pF.</div><div class="ttdef"><b>Definition</b> residfp_defs.h:88</div></div>
+<div class="ttc" id="aresidfp__defs_8h_html_ac0681795c57c0127ff8bd12beca381eaafcef971e9d469b10083778c23996e40c"><div class="ttname"><a href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381eaafcef971e9d469b10083778c23996e40c">reSIDfp::CAPS330</a></div><div class="ttdeci">@ CAPS330</div><div class="ttdoc">&quot;Galway&quot; 330pF</div><div class="ttdef"><b>Definition</b> residfp_defs.h:90</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Oct 2 2026 18:14:39 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Nov 13 2026 15:13:53 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

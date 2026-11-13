@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.2.3</span>
+   <div id="projectname">libresidfp<span id="projectnumber">&#160;1.3.0</span>
    </div>
   </td>
  </tr>
@@ -30,6 +30,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -111,8 +112,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>restart</b> ()</td></
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac247c20c470b7b0dce452eb8189efe17" id="r_ac247c20c470b7b0dce452eb8189efe17"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Filter6581.html#ac247c20c470b7b0dce452eb8189efe17">setFilterRange</a> (double adjustment)</td></tr>
 <tr class="separator:ac247c20c470b7b0dce452eb8189efe17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51909c468983b169f3db9518ff666a3b" id="r_a51909c468983b169f3db9518ff666a3b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Filter6581.html#a51909c468983b169f3db9518ff666a3b">enableOldCaps</a> (bool <a class="el" href="classreSIDfp_1_1Filter.html#aa1448375bdf13af37ddf8aa830fda581">enable</a>)</td></tr>
-<tr class="separator:a51909c468983b169f3db9518ff666a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4b223b5385c119798ce9aeb90936100" id="r_ac4b223b5385c119798ce9aeb90936100"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreSIDfp_1_1Filter6581.html#ac4b223b5385c119798ce9aeb90936100">setCaps</a> (<a class="el" href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381ea">CapsType</a> type)</td></tr>
+<tr class="separator:ac4b223b5385c119798ce9aeb90936100"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -310,39 +311,6 @@ Output buffer (NMOS voltage follower)</h2>
 <p>The external resistor Rext is needed to complete the NMOS voltage follower, this resistor has a recommended value of 1kOhm.</p>
 <p>Die photographs show that actually, two NMOS transistors are used in the voltage follower. However the two transistors are coupled in parallel (all terminals are pairwise common), which implies that we can model the two transistors as one. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a51909c468983b169f3db9518ff666a3b" name="a51909c468983b169f3db9518ff666a3b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51909c468983b169f3db9518ff666a3b">&#9670;&#160;</a></span>enableOldCaps()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void reSIDfp::Filter6581::enableOldCaps </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>enable</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Enable/disable old caps for 6581 model.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">enable</td><td>true to enable old 2200pF caps, false to use new 470pF caps. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a1dd670ef93c14313ed6c8f51f3ac3081" name="a1dd670ef93c14313ed6c8f51f3ac3081"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1dd670ef93c14313ed6c8f51f3ac3081">&#9670;&#160;</a></span>getNormalizedMixerVoice()</h2>
 
@@ -405,6 +373,39 @@ Output buffer (NMOS voltage follower)</h2>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classreSIDfp_1_1Filter.html">reSIDfp::Filter</a>.</p>
+
+</div>
+</div>
+<a id="ac4b223b5385c119798ce9aeb90936100" name="ac4b223b5385c119798ce9aeb90936100"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4b223b5385c119798ce9aeb90936100">&#9670;&#160;</a></span>setCaps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void reSIDfp::Filter6581::setCaps </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="residfp__defs_8h.html#ac0681795c57c0127ff8bd12beca381ea">CapsType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set caps type for 6581 model.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -501,7 +502,7 @@ Output buffer (NMOS voltage follower)</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Oct 2 2026 18:14:39 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Nov 13 2026 15:13:53 for libresidfp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
