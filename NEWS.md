@@ -1,4 +1,4 @@
-1.3.0 2026-11-xx
+1.3.0 2026-11-13
 * Allow choosing 330pF caps on the 6581 for brighter "Galway sounding" filter (#50)
 * Replace dithering with high-passed noise with adjustable level (#40)
 * Minor resampler optimizations
