@@ -295,10 +295,14 @@ protected:
 
     void restartIntegrators() override { hpIntegrator.restart(); bpIntegrator.restart(); }
 
-    int32_t getNormalizedMixerVoice(float v, uint8_t env) const override
+    constexpr float toFilterScale() const override { return 0.02625f * 0.03f; }
+
+    constexpr float toMixerScale(bool filter) const override
     {
-        return getNormalizedVoice(v, env);
+        return filter ? 0.02625f * 0.045f : 1.f;
     }
+
+    constexpr float voice3OffScale() const override { return 0.02625f * 2.f; }
 
 public:
     Filter8580() :

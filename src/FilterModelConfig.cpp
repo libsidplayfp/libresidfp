@@ -48,8 +48,8 @@ FilterModelConfig::FilterModelConfig(
     norm(1.0 / denorm),
     N16(norm * UINT16_MAX),
     voice_voltage_range(vvr),
-    mixer(new uint16_t[mixer_offset<8>::value]),
-    summer(new uint16_t[summer_offset<5>::value]),
+    mixer(new uint16_t[7 << 16]),
+    summer(new uint16_t[6 << 16]),
     volume(new uint16_t[16 * (1 << 16)]),
     resonance(new uint16_t[16 * (1 << 16)])
 {
