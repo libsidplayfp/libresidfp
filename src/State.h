@@ -26,6 +26,7 @@
 #include "residfp/residfp_defs.h"
 
 #include <cstdint>
+#include "Noise.h"
 
 namespace reSIDfp
 {
@@ -34,12 +35,12 @@ class SID;
 
 struct Params
 {
-    SamplingMethod method;
-    double samplingFrequency;
-    double filterCurve6581;
-    double filterRange6581;
-    double filterCurve8580;
-    CapsType caps6581;
+    SamplingMethod method = NONE;
+    double samplingFrequency = 0;
+    double filterCurve6581 = 0.5;
+    double filterRange6581 = 19.0 / 39.0; // The constructor's 20 uA/V^2 transistor parameter.
+    double filterCurve8580 = 0.5;
+    CapsType caps6581 = CAPS470;
 };
 
 class State
@@ -61,6 +62,8 @@ public:
     static int size(SID &s);
 
 private:
+    Noise noise;
+
     // SID
     int bus_value_ttl;
     unsigned int nextVoiceSync;
@@ -124,7 +127,7 @@ private:
     int32_t Vbp[2];
     int32_t Vlp[2];
     float extin[2];
-    uint8_t fc[2];
+    uint16_t fc[2];
     uint8_t vol[2];
     uint8_t filt[2];
     bool filt1[2];

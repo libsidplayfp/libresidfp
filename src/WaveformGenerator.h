@@ -228,6 +228,14 @@ public:
      * SID clocking.
      */
     void clock();
+    /**
+     * Check whether silent oscillator clocks can be advanced independently.
+     */
+    bool canClockIndependently() const { return waveform <= 8 || ring_msb_mask == 0; }
+    /**
+     * Advance the generator without producing audio.
+     */
+    void clockSilent(unsigned cycles);
 
     /**
      * Synchronize oscillators.
@@ -315,6 +323,73 @@ public:
 
 namespace reSIDfp
 {
+
+RESIDFP_INLINE
+void WaveformGenerator::clockSilent(unsigned cycles)
+{
+    // Feedback waveforms retain ordinary output evaluation on every clock.
+    if (waveform == 3 || waveform == 6 || waveform == 7 || waveform > 8)
+    {
+        while (cycles--)
+        {
+            clock();
+            output();
+        }
+        return;
+    }
+    while (cycles)
+    {
+        unsigned quiet = cycles;
+        if (test)
+        {
+            if (shift_register_reset && quiet >= shift_register_reset)
+                quiet = shift_register_reset - 1;
+        }
+        else
+        {
+            if (shift_pipeline)
+                quiet = 0;
+            else if (freq)
+            {
+                // Stop before the next accumulator bit-19 rise; clock its two-stage
+                // noise pipeline normally even when noise is not the selected waveform.
+                unsigned distance = (0x7ffffu - (accumulator & 0xfffffu)) & 0xfffffu;
+                unsigned until = distance / freq + 1;
+                if (quiet >= until)
+                    quiet = until - 1;
+            }
+        }
+        if (waveform == 0 && floating_output_ttl && quiet >= floating_output_ttl)
+            quiet = floating_output_ttl - 1;
+        if (quiet)
+        {
+            if (test)
+            {
+                if (shift_register_reset)
+                    shift_register_reset -= quiet;
+                test_or_reset = true;
+            }
+            else
+            {
+                // Multiplication advances the 24-bit phase modulo 2^24. Retain
+                // the final MSB transition for synchronisation at the chunk boundary.
+                uint32_t before = (accumulator + freq * (quiet - 1)) & 0xffffffu;
+                accumulator = (before + freq) & 0xffffffu;
+                msb_rising = (~before & accumulator & 0x800000u) != 0;
+            }
+            if (waveform == 0 && floating_output_ttl)
+                floating_output_ttl -= quiet;
+            pulse_output = ((accumulator >> 12) >= pw) ? 0xfff : 0;
+            cycles -= quiet;
+            if (!cycles)
+                break;
+        }
+        clock();
+        if (waveform == 0)
+            output();
+        --cycles;
+    }
+}
 
 RESIDFP_INLINE
 void WaveformGenerator::clock()

@@ -39,6 +39,7 @@ residfp::~residfp()
 
 bool residfp::setChipModel(ChipModel model)
 {
+    sid.flushSilent();
     try
     {
         sid.setChipModel(model);
@@ -57,6 +58,7 @@ ChipModel residfp::getChipModel() const
 
 bool residfp::setCombinedWaveforms(CombinedWaveforms cws)
 {
+    sid.flushSilent();
     try
     {
         sid.setCombinedWaveforms(cws);
@@ -71,6 +73,8 @@ bool residfp::setCombinedWaveforms(CombinedWaveforms cws)
 void residfp::reset()
 {
     sid.reset();
+    m_fastSilent = false;
+    m_fastSilentUsed = false;
 }
 
 void residfp::input(int value)
@@ -80,17 +84,21 @@ void residfp::input(int value)
 
 unsigned char residfp::peek(int offset) const
 {
+    sid.flushSilent();
     return sid.peek(offset);
 }
 
 unsigned char residfp::read(int offset)
 {
+    if (offset == 0x1b || offset == 0x1c) sid.flushSilent();
     return sid.read(offset);
 }
 
 void residfp::write(int offset, unsigned char value)
 {
+    if (offset < 0x15) sid.flushSilent();
     sid.write(offset, value);
+    sid.noteSilentWrite();
 }
 
 bool residfp::setSamplingParameters(
@@ -112,22 +120,34 @@ bool residfp::setSamplingParameters(
 
 int residfp::clock(unsigned int cycles, short* buf)
 {
+    sid.flushSilent();
     return sid.clock(cycles, buf);
 }
 
 int residfp::clock( short* buf, int bufSize)
 {
+    sid.flushSilent();
     return sid.clock(buf, bufSize);
 }
 
 void residfp::clockDigital(unsigned int cycles)
 {
+    sid.flushSilent();
     sid.clockDigital(cycles);
 }
 
 void residfp::clockSilent(unsigned int cycles)
 {
-    sid.clockSilent(cycles);
+    if (m_fastSilent)
+    {
+        sid.flushSilent();
+        sid.clockBus(cycles);
+        m_fastSilentUsed |= cycles != 0;
+    }
+    else
+    {
+        sid.clockSilentDeferred(cycles);
+    }
 }
 
 void residfp::setFilter6581Curve(double filterCurve)
@@ -172,11 +192,13 @@ int residfp::stateSize() const
 
 int residfp::saveState(char* buffer, int size) const
 {
+    sid.flushSilent();
     return State::saveState(sid, buffer, size);
 }
 
 void residfp::restoreState(char* buffer, int size)
 {
+    sid.clearSilentPending();
     State::restoreState(sid, buffer, size);
 }
 

@@ -323,6 +323,9 @@ void SID::setCombinedWaveforms(CombinedWaveforms new_cws)
 
 void SID::reset()
 {
+    // Oscillator accumulators survive reset, so materialise their elapsed clocks.
+    flushSilent();
+    silentPending = silentLastWrite = 0;
     for (int i = 0; i < 3; i++)
     {
         voice[i].reset();
@@ -583,34 +586,44 @@ void SID::clockDigital(unsigned int cycles)
 void SID::clockSilent(unsigned int cycles)
 {
     ageBusValue(cycles);
-
-    while (cycles != 0)
+    while (cycles)
     {
-        int delta_t = std::min(nextVoiceSync, cycles);
-
-        if (delta_t > 0)
+        unsigned delta = std::min(nextVoiceSync, cycles);
+        if (delta)
         {
-            for (int i = 0; i < delta_t; i++)
+            // Ring-modulated noise feedback couples voices during intermediate clocks.
+            bool independent = voice[0].wave()->canClockIndependently() &&
+                               voice[1].wave()->canClockIndependently() &&
+                               voice[2].wave()->canClockIndependently();
+            if (independent && delta > 2)
             {
-                // clock waveform generators (can affect OSC3)
+                // Retain two shared clocks for pulse and 8580 tri/saw output pipelines.
+                for (auto &v : voice)
+                    v.wave()->clockSilent(delta - 2);
+                voice[2].envelope()->clockSilent(delta - 2);
+            }
+            else
+            {
+                for (unsigned i = 2; i < delta; i++)
+                {
+                    clockWaveGen();
+                    for (auto &v : voice)
+                        v.wave()->output();
+                    voice[2].envelope()->clock();
+                }
+            }
+            for (unsigned i = 0; i < std::min(delta, 2u); i++)
+            {
                 clockWaveGen();
-
-                voice[0].wave()->output();
-                voice[1].wave()->output();
-                voice[2].wave()->output();
-
-                // clock ENV3 only
+                for (auto &v : voice)
+                    v.wave()->output();
                 voice[2].envelope()->clock();
             }
-
-            cycles -= delta_t;
-            nextVoiceSync -= delta_t;
+            cycles -= delta;
+            nextVoiceSync -= delta;
         }
-
         if (nextVoiceSync == 0)
-        {
             voiceSync(true);
-        }
     }
 }
 
@@ -656,3 +669,27 @@ void SID::setNoiseLevel(int level)
 }
 
 } // namespace reSIDfp
+
+namespace reSIDfp {
+void SID::flushSilentState() {
+    if (!silentPending) return;
+    const auto cycles = silentPending;
+    const auto lastWrite = silentLastWrite;
+    silentPending = silentLastWrite = 0;
+    const auto value = busValue;
+    const auto ttl = busValueTtl;
+    clockSilent(cycles);
+    // A register write refreshes the no-sync sentinel at its original clock.
+    if (lastWrite && cycles < unsigned(std::numeric_limits<int>::max()) &&
+        nextVoiceSync == unsigned(std::numeric_limits<int>::max()) - cycles)
+        nextVoiceSync += lastWrite;
+    busValue = value;
+    busValueTtl = ttl;
+}
+void SID::clockSilentDeferred(unsigned cycles) {
+    ageBusValue(cycles);
+    if (cycles > std::numeric_limits<unsigned>::max() - silentPending) flushSilent();
+    silentPending += cycles;
+    if (silentPending >= 65536) flushSilent();
+}
+}

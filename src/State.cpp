@@ -34,7 +34,8 @@ namespace reSIDfp
 
 int State::saveState(SID &s, char* buffer, int size)
 {
-    State state;
+    State state{};
+    state.noise = s.m_noise;
 
     for (int i = 0; i < 3; i++)
     {
@@ -199,6 +200,7 @@ void State::restoreState(SID &s, char* buffer, int size)
     State state;
     std::memcpy(&state, buffer, cnt);
 
+    s.m_noise = state.noise;
     s.dacLeakage = state.dacLeakage;
     s.busValue = state.bus_value;
     s.busValueTtl = state.bus_value_ttl;
@@ -231,6 +233,7 @@ void State::restoreState(SID &s, char* buffer, int size)
         f->enabled = state.enabled[i];
         f->filt = state.filt[i];
         f->updateResonance((f->filt >> 4) & 0x0f);
+        f->updateResonance((state.filt[i] >> 4) & 0x0f);
         f->updateMixing();
     }
     s.setFilter6581Curve(state.filterCurve6581);
@@ -257,7 +260,9 @@ void State::restoreState(SID &s, char* buffer, int size)
     s.externalFilter.Vhp = state.exVhp;
     s.externalFilter.m_ext_res = state.ext_res;
 
-    s.setSamplingParameters(state.clockFrequency, state.method, state.samplingFrequency);
+    if (s.externalFilter.m_frequency != state.clockFrequency ||
+        s.p->method != state.method || s.p->samplingFrequency != state.samplingFrequency)
+        s.setSamplingParameters(state.clockFrequency, state.method, state.samplingFrequency);
     s.externalFilter.recalcParams();
 
     for (int i = 0; i < 3; i++)
